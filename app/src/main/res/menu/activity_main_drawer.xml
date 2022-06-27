@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_banners"
+            android:title="@string/banner_ads" />
+        <item
+            android:id="@+id/nav_interstitial"
+            android:title="@string/interstitial_ads" />
+        <item
+            android:id="@+id/nav_rewarded"
+            android:title="@string/rewarded_ads" />
+        <item
+            android:id="@+id/nav_rewarded_interstitial"
+            android:title="@string/rewarded_interstitial_ads" />
+        <item
+            android:id="@+id/nav_in_content"
+            android:title="@string/in_content_ads" />
+    </group>
+</menu>

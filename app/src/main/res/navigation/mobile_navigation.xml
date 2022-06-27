@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_banners">
+
+    <fragment
+        android:id="@+id/nav_banners"
+        android:name="com.nextmillennium.androidexample.ui.BannersFragment"
+        android:label="Banner ads"
+        tools:layout="@layout/fragment_banners" />
+
+    <fragment
+        android:id="@+id/nav_interstitial"
+        android:name="com.nextmillennium.androidexample.ui.InterstitialFragment"
+        android:label="Interstitial ads"
+        tools:layout="@layout/fragment_interstitial" />
+
+    <fragment
+        android:id="@+id/nav_rewarded"
+        android:name="com.nextmillennium.androidexample.ui.RewardedFragment"
+        android:label="Rewarded ads"
+        tools:layout="@layout/fragment_rewarded" />
+
+    <fragment
+        android:id="@+id/nav_rewarded_interstitial"
+        android:name="com.nextmillennium.androidexample.ui.RewardedInterstitialFragment"
+        android:label="Rewarded Interstitial ads"
+        tools:layout="@layout/fragment_rewarded_interstitial" />
+
+    <fragment
+        android:id="@+id/nav_in_content"
+        android:name="com.nextmillennium.androidexample.ui.InContentFragment"
+        android:label="In list ads"
+        tools:layout="@layout/fragment_in_content" />
+
+    <fragment
+        android:id="@+id/nav_injection"
+        android:name="com.nextmillennium.androidexample.ui.InjectionFragment"
+        android:label="Injection"
+        tools:layout="@layout/fragment_injection" />
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.nextmillennium.androidexample.SettingsFragment"
+        android:label="Settings" />
+
+    <action
+        android:id="@+id/action_to_settings"
+        app:destination="@id/nav_settings" />
+
+</navigation>
