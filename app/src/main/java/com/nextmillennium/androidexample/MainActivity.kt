@@ -3,7 +3,6 @@ package com.nextmillennium.androidexample
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -37,8 +36,7 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_banners,
                 R.id.nav_interstitial,
                 R.id.nav_rewarded,
-                R.id.nav_rewarded_interstitial,
-                R.id.nav_in_content,
+                R.id.nav_native,
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

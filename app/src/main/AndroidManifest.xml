@@ -9,6 +9,7 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:name=".App"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidExample"
@@ -16,7 +17,6 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
-            android:label="@string/app_name"
             android:theme="@style/Theme.AndroidExample.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,7 +29,7 @@
             android:value="ca-app-pub-8606804482029683~4712533996" />
         <meta-data
             android:name="com.nextmillennium.inappsdk.API_KEY"
-            android:value="d501c4c9-5e84-403a-8ce8-2a9b795ecdc1" />
+            android:value="1626f6eb-2767-40c4-9d7d-09edf76ffdda" />
     </application>
 
 </manifest>

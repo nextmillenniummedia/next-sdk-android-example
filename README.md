@@ -1,1 +1,1 @@
-# inapp-android-example
+# Documentation and examples for Next Millennium in-app SDK for native Android based application  

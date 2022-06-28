@@ -3,23 +3,13 @@
     <PreferenceCategory app:title="Banners">
 
         <EditTextPreference
-            app:key="banner_simple"
+            app:key="banner"
             app:title="Mobile Leaderboard"
-            app:useSimpleSummaryProvider="true" />
-
-        <EditTextPreference
-            app:key="banner_large"
-            app:title="Large Banner"
             app:useSimpleSummaryProvider="true" />
 
         <EditTextPreference
             app:key="banner_mrec"
             app:title="Medium Rectangle"
-            app:useSimpleSummaryProvider="true" />
-
-        <EditTextPreference
-            app:key="banner_full"
-            app:title="Full-Size banner"
             app:useSimpleSummaryProvider="true" />
 
         <EditTextPreference
@@ -41,20 +31,20 @@
             app:title="Rewarded ad"
             app:useSimpleSummaryProvider="true" />
 
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Native ads">
+
         <EditTextPreference
-            app:key="rewarded_interstitial"
-            app:title="Rewarded interstitial ad"
+            app:key="native_small"
+            app:title="Native small ad"
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            app:key="native_medium"
+            app:title="Native medium ad"
             app:useSimpleSummaryProvider="true" />
 
     </PreferenceCategory>
-
-    <PreferenceCategory app:title="In content">
-        <EditTextPreference
-            app:key="in_content"
-            app:title="In list ad"
-            app:useSimpleSummaryProvider="true" />
-
-    </PreferenceCategory>
-
 
 </PreferenceScreen>

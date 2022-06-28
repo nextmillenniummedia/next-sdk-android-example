@@ -8,38 +8,26 @@
     <fragment
         android:id="@+id/nav_banners"
         android:name="com.nextmillennium.androidexample.ui.BannersFragment"
-        android:label="Banner ads"
+        android:label="Banner ads example"
         tools:layout="@layout/fragment_banners" />
 
     <fragment
         android:id="@+id/nav_interstitial"
         android:name="com.nextmillennium.androidexample.ui.InterstitialFragment"
-        android:label="Interstitial ads"
+        android:label="Interstitial ad example"
         tools:layout="@layout/fragment_interstitial" />
 
     <fragment
         android:id="@+id/nav_rewarded"
         android:name="com.nextmillennium.androidexample.ui.RewardedFragment"
-        android:label="Rewarded ads"
+        android:label="Rewarded ad example"
         tools:layout="@layout/fragment_rewarded" />
 
     <fragment
-        android:id="@+id/nav_rewarded_interstitial"
-        android:name="com.nextmillennium.androidexample.ui.RewardedInterstitialFragment"
-        android:label="Rewarded Interstitial ads"
-        tools:layout="@layout/fragment_rewarded_interstitial" />
-
-    <fragment
-        android:id="@+id/nav_in_content"
-        android:name="com.nextmillennium.androidexample.ui.InContentFragment"
-        android:label="In list ads"
-        tools:layout="@layout/fragment_in_content" />
-
-    <fragment
-        android:id="@+id/nav_injection"
-        android:name="com.nextmillennium.androidexample.ui.InjectionFragment"
-        android:label="Injection"
-        tools:layout="@layout/fragment_injection" />
+        android:id="@+id/nav_native"
+        android:name="com.nextmillennium.androidexample.ui.NativeFragment"
+        android:label="Native ad example"
+        tools:layout="@layout/fragment_native" />
 
     <fragment
         android:id="@+id/nav_settings"

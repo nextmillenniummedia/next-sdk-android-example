@@ -9,15 +9,12 @@
             android:title="@string/banner_ads" />
         <item
             android:id="@+id/nav_interstitial"
-            android:title="@string/interstitial_ads" />
+            android:title="@string/interstitial_ad" />
         <item
             android:id="@+id/nav_rewarded"
-            android:title="@string/rewarded_ads" />
+            android:title="@string/rewarded_ad" />
         <item
-            android:id="@+id/nav_rewarded_interstitial"
-            android:title="@string/rewarded_interstitial_ads" />
-        <item
-            android:id="@+id/nav_in_content"
-            android:title="@string/in_content_ads" />
+            android:id="@+id/nav_native"
+            android:title="@string/native_ad" />
     </group>
 </menu>

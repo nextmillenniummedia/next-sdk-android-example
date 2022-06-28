@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.NativeFragment">
+
+    <RadioGroup
+        android:id="@+id/native_type_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:checkedButton="@id/radio_native_medium">
+
+        <RadioButton
+            android:id="@+id/radio_native_small"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/small" />
+
+        <RadioButton
+            android:id="@+id/radio_native_medium"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/medium" />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/load_native"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/minSize"
+        android:text="@string/load" />
+
+    <com.nextmillennium.inappsdk.core.ui.InAppBannerView
+        android:id="@+id/native_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+</LinearLayout>
