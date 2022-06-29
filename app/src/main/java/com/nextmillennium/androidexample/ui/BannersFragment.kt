@@ -13,6 +13,9 @@ import com.nextmillennium.inappsdk.core.ui.InAppBannerView
 class BannersFragment : Fragment() {
 
     private var binding: FragmentBannersBinding? = null
+    private var simpleBanner: InAppBannerView? = null
+    private var mediumRectangle: InAppBannerView? = null
+    private var anchoredBanner: InAppBannerView? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,16 +27,16 @@ class BannersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val simpleBanner: InAppBannerView? = binding?.bannerSimple
-        val mediumRectangle: InAppBannerView? = binding?.bannerMrec
-        val anchoredBanner: InAppBannerView? = binding?.bannerAnchored
+        simpleBanner = binding?.bannerSimple
+        mediumRectangle = binding?.bannerMrec
+        anchoredBanner = binding?.bannerAnchored
         val preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         simpleBanner?.inAppUnitId = preferences.getString("banner", "751")
-        simpleBanner?.load({ showLoaded(simpleBanner.inAppUnitId) }, { showError(it) })
+        simpleBanner?.load({ showLoaded(simpleBanner?.inAppUnitId ?: "") }, { showError(it) })
         anchoredBanner?.inAppUnitId = preferences.getString("banner_anchored", "753")
-        anchoredBanner?.load({ showLoaded(anchoredBanner.inAppUnitId) }, { showError(it) })
+        anchoredBanner?.load({ showLoaded(anchoredBanner?.inAppUnitId ?: "") }, { showError(it) })
         mediumRectangle?.inAppUnitId = preferences.getString("banner_mrec", "752")
-        mediumRectangle?.load({ showLoaded(mediumRectangle.inAppUnitId) }, { showError(it) })
+        mediumRectangle?.load({ showLoaded(mediumRectangle?.inAppUnitId ?: "") }, { showError(it) })
     }
 
     fun showLoaded(message: String = "") {
@@ -51,5 +54,26 @@ class BannersFragment : Fragment() {
             Snackbar.make(it.root, "Error banner load: $error", Snackbar.LENGTH_SHORT)
                 .show()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        simpleBanner?.resume()
+        anchoredBanner?.resume()
+        mediumRectangle?.resume()
+    }
+
+    override fun onPause() {
+        simpleBanner?.pause()
+        anchoredBanner?.pause()
+        mediumRectangle?.pause()
+        super.onPause()
+    }
+
+    override fun onDestroyView() {
+        simpleBanner?.destroy()
+        anchoredBanner?.destroy()
+        mediumRectangle?.destroy()
+        super.onDestroyView()
     }
 }

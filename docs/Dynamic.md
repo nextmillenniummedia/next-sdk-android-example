@@ -47,8 +47,12 @@ send screen names every time application starts.
 There are next overloads of this method:
 
 ```Java
-public static void sendScreenNames(Context context);
-public static void sendScreenNames(Context context, List<String> screens)
+public class InAppSdk {
+    // ...
+    public static void sendScreenNames(Context context);
+
+    public static void sendScreenNames(Context context, List<String> screens);
+}
 ```
 
 In case you use code obfuscation, the send screen names method has a corresponding overload for
@@ -101,12 +105,15 @@ class SomeFragment : Fragment() {
     }
 }
 ```
-`wrapView` method is needed to get view where you want to show
-ads.
-```java
-public static View wrapView (View userView);
-```
 
+`wrapView` method is needed to get view where you want to show ads.
+
+```java
+public class InAppSdk {
+    // ...
+    public static View wrapView(View userView);
+}
+```
 
 ### InContent banners
 
@@ -119,23 +126,17 @@ If you want to show banners inside your RecyclerView (between your items), then 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:orientation="vertical"
-  tools:context=".ui.fragments.NewsFragment">
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:orientation="vertical"
+    tools:context=".ui.fragments.NewsFragment">
 
-	<com.nextmillennium.inappsdk.core.ui.InContentView
-    android:id="@+id/inContentView"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    <com.nextmillennium.inappsdk.core.ui.InContentView android:id="@+id/inContentView"
+        android:layout_width="match_parent" android:layout_height="match_parent">
 
-		<androidx.recyclerview.widget.RecyclerView
-			android:layout_weight="1"
-			android:layout_width="match_parent"
-			android:layout_height="0dp" />
+        <androidx.recyclerview.widget.RecyclerView android:layout_weight="1"
+            android:layout_width="match_parent" android:layout_height="0dp" />
 
-	</com.nextmillennium.inappsdk.core.ui.InContentView>
+    </com.nextmillennium.inappsdk.core.ui.InContentView>
 
 </LinearLayout>
 ```
@@ -150,7 +151,7 @@ In content example:
 ```Java
 class NewsFragment extends Fragment {
 
-		@Override
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_news, container, false);
@@ -166,20 +167,20 @@ class NewsFragment extends Fragment {
         return rootView;
     }
 
-		@Override
-		public void onViewCreated(View view, Bundle savedInstanceState) {
-				super.onViewCreated(view, savedInstanceState);
-	      InAppSdk.injectTo(this, savedInstanceState);
-		}
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        InAppSdk.injectTo(this, savedInstanceState);
+    }
 
-		private String[] initDataset() {
+    private String[] initDataset() {
         final int DATASET_COUNT = 100;
         String[] dataset = new String[DATASET_COUNT];
         for (int i = 0; i < DATASET_COUNT; i++) {
             dataset[i] = "This is news #" + i;
         }
         return dataset;
-		 }
+    }
 
 }
 ```
@@ -230,23 +231,17 @@ If you want to show banners inside your TextView (between paragraphs), then you 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:tools="http://schemas.android.com/tools"
-  android:layout_width="match_parent"
-  android:layout_height="match_parent"
-  android:orientation="vertical"
-  tools:context=".ui.fragments.NewsFragment">
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:orientation="vertical"
+    tools:context=".ui.fragments.NewsFragment">
 
-	<com.nextmillennium.inappsdk.core.ui.InContentView
-    android:id="@+id/inContentView"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    <com.nextmillennium.inappsdk.core.ui.InContentView android:id="@+id/inContentView"
+        android:layout_width="match_parent" android:layout_height="match_parent">
 
-		<TextView
-			android:layout_weight="1"
-			android:layout_width="match_parent"
-			android:layout_height="0dp" />
+        <TextView android:layout_weight="1" android:layout_width="match_parent"
+            android:layout_height="0dp" />
 
-	</com.nextmillennium.inappsdk.core.ui.InContentView>
+    </com.nextmillennium.inappsdk.core.ui.InContentView>
 
 </LinearLayout>
 ```
@@ -261,14 +256,14 @@ Example. How to use in content banner injection inside the TextView.
 ```Java
 class NewsFragment extends Fragment {
 
-	@Override
-	public void onViewCreated(View view, Bundle savedInstanceState) {
-		super.onViewCreated(view, savedInstanceState);
-		InContentView inContentView = view.findViewById(R.id.inContentView);
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        InContentView inContentView = view.findViewById(R.id.inContentView);
 
-    inContentView.setContent("Some text");
-    InAppSdk.injectTo(this, "NewsFragment", savedInstanceState);
-	}
+        inContentView.setContent("Some text");
+        InAppSdk.injectTo(this, "NewsFragment", savedInstanceState);
+    }
 
 }
 ```
