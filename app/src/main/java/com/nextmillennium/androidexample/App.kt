@@ -1,22 +1,15 @@
 package com.nextmillennium.androidexample
 
 import android.app.Application
-import android.provider.Settings
-import android.util.Log
 import androidx.preference.PreferenceManager
 import com.nextmillennium.inappsdk.core.InAppSdk
-import java.security.MessageDigest
-import java.security.NoSuchAlgorithmException
 
 class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
         initPreferences()
-        val androidId = Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID)
-        val deviceId = md5(androidId).uppercase()
-        val hashedScreens = arrayListOf(deviceId)
-        InAppSdk.initialize(this, hashedScreens) {}
+        InAppSdk.initialize(this, true)
     }
 
     fun initPreferences() {
@@ -37,24 +30,5 @@ class App : Application() {
             }
         }
         editor.apply()
-    }
-
-    fun md5(androidId: String): String {
-        try {
-            val digest = MessageDigest.getInstance("MD5")
-            digest.update(androidId.toByteArray())
-            val messageDigest = digest.digest()
-            val hexString = StringBuilder()
-            for (part in messageDigest) {
-                var h = Integer.toHexString(0xFF and part.toInt())
-                while (h.length < 2) h = "0$h"
-                hexString.append(h)
-            }
-            return hexString.toString()
-        } catch (e: NoSuchAlgorithmException) {
-            e.printStackTrace()
-            Log.e("error", e.toString())
-        }
-        return ""
     }
 }
