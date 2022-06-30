@@ -1,6 +1,7 @@
 package com.nextmillennium.androidexample
 
 import android.app.Application
+import android.util.Log
 import androidx.preference.PreferenceManager
 import com.nextmillennium.inappsdk.core.InAppSdk
 
@@ -9,7 +10,9 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         initPreferences()
-        InAppSdk.initialize(this, true)
+        InAppSdk.initialize(this, true) {
+            it?.let { Log.d("APP", it.toString()) }
+        }
     }
 
     fun initPreferences() {
