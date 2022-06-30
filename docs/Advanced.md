@@ -7,7 +7,11 @@ uses obfuscation or code generation. For example, you have activity with name `N
 first application launch it will send screen names to our InApp Server. But if your activity is
 obfuscated after release, you can specify its name explicitly:
 
+Java
+<details>
+
 ```java
+
 public class Zzz extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -16,14 +20,38 @@ public class Zzz extends AppCompatActivity {
         InAppSdk.injectTo(this, "NewsActivity", savedInstanceState);
     }
 }
+
 ```
+
+</details>
+
+Kotlin
+<details>
+
+```Kotlin
+
+class Zzz : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_news)
+        InAppSdk.injectTo(this, "NewsActivity", savedInstanceState)
+    }
+}
+
+```
+
+</details>
 
 ## Force reload
 
 To force reload banners on a screen call  `InAppSDK.reload` method. Make sure to call this method
 after calling the `InAppSdk.injectTo` method.
 
+Java
+<details>
+
 ```java
+
 public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -36,7 +64,31 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 }
+
 ```
+
+</details>
+
+Kotlin
+<details>
+
+```Kotlin
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        InAppSdk.injectTo(this, savedInstanceState)
+        val reload = findViewById(R.id.btn)
+        reload.setOnClickListener {
+            InAppSdk.reload(this@MainActivity, InAppSdk.ReloadFilter.TOP_AND_BOTTOM)
+        }
+    }
+}
+
+```
+
+</details>
 
 ## Overriding Absolute vs Relative Sticky Top Banners in Injection Mode
 

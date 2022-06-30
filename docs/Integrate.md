@@ -65,5 +65,5 @@ our [website](https://nextmillennium.io/contact/) for more information.
 
 A new **GOOGLE_APPLICATION_ID** will be generated for you by Next Millennium Media.
 
-It is required to completely remove Google Mobile Ads SDK from your project to prevent conflicts and potential
-fail builds.
+It is required to completely remove Google Mobile Ads SDK from your project to prevent conflicts and
+potential fail builds.

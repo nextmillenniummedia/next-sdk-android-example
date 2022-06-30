@@ -5,7 +5,7 @@
 Initialize the SDK by calling the `InAppSdk.initialize()` in `onCreate` listener of your
 application’s main class or main activity
 
-`App.java`
+Java
 
 ```java
 // imports
@@ -20,6 +20,19 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         InAppSdk.initialize(this);
+    }
+}
+```
+
+Kotlin
+
+```kotlin
+// imports
+class App : Application() {
+
+    override fun onCreate() {
+        super.onCreate()
+        InAppSdk.initialize(this)
     }
 }
 ```
