@@ -26,7 +26,7 @@ public class SomeActivity extends AppCompatActivity {
 }
 ```
 
-Then you need to set unit id from our system that we provide for you and call load
+Then you need to set unit id from our system that we provide for you
 
 ```java 
 bannerView.setInAppUnitId("Your inAppBanner id");
@@ -320,6 +320,8 @@ Always destroy ad views to ensure that it is removed from the layout and cleared
 You can simply call them for instance of `InAppBannerView` in your own overrides of `onResume`
 , `onPause` and `onDestroy`:
 
+Java
+
 ```java
 
 import com.nextmillennium.inappsdk.core.ui.InAppBannerView;
@@ -363,6 +365,8 @@ public class ClassicCustomBannerActivity extends AppCompatActivity {
     }
 }
 ```
+
+Kotlin
 
 ```kotlin
 class ClassicCustomBannerActivity : AppCompatActivity() {
@@ -422,6 +426,8 @@ More meaningful example:
 </LinearLayout>
 ```
 
+Java
+
 ```java
 public class ClassicCustomBannerActivity extends AppCompatActivity {
 
@@ -476,6 +482,8 @@ public class ClassicCustomBannerActivity extends AppCompatActivity {
     }
 }
 ```
+
+Kotlin
 
 ```Kotlin
 

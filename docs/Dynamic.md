@@ -69,6 +69,8 @@ like size or position we can do it without changes in code.
 
 Call `InAppSdk.injectTo(this)` method in needed `Activity` in `OnCreate()` method:
 
+Java
+
 ```Java
 public class SomeFragment extends Fragment {
 
@@ -87,6 +89,8 @@ public class SomeFragment extends Fragment {
 }
 ```
 
+Kotlin
+
 ```Kotlin
 class SomeFragment : Fragment() {
 
@@ -99,7 +103,7 @@ class SomeFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val root: View = inflater.inflate(R.id.my_fragment, container, false)
         return InAppSdk.wrapView(root)
     }
@@ -148,6 +152,8 @@ Note: In dynamic mode, there can be only one RecyclerView into which ads will be
 
 In content example:
 
+Java 
+
 ```Java
 class NewsFragment extends Fragment {
 
@@ -185,6 +191,8 @@ class NewsFragment extends Fragment {
 }
 ```
 
+Kotlin
+
 ```Kotlin
 class NewsFragment : Fragment() {
     private val DATASET_COUNT = 100
@@ -193,7 +201,7 @@ class NewsFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         val rootView = inflater.inflate(R.layout.fragment_news, container, false)
         // Inflate the layout for this fragment
         val recyclerView: RecyclerView = rootView.findViewById(R.id.recyclerView)
