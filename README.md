@@ -28,7 +28,7 @@ Documents below describes how to integrate NMM in-app ads into your Android appl
 * 👀 [Integrate Ad Formats Manually](https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/Manual.md)
 * 🎮 [Test Your Integration](https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/TestIntegration.md)
 * 📘 [Advanced Settings](https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/AdvancedSettings.md)
-* ❔[FAQ](https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/FAQ.md)
+* ❔ [FAQ](https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/FAQ.md)
 
 # Example application
 
