@@ -1,4 +1,6 @@
-## Interstitial Ad
+# Interstitial Ads
+
+[Back to manual mode overview](https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/manual/Manual.md)
 
 To show interstitial ad in manual mode you need to create an instance of `InAppInterstitialAd` class
 and then call `load` method.
@@ -32,8 +34,11 @@ For example you have an activity with next layout.
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".classic.ClassicInterstitialActivity"></LinearLayout>
+    android:layout_height="match_parent" android:orientation="vertical"
+    tools:context=".classic.ClassicInterstitialActivity">
+    <Button android:id="@+id/load_interstitial" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:minHeight="48dp" android:text="@string/load" />
+</LinearLayout>
 ```
 
 Everything you need is to create a new instance of `InAppInterstitialAd` and call load.
@@ -46,8 +51,8 @@ public class ClassicInterstitialActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_classic_interstitial);
 
-        Button load = findViewById(R.id.load);
-        load.setOnClickListener((listener) -> {
+        Button load = findViewById(R.id.loadInterstitial);
+        load.setOnClickListener((view) -> {
             new InAppInterstitialAd(this, "In App Unit Id").load();
         });
     }
@@ -90,7 +95,7 @@ public class ClassicInterstitialFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Button load = findViewById(R.id.load);
-        load.setOnClickListener((listener) -> {
+        load.setOnClickListener((view) -> {
             new InAppInterstitialAd(requireContext(), "Unit id").load();
         });
     }
@@ -181,7 +186,7 @@ public class ClassicInterstitialFragment extends Fragment implements Interstitia
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         Button loadInterstitial = findViewById(R.id.load);
-        loadInterstitial.setOnClickListener((listener) -> {
+        loadInterstitial.setOnClickListener((view) -> {
             new InAppInterstitialAd(getContext(), "Unit Id").setListener(this).load();
         });
     }

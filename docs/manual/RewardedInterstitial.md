@@ -1,4 +1,5 @@
-## Rewarded Interstitial Ads
+# Rewarded Interstitial Ads
+[Back to manual mode overview](https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/manual/Manual.md)
 
 To show rewarded interstitial ad in manual mode you need to create an instance
 of `InAppRewardedInterstitialAd` class and then call `load` method.
@@ -37,8 +38,8 @@ public class ClassicRewardedInterstitialActivity extends AppCompatActivity imple
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_classic_rewarded_interstitial);
         textView = findViewById(R.id.rewardInterstitialTextViewClassic);
-        Button button = findViewById(R.id.load);
-        load.setOnClickListener((listener) -> {
+        Button button = findViewById(R.id.load_rewarded_interstitial);
+        load.setOnClickListener((view) -> {
             String unitId = "Your unit id";
             new InAppRewardedInterstitialAd(this, unitId).load();
         });
@@ -59,7 +60,9 @@ public class ClassicRewardedInterstitialActivity extends AppCompatActivity imple
     android:id="@+id/rewardedInterstitialLayoutClassic" android:layout_width="match_parent"
     android:layout_height="match_parent" android:orientation="vertical"
     tools:context=".classic.ClassicRewardedInterstitialActivity">
-
+    <Button android:id="@+id/load_rewarded_interstitial" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:minHeight="48dp"
+        android:text="@string/load" />
     <TextView android:id="@+id/rewardInterstitialTextViewClassic"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:text="@string/reward" />
@@ -92,8 +95,8 @@ public class ClassicRewardedInterstitialFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Button button = findViewById(R.id.load);
-        load.setOnClickListener((listener) -> new InAppRewardedAd(getContext(), "Unit id").load());
+        Button button = findViewById(R.id.load_rewarded_interstitial);
+        load.setOnClickListener((view) -> new InAppRewardedAd(getContext(), "Unit id").load());
     }
 }
 ```
@@ -126,8 +129,8 @@ public class ClassicRewardedInterstitialActivity extends AppCompatActivity imple
         setContentView(R.layout.activity_classic_rewarded_interstitial);
         textView = findViewById(R.id.rewardInterstitialTextViewClassic);
 
-        Button button = findViewById(R.id.load);
-        load.setOnClickListener((listener) -> {
+        Button button = findViewById(R.id.load_rewarded_interstitial);
+        load.setOnClickListener((view) -> {
             String unitId = "unit id";
             new InAppRewardedInterstitialAd(this, unitId).setListener(this).load();
         });

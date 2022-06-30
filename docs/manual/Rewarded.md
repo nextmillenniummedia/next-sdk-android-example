@@ -1,4 +1,6 @@
-## Rewarded Ads
+# Rewarded Ads
+
+[Back to manual mode overview](https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/manual/Manual.md)
 
 To show rewarded ad in manual mode you need to create an instance of `InAppRewardedAd` class and
 then call `load` method.
@@ -36,8 +38,8 @@ public class ClassicRewardedActivity extends AppCompatActivity implements Reward
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_classic_rewarded);
         textView = findViewById(R.id.rewardTextViewClassic);
-        Button button = findViewById(R.id.load);
-        load.setOnClickListener((listener) -> {
+        Button button = findViewById(R.id.load_rewarded);
+        load.setOnClickListener((view) -> {
             String unitId = "Your unit id";
             new InAppRewardedAd(this, unitId).load();
         });
@@ -56,7 +58,9 @@ public class ClassicRewardedActivity extends AppCompatActivity implements Reward
     xmlns:tools="http://schemas.android.com/tools" android:id="@+id/rewardedLayoutClassic"
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:orientation="vertical" tools:context=".classic.ClassicRewardedActivity">
-
+    <Button android:id="@+id/load_rewarded" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:minHeight="48dp"
+        android:text="@string/load" />
     <TextView android:id="@+id/rewardTextViewClassic" android:layout_width="wrap_content"
         android:layout_height="wrap_content" android:text="@string/reward" />
 
@@ -70,10 +74,17 @@ Usage in fragments is almost similar to activities.
 For example you have a fragment with next layout.
 
 ```xml
+
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.classic.ClassicRewardedFragment">
+    <Button
+        android:id="@+id/load_rewarded"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="@dimen/minSize"
+        android:text="@string/load" />
 </FrameLayout>
 ```
 
@@ -96,8 +107,8 @@ public class ClassicRewardedFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        Button button = findViewById(R.id.load);
-        load.setOnClickListener((listener) -> {
+        Button button = findViewById(R.id.load_rewarded);
+        load.setOnClickListener((view) -> {
             String unitId = "Your unit id";
             new InAppRewardedAd(this, unitId).load();
         });
@@ -132,8 +143,8 @@ public class ClassicRewardedActivity extends AppCompatActivity implements Reward
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_classic_rewarded);
         textView = findViewById(R.id.rewardTextViewClassic);
-        Button button = findViewById(R.id.load);
-        load.setOnClickListener((listener) -> {
+        Button button = findViewById(R.id.load_rewarded);
+        load.setOnClickListener((view) -> {
             String unitId = "Your unit id";
             new InAppRewardedAd(this, unitId).setListener(this).load();
         });

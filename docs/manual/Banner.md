@@ -1,4 +1,5 @@
 # Banner ads
+[Back to manual mode overview](https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/manual/Manual.md)
 
 To show banner ads you need to add `InAppBannerView` component to your UI. Add it to your layout XML
 file:
@@ -192,7 +193,7 @@ public class SomeActivity extends AppCompatActivity {
         InAppBannerView bannerView = view.findViewById(R.id.inAppBannerView);
         bannerView.setInAppUnitId("Your inAppBanner id");
         Button load = findViewById(R.id.load_button);
-        load.setOnClickListener((listener) -> loadBanner(bannerView));
+        load.setOnClickListener((view) -> loadBanner(bannerView));
     }
 
     public void loadBanner(InAppBannerView bannerView) {
@@ -443,7 +444,7 @@ public class ClassicCustomBannerActivity extends AppCompatActivity {
         String unitId = "417";
         Button load = binding.loadBanner;
         classicBanner = binding.classicInAppBanner;
-        load.setOnClickListener((listener) -> loadBanner(enteredUnitId));
+        load.setOnClickListener((view) -> loadBanner(enteredUnitId));
     }
 
     private void loadBanner(String unitId) {
