@@ -8,7 +8,6 @@ first application launch it will send screen names to our InApp Server. But if y
 obfuscated after release, you can specify its name explicitly:
 
 Java
-<details>
 
 ```java
 
@@ -22,12 +21,7 @@ public class Zzz extends AppCompatActivity {
 }
 
 ```
-
-</details>
-
 Kotlin
-<details>
-
 ```Kotlin
 
 class Zzz : AppCompatActivity() {
@@ -40,15 +34,12 @@ class Zzz : AppCompatActivity() {
 
 ```
 
-</details>
-
 ## Force reload
 
 To force reload banners on a screen call  `InAppSDK.reload` method. Make sure to call this method
 after calling the `InAppSdk.injectTo` method.
 
 Java
-<details>
 
 ```java
 
@@ -67,11 +58,7 @@ public class MainActivity extends AppCompatActivity {
 
 ```
 
-</details>
-
 Kotlin
-<details>
-
 ```Kotlin
 
 class MainActivity : AppCompatActivity() {
@@ -87,8 +74,6 @@ class MainActivity : AppCompatActivity() {
 }
 
 ```
-
-</details>
 
 ## Overriding Absolute vs Relative Sticky Top Banners in Injection Mode
 

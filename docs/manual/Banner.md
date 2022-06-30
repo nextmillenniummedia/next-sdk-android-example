@@ -65,7 +65,6 @@ public class SomeActivity extends AppCompatActivity {
 Example of using banner in activity. While in activity always load banner ads `onCreate` method:
 
 Java
-<details>
 
 ```Java
 public class ClassicInAppBannerActivity extends AppCompatActivity {
@@ -87,10 +86,7 @@ public class ClassicInAppBannerActivity extends AppCompatActivity {
 }
 ```
 
-</details>
-
 Kotlin
-<details>
 
 ```kotlin
 class ClassicCustomBannerActivity : AppCompatActivity() {
@@ -113,12 +109,9 @@ class ClassicCustomBannerActivity : AppCompatActivity() {
 }
 ```
 
-</details>
-
 Example of using banner in fragment. While in fragment always load ads `onViewCreated`
 
 Java
-<details>
 
 ```java
 public class NewsFragment extends Fragment {
@@ -138,10 +131,7 @@ public class NewsFragment extends Fragment {
 }
 ```
 
-</details>
-
 Kotlin
-<details>
 
 ```kotlin
 class NewsFragment : Fragment() {
@@ -158,8 +148,6 @@ class NewsFragment : Fragment() {
     }
 }
 ```
-
-</details>
 
 ### Loading banner ads
 
@@ -332,8 +320,6 @@ Always destroy ad views to ensure that it is removed from the layout and cleared
 You can simply call them for instance of `InAppBannerView` in your own overrides of `onResume`
 , `onPause` and `onDestroy`:
 
-<details>
-
 ```java
 
 import com.nextmillennium.inappsdk.core.ui.InAppBannerView;
@@ -378,10 +364,6 @@ public class ClassicCustomBannerActivity extends AppCompatActivity {
 }
 ```
 
-</details>
-
-<details>
-
 ```kotlin
 class ClassicCustomBannerActivity : AppCompatActivity() {
     var classicBanner: InAppBannerView? = null
@@ -408,8 +390,6 @@ class ClassicCustomBannerActivity : AppCompatActivity() {
     }
 }
 ```
-
-</details>
 
 More meaningful example:
 
@@ -441,8 +421,6 @@ More meaningful example:
 
 </LinearLayout>
 ```
-
-<details>
 
 ```java
 public class ClassicCustomBannerActivity extends AppCompatActivity {
@@ -499,10 +477,6 @@ public class ClassicCustomBannerActivity extends AppCompatActivity {
 }
 ```
 
-</details>
-
-<details>
-
 ```Kotlin
 
 class ClassicCustomBannerActivity : AppCompatActivity() {
@@ -558,5 +532,3 @@ class ClassicCustomBannerActivity : AppCompatActivity() {
     }
 }
 ```
-
-</details>
