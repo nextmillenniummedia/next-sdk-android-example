@@ -22,13 +22,13 @@ NMM InApp Android SDK requires the following:
 Documents below describes how to integrate NMM in-app ads into your Android applications.
 <!-- Check if the links are properly set up -->
 
-1. [Integrate the SDK](https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/Integrate.md)
-2. [Initialize the SDK](https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/Initialize.md)
-3. [Integrate Ad Formats Dynamically](https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/Dynamic.md)
-4. [Integrate Ad Formats Manually](https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/Manual.md)
-5. [Test Your Integration](https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/TestIntegration.md)
-6. [Advanced Settings](https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/Advanced.md)
-7. [FAQ](https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/FAQ.md)
+* ⬇ [Integrate the SDK](https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/Integrate.md)
+* 🛠 [Initialize the SDK](https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/Initialize.md)
+* 👀 [Integrate Ad Formats Dynamically](https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/Dynamic.md)
+* 👀 [Integrate Ad Formats Manually](https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/Manual.md)
+* 🎮 [Test Your Integration](https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/TestIntegration.md)
+* 📘 [Advanced Settings](https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/AdvancedSettings.md)
+* ❔[FAQ](https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/FAQ.md)
 
 # Example application
 
