@@ -60,7 +60,7 @@ Once done, you are encouraged to publish your app to **App Tester** for further 
 By the time testing, `app-ads.txt` **must** be added into your developer website, for
 example: `example.com/app-ads.txt`
 
-Please, contact your account manager ([support@nextmillennium.io]()) so you'll be provided with a
+Please, contact your account manager [support](support@nextmillennium.io) so you'll be provided with a
 proper file to add.
 
 This step is a **must** to start displaying ads.
@@ -111,4 +111,4 @@ class App : Application() {
 
 Once your ad is released keep researching for better spots for your ads.
 
-For any questions, contact *support@nextmillennium.io*
+For any questions, contact [support](support@nextmillennium.io)

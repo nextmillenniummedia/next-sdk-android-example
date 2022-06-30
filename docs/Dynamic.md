@@ -18,8 +18,6 @@ version of the application, but you may want to put it elsewhere).
 Also, it is encouraged to use appropriate and clear names for Activity and Fragment classes.
 
 ```Java
-//imports
-
 import android.app.Application;
 
 import com.nextmillennium.inappsdk.core.InAppSdk;

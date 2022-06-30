@@ -8,8 +8,6 @@ application’s main class or main activity
 Java
 
 ```java
-// imports
-
 import android.app.Application;
 
 import com.nextmillennium.inappsdk.core.InAppSdk;
@@ -27,7 +25,6 @@ public class App extends Application {
 Kotlin
 
 ```kotlin
-// imports
 class App : Application() {
 
     override fun onCreate() {
