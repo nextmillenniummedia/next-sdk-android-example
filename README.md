@@ -1,4 +1,4 @@
-# InApp SDK for Android documentation and example
+# InApp SDK for Android Documentation and Example
 
 Next Millennium Media (NMM) InApp Android SDK enables you to monetize your applications through
 high-quality ads via an easy-to-install, zero-maintenance, native Android SDK.
