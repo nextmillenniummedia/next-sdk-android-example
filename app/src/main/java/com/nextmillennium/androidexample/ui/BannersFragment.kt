@@ -27,16 +27,23 @@ class BannersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        val preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         simpleBanner = binding?.bannerSimple
         mediumRectangle = binding?.bannerMrec
         anchoredBanner = binding?.bannerAnchored
-        val preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         simpleBanner?.inAppUnitId = preferences.getString("banner", "751")
-        simpleBanner?.load({ showLoaded(simpleBanner?.inAppUnitId ?: "") }, { showError(it) })
-        anchoredBanner?.inAppUnitId = preferences.getString("banner_anchored", "753")
-        anchoredBanner?.load({ showLoaded(anchoredBanner?.inAppUnitId ?: "") }, { showError(it) })
         mediumRectangle?.inAppUnitId = preferences.getString("banner_mrec", "752")
-        mediumRectangle?.load({ showLoaded(mediumRectangle?.inAppUnitId ?: "") }, { showError(it) })
+        anchoredBanner?.inAppUnitId = preferences.getString("banner_anchored", "753")
+        val load = binding?.loadBanners
+        load?.setOnClickListener {
+            simpleBanner?.load({ showLoaded(simpleBanner?.inAppUnitId ?: "") }, { showError(it) })
+            anchoredBanner?.load(
+                { showLoaded(anchoredBanner?.inAppUnitId ?: "") },
+                { showError(it) })
+            mediumRectangle?.load(
+                { showLoaded(mediumRectangle?.inAppUnitId ?: "") },
+                { showError(it) })
+        }
     }
 
     fun showLoaded(message: String = "") {

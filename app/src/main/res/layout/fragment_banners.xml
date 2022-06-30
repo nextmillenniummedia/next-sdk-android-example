@@ -6,6 +6,13 @@
     android:orientation="vertical"
     tools:context=".ui.BannersFragment">
 
+
+    <Button
+        android:id="@+id/load_banners"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/load_all" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
