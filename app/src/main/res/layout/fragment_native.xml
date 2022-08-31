@@ -32,7 +32,7 @@
         android:minHeight="@dimen/minSize"
         android:text="@string/load" />
 
-    <com.nextmillennium.inappsdk.core.ui.InAppBannerView
+    <io.nextmillennium.nextsdk.ui.banner.NextBannerView
         android:id="@+id/native_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

@@ -7,31 +7,43 @@
 
     <fragment
         android:id="@+id/nav_banners"
-        android:name="com.nextmillennium.androidexample.ui.BannersFragment"
+        android:name="io.nextmillennium.nextandroidexample.ui.BannersFragment"
         android:label="Banner ads example"
         tools:layout="@layout/fragment_banners" />
 
     <fragment
+        android:id="@+id/nav_recycler"
+        android:name="io.nextmillennium.nextandroidexample.ui.RecyclerFragment"
+        android:label="RecyclerView example"
+        tools:layout="@layout/fragment_recycler" />
+
+    <fragment
+        android:id="@+id/nav_app_open"
+        android:name="io.nextmillennium.nextandroidexample.ui.AppOpenFragment"
+        android:label="App Open ad example"
+        tools:layout="@layout/fragment_banners" />
+
+    <fragment
         android:id="@+id/nav_interstitial"
-        android:name="com.nextmillennium.androidexample.ui.InterstitialFragment"
+        android:name="io.nextmillennium.nextandroidexample.ui.InterstitialFragment"
         android:label="Interstitial ad example"
         tools:layout="@layout/fragment_interstitial" />
 
     <fragment
         android:id="@+id/nav_rewarded"
-        android:name="com.nextmillennium.androidexample.ui.RewardedFragment"
+        android:name="io.nextmillennium.nextandroidexample.ui.RewardedFragment"
         android:label="Rewarded ad example"
         tools:layout="@layout/fragment_rewarded" />
 
     <fragment
         android:id="@+id/nav_native"
-        android:name="com.nextmillennium.androidexample.ui.NativeFragment"
+        android:name="io.nextmillennium.nextandroidexample.ui.NativeFragment"
         android:label="Native ad example"
         tools:layout="@layout/fragment_native" />
 
     <fragment
         android:id="@+id/nav_settings"
-        android:name="com.nextmillennium.androidexample.SettingsFragment"
+        android:name="io.nextmillennium.nextandroidexample.SettingsFragment"
         android:label="Settings" />
 
     <action

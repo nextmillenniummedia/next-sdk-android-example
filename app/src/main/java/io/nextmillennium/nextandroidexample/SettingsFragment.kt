@@ -1,4 +1,4 @@
-package com.nextmillennium.androidexample
+package io.nextmillennium.nextandroidexample
 
 import android.os.Bundle
 import androidx.preference.PreferenceFragmentCompat

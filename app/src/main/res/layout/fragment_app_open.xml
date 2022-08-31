@@ -3,14 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.InterstitialFragment">
+    tools:context=".ui.AppOpenFragment">
 
     <Button
-        android:id="@+id/load_interstitial"
+        android:id="@+id/load_app_open"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="@dimen/activity_horizontal_margin"
         android:minHeight="@dimen/minSize"
         android:text="@string/load" />
+
 </FrameLayout>

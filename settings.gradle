@@ -10,8 +10,9 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://sdk.brainlyads.com/android/repository' }
+        mavenLocal()
+//        maven { url 'https://sdk.brainlyads.com/android/repository' }
     }
 }
-rootProject.name = "AndroidExample"
+rootProject.name = "NextAndroidExample"
 include ':app'
