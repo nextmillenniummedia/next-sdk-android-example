@@ -11,7 +11,7 @@ import io.nextmillennium.nextandroidexample.R
 import io.nextmillennium.nextandroidexample.databinding.ItemHumanBinding
 import io.nextmillennium.nextsdk.ui.banner.NextBannerView
 
-class PeopleAdapter(private val people: List<Person>, ads: List<String> = listOf()) :
+class PeopleAdapter(people: List<Person>, ads: List<String> = listOf()) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val items: MutableList<Any> = mutableListOf()
     private val ITEMS_PER_AD: Int = 1
@@ -45,7 +45,7 @@ class PeopleAdapter(private val people: List<Person>, ads: List<String> = listOf
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (getItemViewType(position)) {
             ItemType.PERSON_VIEW.ordinal -> {
-                val human = people[position]
+                val human = items[position] as Person
                 holder as ViewHolder
                 holder.nameView.text = human.name
                 holder.descriptionView.text = human.description
