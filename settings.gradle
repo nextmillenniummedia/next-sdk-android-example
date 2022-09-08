@@ -5,12 +5,18 @@ pluginManagement {
         mavenCentral()
     }
 }
+def buildType = ext.has("build_type") ? ext.getProperty("build_type") : "release"
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
         mavenCentral()
-        maven { url 'https://sdk.brainlyads.com/android/repository' }
+        if (buildType == 'local-release') {
+            mavenLocal()
+        }
+        if (buildType == 'release') {
+            maven { url 'https://sdk.brainlyads.com/android/repository' }
+        }
     }
 }
 rootProject.name = "AndroidExample"
