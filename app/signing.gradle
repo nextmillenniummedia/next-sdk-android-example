@@ -1,0 +1,20 @@
+android {
+
+    if (!project.ext.has("key_alias")) {
+        return
+    }
+    signingConfigs {
+        release {
+            keyAlias project.ext.get("key_alias")
+            keyPassword project.ext.get("key_password")
+            storeFile project.ext.get("store_file")
+            storePassword project.ext.get("store_password")
+        }
+    }
+
+    buildTypes {
+        release {
+            signingConfig signingConfigs.release
+        }
+    }
+}
