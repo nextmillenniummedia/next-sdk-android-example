@@ -7,7 +7,7 @@ android {
         release {
             keyAlias project.ext.get("key_alias")
             keyPassword project.ext.get("key_password")
-            storeFile project.ext.get("store_file")
+            storeFile rootProject.file(project.ext.get("store_file"))
             storePassword project.ext.get("store_password")
         }
     }
