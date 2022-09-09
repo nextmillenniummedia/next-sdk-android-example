@@ -28,6 +28,7 @@ This document describes how to integrate the NMM in-app Android SDK into your pr
             google()
             jcenter()
             mavenCentral()
+            //  ...
             //  your repos
             maven { url 'https://sdk.brainlyads.com/android/repository' }
         }
@@ -39,7 +40,7 @@ This document describes how to integrate the NMM in-app Android SDK into your pr
     ```groovy
     dependencies {
         //Add NMM inApp SDK dependency
-        implementation 'com.nextmillennium:inappsdk:1.2.5'
+        implementation 'io.nextmillennium:nextsdk:2.0.0'
     }
     ```
 
@@ -50,7 +51,7 @@ Add the following `<meta-data>` tags to your AndroidManifest.xml inside `<applic
 ```xml
 
 <application>
-    <meta-data android:name="com.nextmillennium.inappsdk.API_KEY"
+    <meta-data android:name="io.nextmillennium.nextsdk.API_KEY"
         android:value="[PUT_NMM_API_KEY_HERE]" />
     <meta-data android:name="com.google.android.gms.ads.APPLICATION_ID"
         android:value="[PUT_GOOGLE_APPLICATION_ID_HERE]" />

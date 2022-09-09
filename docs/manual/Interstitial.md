@@ -78,7 +78,7 @@ For example you have a fragment with next layout.
 And some class `ClassicInterstitialFragment` for this fragment in code.
 
 All that you need is to create new instance of `InAppInterstitialAd` after view is created. But you
-need to wrap view before the load with `InAppSdk.wrapView` method. We recommend to do this
+need to wrap view before the load with `NextSdk.wrapView` method. We recommend to do this
 in `onCreateView` method of fragment.
 
 ```Java
@@ -88,7 +88,7 @@ public class ClassicInterstitialFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_interstitial, container, false);
-        return InAppSdk.wrapView(root);
+        return NextSdk.wrapView(root);
     }
 
     @Override
@@ -179,7 +179,7 @@ public class ClassicInterstitialFragment extends Fragment implements Interstitia
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_interstitial, container, false);
-        return InAppSdk.wrapView(root);
+        return NextSdk.wrapView(root);
     }
 
     @Override

@@ -26,9 +26,9 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        InAppSdk.initialize(this, true);
+        NextSdk.initialize(this, true);
         // or with init callback if you want to get info about initialization status
-        InAppSdk.initialize(this, true, initializationStatus -> {
+        NextSdk.initialize(this, true, initializationStatus -> {
             Log.d("APP", initializationStatus.toString());
         });
     }
@@ -42,9 +42,9 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        InAppSdk.initialize(this, true)
+        NextSdk.initialize(this, true)
         // or with init callback if you want to get info about initialization status
-        InAppSdk.initialize(this, true) {
+        NextSdk.initialize(this, true) {
             it?.let { Log.d("APP", it.toString()) }
         }
     }
@@ -82,9 +82,9 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        InAppSdk.initialize(this);
+        NextSdk.initialize(this);
         // or with init callback if you want to get info about initialization status
-        InAppSdk.initialize(this, initializationStatus -> {
+        NextSdk.initialize(this, initializationStatus -> {
             Log.d("APP", initializationStatus.toString());
         });
     }
@@ -98,9 +98,9 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        InAppSdk.initialize(this)
+        NextSdk.initialize(this)
         // or with init callback if you want to get info about initialization status
-        InAppSdk.initialize(this) {
+        NextSdk.initialize(this) {
             it?.let { Log.d("APP", it.toString()) }
         }
     }

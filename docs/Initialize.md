@@ -2,7 +2,7 @@
 
 **You must initialize the NMM InApp SDK before you start requesting ads.**
 
-Initialize the SDK by calling the `InAppSdk.initialize()` in `onCreate` listener of your
+Initialize the SDK by calling the `NextSdk.initialize()` in `onCreate` listener of your
 application’s main class or main activity
 
 Java
@@ -10,14 +10,14 @@ Java
 ```java
 import android.app.Application;
 
-import com.nextmillennium.inappsdk.core.InAppSdk;
+import io.nextmillennium.nextsdk.core.NextSdk;
 
 public class App extends Application {
 
     @Override
     public void onCreate() {
         super.onCreate();
-        InAppSdk.initialize(this);
+        NextSdk.initialize(this);
     }
 }
 ```
@@ -29,7 +29,7 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        InAppSdk.initialize(this)
+        NextSdk.initialize(this)
     }
 }
 ```
@@ -51,7 +51,7 @@ public interface InitializedListener {
 There are next overloads of this method:
 
 ```java
-public class InAppSdk {
+public class NextSdk {
     // ...
     public static void initialize(Context context);
 

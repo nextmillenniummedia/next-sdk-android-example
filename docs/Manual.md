@@ -1,13 +1,25 @@
 # Integrate Ad Formats Manually
 
-Manual mode is a way of serving ads in your apps where publisher manually adjusts ad placing and does all of the ad management on his own. This way of integration allows more customization compared to Dynamic method, however Manual mode is recommended for advanced users.
+**Manual mode** is a way of serving ads in your apps where the publisher manually adjusts ad
+placements and does all of the ad management on their own.
 
-Currently we support 4 ad formats that could be integrated in your app manually. Here you can find usage guides with your app.
+Since **Manual mode** allows for more customization compared to Dynamic method, it's recommended for
+advanced users.
 
-[Banners](https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/manual/Banner.md)
+**Note**: Before continuing, ensure you have configured ad unit ID from your Next Millennium
+contact.
 
-[Interstitial](https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/manual/Interstitial.md)
+**Note:** always work with ads in main thread.
 
-[Rewarded](https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/manual/Rewarded.md)
+The doc show how to display ads in **Manual mode**.
 
-[Rewarded Interstitial](https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/manual/RewardedInterstitial.md)
+[Banners](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/manual/Banner.md)
+
+[Interstitial](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/manual/Interstitial.md)
+
+[Rewarded](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/manual/Rewarded.md)
+
+[Rewarded Interstitial](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/manual/RewardedInterstitial.md)
+
+[App Open](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/manual/AppOpen.md)
+

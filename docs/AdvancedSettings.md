@@ -2,7 +2,7 @@
 
 ## Usage with code obfuscation
 
-Starting from 1.0.2 you can use `InAppSdk.injectTo` override with passing screen name if your app
+Starting from 1.0.2 you can use `NextSdk.injectTo` override with passing screen name if your app
 uses obfuscation or code generation. For example, you have activity with name `NewsActivity`. After
 first application launch it will send screen names to our InApp Server. But if your activity is
 obfuscated after release, you can specify its name explicitly:
@@ -16,7 +16,7 @@ public class Zzz extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_news);
-        InAppSdk.injectTo(this, "NewsActivity", savedInstanceState);
+        NextSdk.injectTo(this, "NewsActivity", savedInstanceState);
     }
 }
 
@@ -30,7 +30,7 @@ class Zzz : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_news)
-        InAppSdk.injectTo(this, "NewsActivity", savedInstanceState)
+        NextSdk.injectTo(this, "NewsActivity", savedInstanceState)
     }
 }
 
@@ -38,8 +38,8 @@ class Zzz : AppCompatActivity() {
 
 ## Force reload
 
-To force reload banners on a screen call  `InAppSDK.reload` method. Make sure to call this method
-after calling the `InAppSdk.injectTo` method.
+To force reload banners on a screen call  `NextSdk.reload` method. Make sure to call this method
+after calling the `NextSdk.injectTo` method.
 
 Java
 
@@ -50,10 +50,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        InAppSdk.injectTo(this, savedInstanceState);
+        NextSdk.injectTo(this, savedInstanceState);
         Button reload = findViewById(R.id.btn);
         reload.setOnClickListener(v -> {
-            InAppSdk.reload(this, InAppSdk.ReloadFilter.TOP_AND_BOTTOM);
+            NextSdk.reload(this, NextSdk.ReloadFilter.TOP_AND_BOTTOM);
         });
     }
 }
@@ -68,10 +68,10 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        InAppSdk.injectTo(this, savedInstanceState)
+        NextSdk.injectTo(this, savedInstanceState)
         val reload = findViewById(R.id.btn)
         reload.setOnClickListener {
-            InAppSdk.reload(this@MainActivity, InAppSdk.ReloadFilter.TOP_AND_BOTTOM)
+            NextSdk.reload(this@MainActivity, NextSdk.ReloadFilter.TOP_AND_BOTTOM)
         }
     }
 }

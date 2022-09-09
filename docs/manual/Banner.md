@@ -6,7 +6,7 @@ file:
 
 ```xml
 
-<com.nextmillennium.inappsdk.core.ui.InAppBannerView android:id="@+id/inAppBannerView"
+<io.nextmillennium.nextsdk.core.ui.InAppBannerView android:id="@+id/inAppBannerView"
     android:layout_width="match_parent" android:layout_height="wrap_content" />
 ```
 
@@ -220,13 +220,13 @@ public class SomeActivity extends AppCompatActivity {
     android:layout_height="match_parent" android:orientation="vertical"
     tools:context=".ui.fragments.NewsFragment">
 
-    <com.nextmillennium.inappsdk.core.ui.InContentView android:id="@+id/inContentView"
+    <io.nextmillennium.nextsdk.core.ui.InContentView android:id="@+id/inContentView"
         android:layout_width="match_parent" android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView android:layout_weight="1"
             android:layout_width="match_parent" android:layout_height="0dp" />
 
-    </com.nextmillennium.inappsdk.core.ui.InContentView>
+    </io.nextmillennium.nextsdk.core.ui.InContentView>
 
 </LinearLayout>
 ```
@@ -269,13 +269,13 @@ class NewsFragment extends Fragment {
     android:layout_height="match_parent" android:orientation="vertical"
     tools:context=".ui.fragments.NewsFragment">
 
-    <com.nextmillennium.inappsdk.core.ui.InContentView android:id="@+id/inContentView"
+    <io.nextmillennium.nextsdk.core.ui.InContentView android:id="@+id/inContentView"
         android:layout_width="match_parent" android:layout_height="match_parent">
 
         <TextView android:layout_weight="1" android:layout_width="match_parent"
             android:layout_height="0dp" />
 
-    </com.nextmillennium.inappsdk.core.ui.InContentView>
+    </io.nextmillennium.nextsdk.core.ui.InContentView>
 
 </LinearLayout>
 ```
@@ -325,7 +325,7 @@ Java
 
 ```java
 
-import com.nextmillennium.inappsdk.core.ui.InAppBannerView;
+import io.nextmillennium.nextsdk.core.ui.InAppBannerView;
 
 public class ClassicCustomBannerActivity extends AppCompatActivity {
     private InAppBannerView banner;
@@ -419,10 +419,10 @@ More meaningful example:
     <Button android:id="@+id/loadBanner" android:layout_width="match_parent"
         android:layout_height="wrap_content" android:text="@string/load" />
 
-    <com.nextmillennium.inappsdk.core.ui.InAppBannerView android:id="@+id/classicInAppBanner"
+    <io.nextmillennium.nextsdk.core.ui.InAppBannerView android:id="@+id/classicInAppBanner"
         android:layout_width="match_parent" android:layout_height="wrap_content">
 
-    </com.nextmillennium.inappsdk.core.ui.InAppBannerView>
+    </io.nextmillennium.nextsdk.core.ui.InAppBannerView>
 
 </LinearLayout>
 ```

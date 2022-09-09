@@ -1,4 +1,4 @@
-# Rewarded Interstitial Ads
+# Rewarded Interstitial ads
 [Back to manual mode overview](https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/manual/Manual.md)
 
 To show rewarded interstitial ad in manual mode you need to create an instance
@@ -78,7 +78,7 @@ For example you have a fragment with next layout.
 And some class `ClassicRewardedInterstitialFragment` for this fragment in code.
 
 All that you need is to create new instance of `InAppRewardedAd` after view is created. But you need
-to wrap view before the load with `InAppSdk.wrapView` method. We recommend to do this
+to wrap view before the load with `NextSdk.wrapView` method. We recommend to do this
 in `onCreateView` method of fragment.
 
 ```java
@@ -89,7 +89,7 @@ public class ClassicRewardedInterstitialFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_rewarded_interstitial, container, false);
-        return InAppSdk.wrapView(root);
+        return NextSdk.wrapView(root);
     }
 
     @Override
