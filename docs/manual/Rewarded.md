@@ -10,7 +10,7 @@ The constructor takes 2 arguments:
 | param | description |
 | --- | --- |
 | `context` | activity context |
-| `inAppUnitId` | unit id in our system |
+| `unitId` | unit id in our system |
 
 ```
 public InAppRewardedAd(Context context, String inAppUnitId) {
