@@ -1,5 +1,5 @@
 # Banner ads
-[Back to manual mode overview](https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/manual/Manual.md)
+[Back to manual mode overview](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/manual/Manual.md)
 
 To show banner ads you need to add `InAppBannerView` component to your UI. Add it to your layout XML
 file:

@@ -1,5 +1,6 @@
 # Rewarded Interstitial ads
-[Back to manual mode overview](https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/manual/Manual.md)
+
+[Back to manual mode overview](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/manual/Manual.md)
 
 To show rewarded interstitial ad in manual mode you need to create an instance
 of `InAppRewardedInterstitialAd` class and then call `load` method.
@@ -61,8 +62,7 @@ public class ClassicRewardedInterstitialActivity extends AppCompatActivity imple
     android:layout_height="match_parent" android:orientation="vertical"
     tools:context=".classic.ClassicRewardedInterstitialActivity">
     <Button android:id="@+id/load_rewarded_interstitial" android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:minHeight="48dp"
-        android:text="@string/load" />
+        android:layout_height="wrap_content" android:minHeight="48dp" android:text="@string/load" />
     <TextView android:id="@+id/rewardInterstitialTextViewClassic"
         android:layout_width="wrap_content" android:layout_height="wrap_content"
         android:text="@string/reward" />
