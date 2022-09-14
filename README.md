@@ -34,7 +34,7 @@ Documents below describes how to integrate NMM in-app ads into your Android appl
 # Example application
 
 <p align="center">
-<img src="https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/assets/main_screen.png" height="480">
+<img src="https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/assets/main_screen.png" height="480">
 </p>
 
 [comment]: <> (* 🚀 [Integrate Ad Formats Dynamically]&#40;https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/Dynamic.md&#41;)
