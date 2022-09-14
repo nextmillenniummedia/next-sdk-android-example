@@ -19,17 +19,17 @@ Next Android SDK requires the following:
 ✅ Minimum Android API Level is **21** (Android **5.0** Lollipop)
 
 Documents below describes how to integrate NMM in-app ads into your Android applications.
-* ⬇ [Integrate the SDK](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/Integrate.md)
+* ⬇ [Integrate the SDK](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/Integrate.md)
 
-* 🛠 [Initialize the SDK](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/Initialize.md)
+* 🛠 [Initialize the SDK](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/Initialize.md)
 
-* 👨‍💻 [Integrate Ad Formats Manually](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/Manual.md)
+* 👨‍💻 [Integrate Ad Formats Manually](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/Manual.md)
 
-* 🎮 [Test Your Integration](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/TestIntegration.md)
+* 🎮 [Test Your Integration](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/TestIntegration.md)
 
-* 📘 [Advanced Settings](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/AdvancedSettings.md)
+* 📘 [Advanced Settings](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/AdvancedSettings.md)
 
-* ❔ [FAQ](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/FAQ.md)
+* ❔ [FAQ](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/FAQ.md)
 
 # Example application
 

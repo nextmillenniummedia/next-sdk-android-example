@@ -1,6 +1,6 @@
 # Rewarded Ads
 
-[Back to manual mode overview](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/Manual.md)
+[Back to manual mode overview](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/Manual.md)
 
 To show rewarded ad in manual mode you need to create an instance of `InAppRewardedAd` class and
 then call `load` method.
