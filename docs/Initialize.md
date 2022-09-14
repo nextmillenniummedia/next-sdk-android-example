@@ -2,8 +2,8 @@
 
 **You must initialize the Next SDK before you start requesting ads.**
 
-Initialize the SDK by calling the `NextSdkBase.initialize()` in `onCreate` method of your
-application’s main class or of your launch activity
+Initialize the SDK by calling the `NextSdk.initialize()` in `onCreate` method of your application’s
+main class or of your launch activity
 
 <details>
 <summary style="font-size:14px">Java</summary>
@@ -13,14 +13,14 @@ Application (recommended)
 ```java
 import android.app.Application;
 
-import io.nextmillennium.nextsdk.NextSdkBase;
+import io.nextmillennium.nextsdk.NextSdk;
 
 public class App extends Application {
 
     @Override
     public void onCreate() {
         super.onCreate();
-        NextSdkBase.initialize(this);
+        NextSdk.initialize(this);
     }
 }
 ```
@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        NextSdkBase.initialize(this);
+        NextSdk.initialize(this);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
     }
@@ -54,7 +54,7 @@ class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        NextSdkBase.initialize(this)
+        NextSdk.initialize(this)
     }
 }
 ```
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        NextSdkBase.initialize(this)
+        NextSdk.initialize(this)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }
@@ -77,9 +77,9 @@ class MainActivity : AppCompatActivity() {
 
 </details>
 
-`Initialize` method can receive the following parameters:
+`NextSdk.initialize` method can receive the following params:
 
-- `context` — application context;
+- `context` — application Context;
 - `isTestMode` — `boolean` flag enabling test mode;
 - `InitializedListener` — callback for SDK initialized event
 
@@ -95,32 +95,4 @@ public interface InitializedListener {
 
 Next SDK comes with necessary Proguard rules. Therefore, you have no need in adding any extra rules
 to your project.
-
-**SDK Modularization**
-
-Our main module contains modules with all needed ad formats and dynamic mode. If you don't need
-injection/dynamic mode and you need only custom ad unit configuration, you can use our ads with all
-appropriate modules without main module.
-
-With the modular SDK, you can choose to include specific formats to decrease overall SDK footprint
-in your app. To do so, include the line for any combination of components that you want in
-your `build.gradle` file as follows:
-
-```groovy
-dependencies {
-    // ... other project dependencies
-
-    // For banners
-    implementation('io.nextmillennium:nextsdk-banner:2.0.0')
-
-    // For interstitials, rewarded and app open ads
-    implementation('io.nextmillennium:nextsdk-fullscreen:2.0.0')
-
-    // For native ads (since 2.2.0)
-    implementation('io.nextmillennium:nextsdk-native:2.2.0')
-}
-```
-
-If you will use SDK without main module, you will have access only to `NextSdkBase` class. 
-
 

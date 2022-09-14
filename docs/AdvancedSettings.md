@@ -1,43 +1,73 @@
 # Advanced Settings
 
-## Force reload
+**Logging**
 
-To force reload banners on a screen call  `NextSdk.reload` method. Make sure to call this method
-after calling the `NextSdk.injectTo` method.
+To see logs of library enable them:
 
-Java
-
-```java
-
-public class MainActivity extends AppCompatActivity {
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        NextSdk.injectTo(this, savedInstanceState);
-        Button reload = findViewById(R.id.btn);
-        reload.setOnClickListener(v -> {
-            NextSdk.reload(this, NextSdk.ReloadFilter.TOP_AND_BOTTOM);
-        });
-    }
-}
-
+```kotlin
+NextSdk.enableLogging()
 ```
 
-Kotlin
+<details>
 
-```Kotlin
+<summary>Java</summary>
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        NextSdk.injectTo(this, savedInstanceState)
-        val reload = findViewById(R.id.btn)
-        reload.setOnClickListener {
-            NextSdk.reload(this@MainActivity, NextSdk.ReloadFilter.TOP_AND_BOTTOM)
-        }
+```java
+import io.nextmillennium.nextsdk.NextBannerView;
+
+public class App extends Application {
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        NextSdk.enableLogging();
+        NextSdk.initialize(this, true);
     }
 }
+```
 
+</details>
+
+<details>
+<summary>Kotlin</summary>
+
+```kotlin
+class App : Application() {
+
+    override fun onCreate() {
+        super.onCreate()
+        NextSdk.enableLogging()
+        NextSdk.initialize(this, true)
+    }
+
+}
+```
+
+</details>
+
+
+
+**SDK Modularization**
+
+Our main module contains modules with all needed ad formats and dynamic mode. If you don't need
+injection/dynamic mode and you need only custom ad unit configuration, you can use our ads with all
+appropriate modules without main module.
+
+With the modular SDK, you can choose to include specific formats to decrease overall SDK footprint
+in your app. To do so, include the line for any combination of components that you want in
+your `build.gradle` file as follows:
+
+```groovy
+dependencies {
+    // ... other project dependencies
+
+    // For banners
+    implementation('io.nextmillennium:nextsdk-banner:2.0.0')
+
+    // For interstitials, rewarded and app open ads
+    implementation('io.nextmillennium:nextsdk-fullscreen:2.0.0')
+
+    // For native ads (since 2.2.0)
+    implementation('io.nextmillennium:nextsdk-native:2.2.0')
+}
 ```
