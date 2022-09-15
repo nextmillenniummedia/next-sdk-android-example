@@ -36,7 +36,8 @@ Set ad unit id that we will provide for you
 bannerView.setUnitId("your_unit_id");
 ```
 
-And finally just load it.
+And finally just load it by calling `load()` method. By default banner will be shown right after.
+load
 
 <details>
 <summary style="font-size:14px">Java</summary>
@@ -80,8 +81,8 @@ class MainActivity : AppCompatActivity() {
 
 ### Listen to load events
 
-You can use `bannerView.setFetchListener` to provide your customized behavior for successful and
-failure banner loads.
+You can use `bannerView.setFetchListener(FetchListener listener)` to provide your customized
+behavior for successful and failure banner loads.
 
 It is available by implementing `FetchListener` interface. It contains 2 methods for success and
 error:
@@ -301,7 +302,53 @@ class NewsFragment : Fragment() {
 
 ### Separate load and show ads
 
-<!-- TODO: add load->show example -->
+When you call `load()` by default banner will be shown right after load. Sometimes you need to add
+specific events for banner lifecycle. You can use `NextAdListener` for
+this purpose.
+
+`NextAdListener` used for managing all lifecycle events of ad.
+
+Events:
+
+```java 
+public interface NextAdListener { 
+  void onAdLoaded(BaseAdContainer container); // when an ad is received 
+  void onAdClicked() // when a click is recorded for an ad
+  void onAdImpression() // when an impression is recorded for an ad
+  void onAdClosed()   // when the user wants to return to the application after clicking on an ad 
+  void onAdLoadFail(NextAdError adError) // called when an ad load failed
+}
+```
+
+`NextAdError` class contains error code and message:
+
+```kotlin
+class NextAdError(val code: Int, val message: String)
+```
+
+Example of using listener for banner. 
+
+```kotlin
+class MainActivity : AppCompatActivity(), NextAdListener {
+
+    private lateinit var bannerView: NextBannerView
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+        bannerView = findViewById(R.id.banner_view)
+        bannerView.setAdListener(this)
+        bannerView.unitId = "517"
+        bannerView.load()
+    }
+
+    override fun onAdLoaded(container: BaseAdContainer?) {
+        super.onAdLoaded(container)
+        bannerView = container as NextBannerView
+    }
+}
+
+```
 
 ### Managing banner lifecycle
 
