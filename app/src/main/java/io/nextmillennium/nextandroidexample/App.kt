@@ -30,6 +30,7 @@ class App : Application() {
             "native_small" to "108",
             "native_medium" to "109",
             "app_open" to "110",
+            "inline" to "112"
         )
         unitsMap.forEach {
             if (!preferences.contains(it.key)) {

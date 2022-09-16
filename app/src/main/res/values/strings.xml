@@ -13,8 +13,9 @@
     <string name="load">Load</string>
     <string name="banner">Banner (320x50)</string>
     <string name="banner_large">Large banner (320x100)</string>
-    <string name="banner_medium_rectangle">Medium rectangle (300x250) collapsible</string>
+    <string name="banner_medium_rectangle">Medium rectangle (300x250) collapsed</string>
     <string name="banner_anchored">Anchored banner</string>
+    <string name="banner_inline">Inline banner</string>
     <string name="native_ad">Native Ad</string>
     <string name="small">Small</string>
     <string name="medium">Medium</string>
@@ -22,5 +23,5 @@
     <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aspernatur dolorem dolores doloribus et iste laboriosam nisi numquam pariatur praesentium provident quod repellat repudiandae, tempore unde voluptates. Asperiores modi quod similique!</string>
     <string name="app_open_ad">App Open ad</string>
     <string name="banners_in_recyclerview">Banners in RecyclerView</string>
-
+    <string name="container">Container</string>
 </resources>
