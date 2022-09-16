@@ -77,7 +77,7 @@ If you have special container for banner in your application there will be no pr
 when it loads in content it can lead to empty space. See image below:
 
 <p align="center">
-<img src="https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/assets/empty_space.png" height="480">
+<img src="https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/assets/empty_space.png" height="720">
 </p>
 
 To prevent this behavior use
@@ -89,5 +89,5 @@ bannerView.setCollapsible(true);
 Thus your article won't look broken.
 
 <p align="center">
-<img src="https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/assets/collapsed.png" height="480">
+<img src="https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/assets/collapsed.png" height="720">
 </p>
