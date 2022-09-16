@@ -311,17 +311,34 @@ specific events for banner lifecycle. You can use `NextAdListener` for this purp
 
 `NextAdListener` used for managing all lifecycle events of ad.
 
-Events:
+```java
+public interface NextAdListener {
+    
+    void onAdLoaded(BaseAdContainer container);
 
-```java 
-public interface NextAdListener { 
-  void onAdLoaded(BaseAdContainer container); // when an ad is received 
-  void onAdClicked() // when a click is recorded for an ad
-  void onAdImpression() // when an impression is recorded for an ad
-  void onAdClosed()   // when the user wants to return to the application after clicking on an ad 
-  void onAdLoadFail(NextAdError adError) // called when an ad load failed
+    void onAdClicked();
+
+    void onAdImpression();
+
+    void onAdOpened();
+
+    void onAdClosed();
+
+    void onAdLoadFail(NextAdError adError);
+    
 }
 ```
+
+Events:
+
+| method | description |
+| --- | --- |
+| `onAdLoaded(BaseAdContainer container)` | Called when an ad is received. |
+| `onAdImpression()` | Called when an impression is recorded for an ad. |
+| `onAdClicked()` | Called when a click is recorded for an ad. |
+| `onAdOpened()` | Called when an ad opens an overlay that covers the screen. |
+| `onAdClosed()` | Called when the user wants to return to the application after clicking on an ad. |
+| `onAdLoadFail(NextAdError adError)` | Called when an ad load failed. |
 
 `NextAdError` class contains error code and message:
 
