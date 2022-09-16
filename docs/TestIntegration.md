@@ -58,8 +58,6 @@ class App : Application() {
 
 </details>
 
-Kotlin
-
 Once done, you are encouraged to publish your app to **App Tester** for further internal testing.
 
 ## Step 2: App Tester
@@ -84,7 +82,8 @@ If something's not working for you at this stage, don't hesitate and contact our
 Once you're sure that everything works as intended make sure to disable the test flag before the app
 release on SDK initialization:
 
-Java
+<details>
+<summary>Java</summary>
 
 ```java
 public class App extends Application {
@@ -100,7 +99,10 @@ public class App extends Application {
 }
 ```
 
-Kotlin
+</details>
+
+<details>
+<summary>Kotlin</summary>
 
 ```Kotlin
 class App : Application() {
@@ -115,6 +117,8 @@ class App : Application() {
     }
 }
 ```
+
+</details>
 
 ## Step 3: Play Store
 
