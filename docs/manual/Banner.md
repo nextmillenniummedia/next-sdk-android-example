@@ -40,7 +40,7 @@ And finally just load it by calling `load()` method. By default banner will be s
 load
 
 <details>
-<summary style="font-size:14px">Java</summary>
+<summary>Java</summary>
 
 ```java
 import io.nextmillennium.nextsdk.NextBannerView;
@@ -63,7 +63,7 @@ public class SomeActivity extends AppCompatActivity {
 </details>
 
 <details>
-<summary style="font-size:14px">Kotlin</summary>
+<summary>Kotlin</summary>
 
 ```kotlin
 class MainActivity : AppCompatActivity() {
@@ -174,7 +174,7 @@ Let's look how to add banner to your application!
 ### Activity
 
 <details>
-<summary style="font-size:14px">Java</summary>
+<summary>Java</summary>
 
 ```java
 import io.nextmillennium.nextsdk.ui.banner.NextBannerView;
@@ -212,7 +212,7 @@ public class ClassicInAppBannerActivity extends AppCompatActivity {
 
 </details>
 <details>
-<summary style="font-size:14px">Kotlin</summary>
+<summary>Kotlin</summary>
 
 ```kotlin
 class ClassicCustomBannerActivity : AppCompatActivity() {
@@ -256,7 +256,7 @@ class ClassicCustomBannerActivity : AppCompatActivity() {
 ### Fragment
 
 <details>
-<summary style="font-size:14px">Java</summary>
+<summary>Java</summary>
 
 ```java
 public class NewsFragment extends Fragment {
@@ -275,7 +275,7 @@ public class NewsFragment extends Fragment {
 
 </details>
 <details>
-<summary style="font-size:14px">Kotlin</summary>
+<summary>Kotlin</summary>
 
 ```kotlin
 class NewsFragment : Fragment() {
@@ -303,8 +303,7 @@ class NewsFragment : Fragment() {
 ### Separate load and show ads
 
 When you call `load()` by default banner will be shown right after load. Sometimes you need to add
-specific events for banner lifecycle. You can use `NextAdListener` for
-this purpose.
+specific events for banner lifecycle. You can use `NextAdListener` for this purpose.
 
 `NextAdListener` used for managing all lifecycle events of ad.
 
@@ -326,17 +325,15 @@ public interface NextAdListener {
 class NextAdError(val code: Int, val message: String)
 ```
 
-Example of using listener for banner. 
+Example of using listener for banner.
 
 ```kotlin
 class MainActivity : AppCompatActivity(), NextAdListener {
 
-    private lateinit var bannerView: NextBannerView
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        bannerView = findViewById(R.id.banner_view)
+        val bannerView: NextBannerView = findViewById(R.id.banner_view)
         bannerView.setAdListener(this)
         bannerView.unitId = "517"
         bannerView.load()
@@ -344,10 +341,9 @@ class MainActivity : AppCompatActivity(), NextAdListener {
 
     override fun onAdLoaded(container: BaseAdContainer?) {
         super.onAdLoaded(container)
-        bannerView = container as NextBannerView
+        val bannerView = container as NextBannerView
     }
 }
-
 ```
 
 ### Managing banner lifecycle
@@ -418,35 +414,36 @@ public class ClassicCustomBannerActivity extends AppCompatActivity {
 
 ```kotlin
 class ClassicCustomBannerActivity : AppCompatActivity() {
-    var classicBanner: NextBannerView?
+    private lateinit var classicBanner: NextBannerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_classic_custom_banner)
-        banner = findViewById(R.id.classicInAppBanner)
+        classicBanner = findViewById(R.id.classicInAppBanner)
+        classicBanner.unitId = "517"
+        classicBanner.load()
     }
 
     override fun onPause() {
-        classicBanner?.pause()
+        classicBanner.pause()
         super.onPause()
     }
 
     override fun onDestroy() {
-        classicBanner?.destroy()
+        classicBanner.destroy()
         super.onDestroy()
     }
 
     override fun onResume() {
         super.onResume()
-        classicBanner?.resume()
+        classicBanner.resume()
     }
 }
 ```
 
 </details>
 
-
-More meaningful example:
+Example with banner load by clicking on button:
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -538,7 +535,6 @@ public class ClassicCustomBannerActivity extends AppCompatActivity {
 
 </details>
 
-
 <details>
 <summary>Kotlin</summary>
 
@@ -546,7 +542,7 @@ public class ClassicCustomBannerActivity extends AppCompatActivity {
 
 class ClassicCustomBannerActivity : AppCompatActivity() {
 
-    private var classicBanner: NextBannerView? = null
+    private lateinit var classicBanner: NextBannerView
     private lateinit var binding: ActivityClassicCustomBannerBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -560,8 +556,8 @@ class ClassicCustomBannerActivity : AppCompatActivity() {
     }
 
     private fun loadBanner(unitId: String) {
-        classicBanner?.unitId = unitId
-        classicBanner?.setFetchListener(object : FetchListener {
+        classicBanner.unitId = unitId
+        classicBanner.setFetchListener(object : FetchListener {
             override fun onSuccess() {
                 showLoaded(unitId)
             }
@@ -570,22 +566,22 @@ class ClassicCustomBannerActivity : AppCompatActivity() {
                 showError(it)
             }
         })
-        classicBanner?.load()
+        classicBanner.load()
     }
 
     override fun onPause() {
-        classicBanner?.pause()
+        classicBanner.pause()
         super.onPause()
     }
 
     override fun onDestroy() {
-        classicBanner?.destroy()
+        classicBanner.destroy()
         super.onDestroy()
     }
 
     override fun onResume() {
         super.onResume()
-        classicBanner?.resume()
+        classicBanner.resume()
     }
 
     private fun showLoaded(message: String = "") {
@@ -605,3 +601,24 @@ class ClassicCustomBannerActivity : AppCompatActivity() {
 
 </details>
 
+### Adaptive banners. Banner container width management
+
+Adaptive banners let developers specify the ad-width and use this to determine the optimal ad size.
+By default adaptive banners' width is same as device screen width in density pixels. But sometimes
+you insert ad in `CardView` or other ViewGroup with custom layout. It must looks ok. If banner still
+show full width you can pass container width:
+
+```java 
+bannerView.setContainerWidth(int containerWidth)
+```
+
+For example
+
+```kotlin
+inlineBanner.setContainerWidth(binding.inlineBannerContainer.width)
+```
+
+Banner in container will look like on image below
+<p align="center">
+<img src="https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/assets/container_width.png" height="480">
+</p>
