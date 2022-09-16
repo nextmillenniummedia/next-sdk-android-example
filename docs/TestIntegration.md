@@ -10,7 +10,7 @@ If everything's done correctly you should be able to display ads with **Test mod
 example:
 
 <p align="center">
-<img src="https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/assets/test_ads.jpeg" height="480">
+<img src="https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/assets/test_ads.jpeg" height="480">
 </p>
 
 For the next step you'll be required to enable a flag when initialize SDK which would signal SDK to
@@ -19,7 +19,8 @@ serve test ads while in **Release** build.
 Enabling a flag is required, since if we don't get a signal we won't be able to serve test ads on
 each request made.
 
-Java
+<details>
+<summary>Java</summary>
 
 ```java
 public class App extends Application {
@@ -35,7 +36,11 @@ public class App extends Application {
 }
 ```
 
-Kotlin
+</details>
+
+
+<details>
+<summary>Kotlin</summary>
 
 ```Kotlin
 class App : Application() {
@@ -51,6 +56,10 @@ class App : Application() {
 }
 ```
 
+</details>
+
+Kotlin
+
 Once done, you are encouraged to publish your app to **App Tester** for further internal testing.
 
 ## Step 2: App Tester
@@ -60,8 +69,8 @@ Once done, you are encouraged to publish your app to **App Tester** for further 
 By the time testing, `app-ads.txt` **must** be added into your developer website, for
 example: `example.com/app-ads.txt`
 
-Please, contact your account manager [support](support@nextmillennium.io) so you'll be provided with a
-proper file to add.
+Please, contact your account manager [support](support@nextmillennium.io) so you'll be provided with
+a proper file to add.
 
 This step is a **must** to start displaying ads.
 
