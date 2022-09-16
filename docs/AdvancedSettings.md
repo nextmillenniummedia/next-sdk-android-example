@@ -45,8 +45,6 @@ class App : Application() {
 
 </details>
 
-
-
 **SDK Modularization**
 
 Our main module contains modules with all needed ad formats and dynamic mode. If you don't need
@@ -71,3 +69,20 @@ dependencies {
     implementation('io.nextmillennium:nextsdk-native:2.2.0')
 }
 ```
+
+**Visibility of banner in content**
+
+Sometimes banner don't load for some reasons. By default we create transparent container for banner.
+If you have special container for banner in your application there will be no problems. But in case
+when it loads in content it can lead to empty space. See image below:
+
+<p align="center">
+<img src="https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/assets/empty_space.jpg" height="480">
+</p>
+
+To prevent this behavior use `bannerView.setCollapsible(true)` or `nativeView.setCollapsible(true)`
+Your article won't look broken
+
+<p align="center">
+<img src="https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/assets/collapsed.jpg" height="480">
+</p>
