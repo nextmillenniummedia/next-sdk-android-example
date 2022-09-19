@@ -17,15 +17,16 @@ Get it in your activity or fragment
 ```java
 import io.nextmillennium.nextsdk.ui.banner.NextBannerView;
 
-public class SomeActivity extends AppCompatActivity {
+public class BannerActivity extends AppCompatActivity {
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_some);
-        NextBannerView bannerView = findViewById(R.id.bannerView);
+        setContentView(R.layout.activity_banner);
+        NextBannerView bannerView = findViewById(R.id.banner_activity);
     }
 }
+
 ```
 
 Set ad unit id that we will provide for you
@@ -43,14 +44,14 @@ load.
 ```java
 import io.nextmillennium.nextsdk.NextBannerView;
 
-public class SomeActivity extends AppCompatActivity {
+public class BannerActivity extends AppCompatActivity {
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_some);
-        bannerView = view.findViewById(R.id.bannerView);
-        bannerView.setUnitId("Your_unit_id");
+        setContentView(R.layout.activity_banner);
+        NextBannerView bannerView = findViewById(R.id.banner_activity);
+        bannerView.setUnitId("103");
         bannerView.load();
     }
 }
@@ -62,17 +63,17 @@ public class SomeActivity extends AppCompatActivity {
 <summary>Kotlin</summary>
 
 ```kotlin
-class MainActivity : AppCompatActivity() {
+class BannerActivityKt : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val banner = findViewById<NextBannerView>(R.id.banner_view)
-        banner.unitId = "517"
-        banner.load()
+        setContentView(R.layout.activity_banner_kt)
+        val bannerView: NextBannerView = findViewById(R.id.banner_activity_kt)
+        bannerView.unitId = "103"
+        bannerView.load()
     }
-
 }
+
 ```
 
 </details>
@@ -122,7 +123,7 @@ public class SomeActivity extends AppCompatActivity {
                 Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
-        bannerView.setUnitId("517");
+        bannerView.setUnitId("103");
         bannerView.load();
     }
 
@@ -163,7 +164,7 @@ class MainActivity : AppCompatActivity() {
                 ).show()
             }
         })
-        bannerView.unitId = "517"
+        bannerView.unitId = "103"
         bannerView.load()
     }
 
@@ -184,34 +185,48 @@ Let's look how to add banner to your application!
 ```java
 import io.nextmillennium.nextsdk.ui.banner.NextBannerView;
 
-public class ClassicInAppBannerActivity extends AppCompatActivity {
+public class BannerActivity extends AppCompatActivity {
 
-    NextBannerView bannerView;
+    private NextBannerView bannerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_classic_custom_banner);
-        String unitId = "419";
-        bannerView = findViewById(R.id.classicInAppBanner);
-        bannerView.setUnitId(unitId);
-        // If you need listener for Next Millennium response
-        bannerView.setFetchListener(new FetchListener() {
+        setContentView(R.layout.activity_banner);
+        String unitId = "103";
+        bannerView = findViewById(R.id.banner_activity);
+        bannerView.setFetchListener(createListener(unitId));
+        bannerView.setUnitId(unitId); // your unit id
+        bannerView.load();
+    }
+    
+    public FetchListener createListener(String unitId) {
+        return new FetchListener() {
             @Override
             public void onSuccess() {
-                // banner loaded successfully
-                Toast.makeText(this, "Successfully loaded!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(BannerActivity.this,
+                                "Successfully loaded banner " + unitId,
+                                Toast.LENGTH_SHORT)
+                        .show();
             }
 
             @Override
             public void onError(Throwable throwable) {
-                // some error occured
-                Toast.makeText(this, "Ad load error", Toast.LENGTH_SHORT).show();
-                Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(BannerActivity.this,
+                                "Error ad load",
+                                Toast.LENGTH_SHORT)
+                        .show();
+                if (throwable == null) {
+                    return;
+                }
+                Toast.makeText(BannerActivity.this,
+                                throwable.getMessage(),
+                                Toast.LENGTH_SHORT)
+                        .show();
             }
-        });
-        bannerView.load();
+        };
     }
+
 }
 ```
 
@@ -220,38 +235,35 @@ public class ClassicInAppBannerActivity extends AppCompatActivity {
 <summary>Kotlin</summary>
 
 ```kotlin
-class ClassicCustomBannerActivity : AppCompatActivity() {
+class BannerActivityKt : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_classic_custom_banner)
-        val unitId = "419"
-        val bannerView: NextBannerView = findViewById(R.id.banner)
-        bannerView.setFetchListener(object : FetchListener {
+        setContentView(R.layout.activity_banner_kt)
+        val unitId = "103"
+        val bannerView: NextBannerView = findViewById(R.id.banner_activity_kt)
+        bannerView.setFetchListener(createListener(unitId))
+        bannerView.unitId = unitId
+        bannerView.load()
+    }
+
+    private fun createListener(unitId: String): FetchListener {
+        return object : FetchListener {
             override fun onSuccess() {
                 Toast.makeText(
-                    this@ClassicCustomBannerActivity,
-                    "Successfully loaded banner : ${bannerView.unitId}",
+                    this@BannerActivityKt,
+                    "Successfully loaded banner : $unitId",
                     Toast.LENGTH_SHORT
                 ).show()
             }
 
             override fun onError(err: Throwable?) {
-                Toast.makeText(
-                    this@ClassicCustomBannerActivity,
-                    "Error banner load: $err",
-                    Toast.LENGTH_SHORT
-                ).show()
-                Toast.makeText(
-                    this@ClassicCustomBannerActivity,
-                    err?.message,
-                    Toast.LENGTH_LONG
-                ).show()
+                Toast.makeText(this@BannerActivityKt, "Error banner load: $err", Toast.LENGTH_SHORT)
+                    .show()
             }
-        })
-        bannerView.unitId = unitId
-        bannerView.load()
+        }
     }
+
 }
 ```
 
@@ -287,7 +299,7 @@ class NewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val bannerView = findViewById<NextBannerView>(R.id.banner_view)
-        bannerView.unitId = "your_unit_id"
+        bannerView.unitId = "418" // your unit id
         bannerView.setFetchListener(object : FetchListener {
             override fun onSuccess() {
                 // banner loaded successfully
@@ -313,7 +325,7 @@ specific events for banner lifecycle. You can use `NextAdListener` for this purp
 
 ```java
 public interface NextAdListener {
-    
+
     void onAdLoaded(BaseAdContainer container);
 
     void onAdClicked();
@@ -325,7 +337,7 @@ public interface NextAdListener {
     void onAdClosed();
 
     void onAdLoadFail(NextAdError adError);
-    
+
 }
 ```
 
@@ -348,23 +360,74 @@ class NextAdError(val code: Int, val message: String)
 
 Example of using listener for banner.
 
+```java
+public class BannerActivity extends AppCompatActivity implements NextAdListener {
+
+    private NextBannerView bannerView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_banner);
+        String unitId = "103";
+        bannerView = findViewById(R.id.banner_activity);
+        bannerView.setAdListener(this);
+        bannerView.setUnitId(unitId); // your unit id
+        bannerView.load();
+    }
+
+    @Override
+    public void onAdLoaded(BaseAdContainer container) {
+        bannerView = (NextBannerView) container;
+        //further work with banner
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (bannerView == null) return;
+        bannerView.resume();
+    }
+
+    @Override
+    protected void onPause() {
+        if (bannerView != null) {
+            bannerView.pause();
+        }
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        if (bannerView != null) {
+            bannerView.destroy();
+        }
+        super.onDestroy();
+    }
+}
+
+```
+
 ```kotlin
-class MainActivity : AppCompatActivity(), NextAdListener {
+
+class BannerActivityKt : AppCompatActivity(), NextAdListener {
+    
+    private lateinit var bannerView: NextBannerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        val bannerView: NextBannerView = findViewById(R.id.banner_view)
+        setContentView(R.layout.activity_banner_kt)
+        bannerView = findViewById(R.id.banner_activity_kt)
         bannerView.setAdListener(this)
-        bannerView.unitId = "517"
+        bannerView.unitId = "418"
         bannerView.load()
     }
 
     override fun onAdLoaded(container: BaseAdContainer?) {
-        super.onAdLoaded(container)
-        val bannerView = container as NextBannerView
+        bannerView = container as NextBannerView
     }
 }
+
 ```
 
 ### Managing ad view lifecycle
@@ -390,75 +453,76 @@ You can simply call them for instance of `NextBannerView` in your own overrides 
 
 import io.nextmillennium.nextsdk.core.ui.NextBannerView;
 
-public class ClassicCustomBannerActivity extends AppCompatActivity {
-    private NextBannerView banner;
+public class BannerActivity extends AppCompatActivity {
+
+    private NextBannerView bannerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_classic_custom_banner);
-        banner = findViewById(R.id.banner);
-        banner.setUnitId("417");
-        banner.load();
+        setContentView(R.layout.activity_banner);
+        bannerView = findViewById(R.id.banner_activity);
+        bannerView.setUnitId("418"); // your unit id
+        bannerView.load();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (bannerView == null) return;
+        bannerView.resume();
     }
 
     @Override
     protected void onPause() {
-        if (banner != null) {
-            banner.pause();
+        if (bannerView != null) {
+            bannerView.pause();
         }
         super.onPause();
     }
 
     @Override
     protected void onDestroy() {
-        if (banner != null) {
-            banner.destroy();
+        if (bannerView != null) {
+            bannerView.destroy();
         }
         super.onDestroy();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        if (banner == null) return;
-        banner.resume();
     }
 }
 ```
 
 </details>
-
-
 <details>
 <summary>Kotlin</summary>
 
 ```kotlin
-class ClassicCustomBannerActivity : AppCompatActivity() {
-    private lateinit var classicBanner: NextBannerView
+class BannerActivityKt : AppCompatActivity() {
+
+    private lateinit var bannerView: NextBannerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_classic_custom_banner)
-        classicBanner = findViewById(R.id.classicInAppBanner)
-        classicBanner.unitId = "517"
-        classicBanner.load()
+        setContentView(R.layout.activity_banner_kt)
+        bannerView = findViewById(R.id.banner_activity_kt)
+        bannerView.unitId = "418" // your unit id
+        bannerView.load()
     }
-
+    
     override fun onPause() {
-        classicBanner.pause()
+        bannerView.pause()
         super.onPause()
     }
 
     override fun onDestroy() {
-        classicBanner.destroy()
+        bannerView.destroy()
         super.onDestroy()
     }
 
     override fun onResume() {
+        bannerView.resume()
         super.onResume()
-        classicBanner.resume()
     }
+
 }
 ```
 
