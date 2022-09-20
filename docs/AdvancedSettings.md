@@ -1,4 +1,6 @@
+
 # Advanced Settings
+[Back to repo](https://github.com/nextmillenniummedia/next-sdk-android-example/tree/2.x)
 
 **Logging**
 
