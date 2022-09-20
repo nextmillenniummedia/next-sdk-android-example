@@ -35,16 +35,16 @@ class InterstitialFragment : Fragment(), InterstitialAdListener {
         val loadButton: Button = binding.loadInterstitial
         val preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         val id = preferences.getString("interstitial", "106")
+        provider = InterstitialAdProvider(requireContext(), id)
+        provider?.setListener(this)
+        provider?.load()
         loadButton.setOnClickListener {
-            provider = InterstitialAdProvider(requireContext(), id)
-            provider?.setListener(this)
-            provider?.load()
+            interstitial?.show()
         }
     }
 
     override fun onAdLoaded(ad: NextInterstitialAd?) {
         interstitial = ad
-        interstitial?.show()
     }
 
     override fun onFullScreenAdLoadFail(loadError: NextAdError?) {

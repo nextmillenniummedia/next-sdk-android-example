@@ -6,7 +6,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceManager
-import io.nextmillennium.nextandroidexample.R
 import io.nextmillennium.nextandroidexample.data.PeopleAdapter
 import io.nextmillennium.nextandroidexample.data.Person
 import io.nextmillennium.nextandroidexample.databinding.FragmentRecyclerBinding
@@ -14,11 +13,6 @@ import java.util.*
 
 private const val ARG_UNIT = "unit_id"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [RecyclerFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class RecyclerFragment : Fragment() {
     private var unitId: String? = null
     private lateinit var binding: FragmentRecyclerBinding

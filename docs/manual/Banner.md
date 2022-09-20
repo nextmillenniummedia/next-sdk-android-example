@@ -83,7 +83,7 @@ class BannerActivityKt : AppCompatActivity() {
 
 ### Listen to load events
 
-You can use `bannerView.setFetchListener(FetchListener listener)` to provide your customized
+You can use `bannerView.setFetchListener(FetchListener)` to provide your customized
 behavior for successful and failure banner loads.
 
 It is available by implementing `FetchListener` interface. It contains 2 methods for success and
@@ -387,6 +387,7 @@ class BannerFragmentKt : Fragment() {
 ```
 
 </details>
+
 ### Customize ad lifecycle events
 
 When you call `load()` by default banner will be shown right after load. Sometimes you need to add
@@ -399,10 +400,10 @@ Available events:
 | method | description |
 | --- | --- |
 | `onAdLoaded(BaseAdContainer)` | Called when an ad is received. |
-| `onAdImpression()` | Called when an impression is recorded for an ad. |
-| `onAdClicked()` | Called when a click is recorded for an ad. |
-| `onAdOpened()` | Called when an ad opens an overlay that covers the screen. |
-| `onAdClosed()` | Called when the user wants to return to the application after clicking on an ad. |
+| `onAdImpression` | Called when an impression is recorded for an ad. |
+| `onAdClicked` | Called when a click is recorded for an ad. |
+| `onAdOpened` | Called when an ad opens an overlay that covers the screen. |
+| `onAdClosed` | Called when the user wants to return to the application after clicking on an ad. |
 | `onAdLoadFail(NextAdError)` | Called when an ad load failed. |
 
 `NextAdError` class contains error code and message:

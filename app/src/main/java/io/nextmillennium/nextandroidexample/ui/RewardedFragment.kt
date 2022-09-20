@@ -34,16 +34,16 @@ class RewardedFragment : Fragment(), RewardedAdListener {
         val loadButton: Button = binding.loadRewarded
         val preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         val id = preferences.getString("rewarded", "107")
+        provider = RewardedAdProvider(requireContext(), id)
+        provider?.setListener(this)
+        provider?.load()
         loadButton.setOnClickListener {
-            provider = RewardedAdProvider(requireContext(), id)
-            provider?.setListener(this)
-            provider?.load()
+            rewardedAd?.show()
         }
     }
 
     override fun onAdLoaded(rewarded: NextRewardedAd?) {
         rewardedAd = rewarded
-        rewardedAd?.show()
     }
 
     override fun onUserEarnedRewardListener(reward: InAppReward?) {
