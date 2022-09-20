@@ -4,7 +4,7 @@ Next SDK enables you to monetize your applications through high-quality ads via 
 zero-maintenance, native Android SDK.
 
 This repo contains docs about Android SDK and public example of
-usage. [Contact us](https://nextmillennium.io/) to learn more about product. Also you can always put
+usage. [Contact us](https://nextmillennium.io/contact) to learn more about product. Also you can always put
 your issues with SDK here and we'll do our best to help you.
 
 ***Current SDK version**:* **2.0.0**
