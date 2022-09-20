@@ -199,7 +199,7 @@ public class BannerActivity extends AppCompatActivity {
         bannerView.setUnitId(unitId); // your unit id
         bannerView.load();
     }
-    
+
     public FetchListener createListener(String unitId) {
         return new FetchListener() {
             @Override
@@ -411,7 +411,7 @@ public class BannerActivity extends AppCompatActivity implements NextAdListener 
 ```kotlin
 
 class BannerActivityKt : AppCompatActivity(), NextAdListener {
-    
+
     private lateinit var bannerView: NextBannerView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -507,7 +507,7 @@ class BannerActivityKt : AppCompatActivity() {
         bannerView.unitId = "418" // your unit id
         bannerView.load()
     }
-    
+
     override fun onPause() {
         bannerView.pause()
         super.onPause()
@@ -552,68 +552,70 @@ Example with banner load by clicking on button:
 <summary>Java</summary>
 
 ```java
-public class ClassicCustomBannerActivity extends AppCompatActivity {
+public class BannerLoadActivity extends AppCompatActivity {
 
-    private NextBannerView classicBanner;
-    private ActivityClassicCustomBannerBinding binding;
+    private ActivityBannerLoadBinding binding;
+    @Nullable
+    private NextBannerView bannerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityClassicCustomBannerBinding.inflate(getLayoutInflater());
+        binding = ActivityBannerLoadBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        String unitId = "417";
-        Button load = binding.loadButton;
-        classicBanner = binding.banner;
-        load.setOnClickListener((view) -> loadBanner(unitId));
-    }
-
-    private void loadBanner(String unitId) {
-        classicBanner.setUnitId(unitId);
-        classicBanner.setFetchListener(new FetchListener() {
-            @Override
-            public void onSuccess() {
-                if (getActivity() == null || binding == null) return;
-                Snackbar.make(binding.getRoot(),
-                        "Successfully loaded unit",
-                        Snackbar.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onError(Throwable throwable) {
-                if (binding == null) return;
-                Snackbar.make(binding.getRoot(), "Error ad load", Snackbar.LENGTH_SHORT)
-                        .show();
-                String message = throwable.getMessage() != null ? throwable.getMessage() : "Unexpected error";
-                Snackbar.make(binding.getRoot(), message, Snackbar.LENGTH_SHORT)
-                        .show();
-            }
+        bannerView = binding.bannerLoad;
+        String unitId = "103"; // your unit id
+        bannerView.setUnitId(unitId);
+        bannerView.setFetchListener(createListener(unitId));
+        Button action = binding.actionButton;
+        action.setOnClickListener((v) -> {
+            bannerView.load();
+            //your action
         });
-        classicBanner.load();
-    }
-
-    @Override
-    protected void onPause() {
-        if (classicBanner != null) {
-            classicBanner.pause();
-        }
-        super.onPause();
-    }
-
-    @Override
-    protected void onDestroy() {
-        if (classicBanner != null) {
-            classicBanner.destroy();
-        }
-        super.onDestroy();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (classicBanner == null) return;
-        classicBanner.resume();
+        if (bannerView == null) return;
+        bannerView.resume();
+    }
+
+    @Override
+    protected void onPause() {
+        if (bannerView != null) bannerView.pause();
+        super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (bannerView != null) bannerView.destroy();
+    }
+
+    public FetchListener createListener(String unitId) {
+        return new FetchListener() {
+            @Override
+            public void onSuccess() {
+                Toast.makeText(BannerLoadActivity.this,
+                                "Successfully loaded banner " + unitId,
+                                Toast.LENGTH_SHORT)
+                        .show();
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                Toast.makeText(BannerLoadActivity.this,
+                                "Error ad load",
+                                Toast.LENGTH_SHORT)
+                        .show();
+                if (throwable == null) return;
+                Toast.makeText(BannerLoadActivity.this,
+                                throwable.getMessage(),
+                                Toast.LENGTH_SHORT)
+                        .show();
+            }
+        };
     }
 }
 ```
@@ -625,61 +627,59 @@ public class ClassicCustomBannerActivity extends AppCompatActivity {
 
 ```Kotlin
 
-class ClassicCustomBannerActivity : AppCompatActivity() {
+class BannerLoadActivityKt : AppCompatActivity() {
 
-    private lateinit var classicBanner: NextBannerView
-    private lateinit var binding: ActivityClassicCustomBannerBinding
+    private lateinit var binding: ActivityBannerLoadKtBinding
+    private var bannerView: NextBannerView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityClassicCustomBannerBinding.inflate(layoutInflater)
+        binding = ActivityBannerLoadKtBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val unitId = "417"
-        val load: Button = binding.loadButton
-        classicBanner = binding.banner
-        load.setOnClickListener { loadBanner(unitId) }
+        val unitId = "103" // your unit id
+        bannerView?.unitId = unitId
+        bannerView?.setFetchListener(createListener(unitId))
+        val action = binding.actionButtonKt
+        action.setOnClickListener {
+            bannerView?.load()
+        }
     }
 
-    private fun loadBanner(unitId: String) {
-        classicBanner.unitId = unitId
-        classicBanner.setFetchListener(object : FetchListener {
+    private fun createListener(unitId: String): FetchListener {
+        return object : FetchListener {
             override fun onSuccess() {
-                showLoaded(unitId)
+                Toast.makeText(
+                    this@BannerLoadActivityKt,
+                    "Successfully loaded banner : $unitId",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
             override fun onError(err: Throwable?) {
-                showError(it)
+                Toast.makeText(
+                    this@BannerLoadActivityKt,
+                    "Error banner load: $err",
+                    Toast.LENGTH_SHORT
+                )
+                    .show()
             }
-        })
-        classicBanner.load()
+        }
+    }
+
+
+    override fun onResume() {
+        super.onResume()
+        bannerView?.resume()
     }
 
     override fun onPause() {
-        classicBanner.pause()
+        bannerView?.pause()
         super.onPause()
     }
 
     override fun onDestroy() {
-        classicBanner.destroy()
+        bannerView?.destroy()
         super.onDestroy()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        classicBanner.resume()
-    }
-
-    private fun showLoaded(message: String = "") {
-        Snackbar.make(
-            binding.root,
-            "Successfully loaded banner : $message",
-            Snackbar.LENGTH_SHORT
-        ).show()
-    }
-
-    private fun showError(error: Throwable) {
-        Snackbar.make(binding.root, "Error banner load: $error", Snackbar.LENGTH_SHORT)
-            .show()
     }
 }
 ```
