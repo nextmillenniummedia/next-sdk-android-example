@@ -35,6 +35,9 @@ Set ad unit id that we will provide for you
 bannerView.setUnitId("your_unit_id");
 ```
 
+You will get next error message trying to load banner without unit id:
+`UndefinedUnitIdException: Ad unit id did not specified`
+
 And finally just load it by calling `load()` method. By default banner will be shown right after
 load.
 
@@ -86,14 +89,12 @@ behavior for successful and failure banner loads.
 It is available by implementing `FetchListener` interface. It contains 2 methods for success and
 error:
 
-```java
-public interface FetchListener {
-    void onSuccess();
+Available events:
 
-    void onError(Throwable var1);
-}
-
-```
+| method | description |
+| --- | --- |
+| `onSuccess` | Called when an ad is successfully received. |
+| `onError(Throwable)` | Called when error happened while fetching an ad data |
 
 Implementation examples:
 
@@ -216,9 +217,7 @@ public class BannerActivity extends AppCompatActivity {
                                 "Error ad load",
                                 Toast.LENGTH_SHORT)
                         .show();
-                if (throwable == null) {
-                    return;
-                }
+                if (throwable == null) return;
                 Toast.makeText(BannerActivity.this,
                                 throwable.getMessage(),
                                 Toast.LENGTH_SHORT)
@@ -299,7 +298,7 @@ class NewsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val bannerView = findViewById<NextBannerView>(R.id.banner_view)
-        bannerView.unitId = "418" // your unit id
+        bannerView.unitId = "103" // your unit id
         bannerView.setFetchListener(object : FetchListener {
             override fun onSuccess() {
                 // banner loaded successfully
@@ -316,6 +315,78 @@ class NewsFragment : Fragment() {
 
 </details>
 
+### Fragments with viewbinding enabled
+
+<details>
+<summary>Java</summary>
+
+```java
+
+public class BannerFragment extends Fragment {
+
+    @Nullable
+    private FragmentBannerBinding binding;
+
+    public BannerFragment() {
+    }
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        binding = FragmentBannerBinding.inflate(inflater, container, false);
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        if (binding == null) return;
+        NextBannerView bannerView = binding.bannerFragment;
+        bannerView.setUnitId("103"); // your unit id
+        bannerView.load();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
+}
+```
+
+</details>
+
+<details>
+<summary>Kotlin</summary>
+
+```kotlin
+class BannerFragmentKt : Fragment() {
+
+    private var binding: FragmentBannerKtBinding? = null
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentBannerKtBinding.inflate(inflater, container, false)
+        return binding?.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        val bannerView = binding?.bannerFragmentKt
+        bannerView?.unitId = "103" // your unit id
+        bannerView?.load()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
+}
+```
+
+</details>
 ### Customize ad lifecycle events
 
 When you call `load()` by default banner will be shown right after load. Sometimes you need to add
@@ -323,34 +394,16 @@ specific events for banner lifecycle. You can use `NextAdListener` for this purp
 
 `NextAdListener` used for managing all lifecycle events of ad.
 
-```java
-public interface NextAdListener {
-
-    void onAdLoaded(BaseAdContainer container);
-
-    void onAdClicked();
-
-    void onAdImpression();
-
-    void onAdOpened();
-
-    void onAdClosed();
-
-    void onAdLoadFail(NextAdError adError);
-
-}
-```
-
-Events:
+Available events:
 
 | method | description |
 | --- | --- |
-| `onAdLoaded(BaseAdContainer container)` | Called when an ad is received. |
+| `onAdLoaded(BaseAdContainer)` | Called when an ad is received. |
 | `onAdImpression()` | Called when an impression is recorded for an ad. |
 | `onAdClicked()` | Called when a click is recorded for an ad. |
 | `onAdOpened()` | Called when an ad opens an overlay that covers the screen. |
 | `onAdClosed()` | Called when the user wants to return to the application after clicking on an ad. |
-| `onAdLoadFail(NextAdError adError)` | Called when an ad load failed. |
+| `onAdLoadFail(NextAdError)` | Called when an ad load failed. |
 
 `NextAdError` class contains error code and message:
 
@@ -419,7 +472,7 @@ class BannerActivityKt : AppCompatActivity(), NextAdListener {
         setContentView(R.layout.activity_banner_kt)
         bannerView = findViewById(R.id.banner_activity_kt)
         bannerView.setAdListener(this)
-        bannerView.unitId = "418"
+        bannerView.unitId = "103"
         bannerView.load()
     }
 
@@ -533,17 +586,14 @@ Example with banner load by clicking on button:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:orientation="vertical"
-    tools:context=".classic.ClassicCustomBannerActivity">
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <Button android:id="@+id/loadButton" android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:text="Load" />
+    <Button android:id="@+id/action_button" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:text="Action" />
 
-    <io.nextmillennium.nextsdk.ui.NextBannerView android:id="@+id/banner"
-        android:layout_width="match_parent" android:layout_height="wrap_content">
-
-    </io.nextmillennium.nextsdk.ui.NextBannerView>
+    <io.nextmillennium.nextsdk.ui.banner.NextBannerView android:id="@+id/banner_load"
+        android:layout_width="match_parent" android:layout_height="wrap_content" />
 
 </LinearLayout>
 ```
