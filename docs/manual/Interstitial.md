@@ -223,6 +223,7 @@ public class InterstitialFragment extends Fragment implements InterstitialAdList
         super.onViewCreated(view, savedInstanceState);
         InterstitialAdProvider provider = new InterstitialAdProvider(requireActivity(), "106");
         provider.load();
+        if (binding == null) return;
         Button action = binding.actionInterstitialFragment;
         action.setOnClickListener((v) -> {
             // some action
@@ -318,6 +319,7 @@ public class InterstitialFragment extends Fragment implements InterstitialAdList
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         new InterstitialAdProvider(requireActivity(), "106").setListener(this).load();
+        if (binding == null) return;
         Button action = binding.actionInterstitialFragment;
         action.setOnClickListener((v) -> {
             // some action
