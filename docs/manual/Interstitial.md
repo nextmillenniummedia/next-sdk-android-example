@@ -14,7 +14,7 @@ val provider = InterstitialAdProvider(context, "106")
 | `context` | activity context | 
 | `unitId` | unit id in our system | 
 
-Simple interstitial load will be look like:
+Simple interstitial ad load will be look like:
 
 <details>
 <summary>Java</summary>
@@ -106,11 +106,25 @@ Prefer preload interstitial ads and show it with UI interacting actions like cli
 Use `onAdLoaded` callback in `InterstitialAdListener` for this. You will
 receive `NextInterstitialAd` as callback param.
 
-Usage examples of `InterstitialAdListener` will be given further in the article.
-
-Use the following examples to show interstitial.
+Use the following examples to show interstitial. Usage examples of `InterstitialAdListener` also
+will be given further in the article.
 
 **Activity**
+
+Let’s create new empty activity with next layout:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:orientation="vertical"
+    tools:context=".ui.activities.InterstitialActivity">
+
+    <Button android:id="@+id/action_interstitial_activity" android:layout_width="match_parent"
+        android:layout_height="wrap_content" android:text="@string/action" />
+
+</LinearLayout>
+```
 
 <details>
 <summary>Java</summary>
@@ -172,11 +186,10 @@ class InterstitialActivityKt : AppCompatActivity(), InterstitialAdListener {
     }
 }
 ```
+</details>
 
 Prefer to pass current activity to show method. If it is impossible use `show` method without
 params. Next SDK will find current activity.
-
-</details>
 
 **Fragments**
 
