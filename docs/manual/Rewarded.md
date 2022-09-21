@@ -349,6 +349,11 @@ class RewardedFragmentKt : Fragment(), RewardedAdListener {
         val rewardView = binding?.rewardFragment
         rewardView?.text = getString(R.string.reward_data, reward?.amount, reward?.rewardType)
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
 }
 ```
 
@@ -506,6 +511,11 @@ class RewardedFragmentKt : Fragment(), RewardedAdListener {
 
     override fun onError(error: Throwable?) {
         Toast.makeText(requireActivity(), error.toString(), Toast.LENGTH_SHORT).show()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
     }
 }
 ```
