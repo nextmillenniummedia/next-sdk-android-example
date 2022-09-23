@@ -100,7 +100,7 @@ loads. You can pass it by `setListener(InterstitialAdListener)` method in `Inter
 | `onFullScreenAdDeclined` | Called when the ad dismissed full screen content. |
 | `onFullScreenAdShowed` | Called when the ad showed the full screen content. |
 | `onFullScreenAdLoadFail(NextAdError)` | Called when the ad failed to show or load full screen content. |
-| `onError(Throwable)` | Called when an unexpected error occured while handling fullscreen ad |
+| `onError(Throwable)` | Called when an unexpected error occurred while handling fullscreen ad |
 
 Prefer preload interstitial ads and show it with UI interacting actions like clicking on button.
 Use `onAdLoaded` callback in `InterstitialAdListener` for this. You will
