@@ -263,7 +263,7 @@ For example you have a fragment with next layout.
 
 And some class `RewardedInterstitialFragment` for this fragment in code.
 
-All that you need is to create new instance of `RewardedAdProvider` after view is created and
+All that you need is to create new instance of `RewardedInterstitialAdProvider` after view is created and
 call `load`.
 
 <details>
