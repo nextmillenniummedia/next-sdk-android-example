@@ -206,7 +206,7 @@ class RewardedInterstitialActivityKt : AppCompatActivity(), RewardedInterstitial
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_rewarded_interstitial_kt)
         rewardView = findViewById(R.id.title_ri_activity_kt)
-        val action: Button = findViewById(R.id.action_rewarded_activity_kt)
+        val action: Button = findViewById(R.id.action_rewarded_interstitial_activity_kt)
         RewardedInterstitialAdProvider(this, "108").setListener(this).load()
         action.setOnClickListener {
             // some action ...
