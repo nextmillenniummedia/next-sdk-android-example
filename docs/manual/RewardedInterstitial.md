@@ -365,6 +365,7 @@ class RewardedInterstitialFragmentKt : Fragment(), RewardedInterstitialAdListene
 Usage of all listener events
 
 <details>
+<summary>Java</summary>
 
 ```java
 public class RewardedInterstitialFragment extends Fragment implements RewardedInterstitialAdListener {
