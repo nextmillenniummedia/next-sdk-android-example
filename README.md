@@ -20,22 +20,17 @@ Next Android SDK requires the following:
 
 Documents below describes how to integrate NMM in-app ads into your Android applications.
 
-*
 ⬇ [Integrate the SDK](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/Integrate.md)
 
-*
 🛠 [Initialize the SDK](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/Initialize.md)
 
-*
 👨‍💻 [Integrate Ad Formats Manually](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/Manual.md)
 
-*
 🎮 [Test Your Integration](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/TestIntegration.md)
 
-*
 📘 [Advanced Settings](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/AdvancedSettings.md)
 
-* ❔ [FAQ](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/FAQ.md)
+❔ [FAQ](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/FAQ.md)
 
 # Example application
 
@@ -47,5 +42,9 @@ Documents below describes how to integrate NMM in-app ads into your Android appl
 
 You can learn about changes between major
 versions [here](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/MigrationGuide.md)
+
+# Older version
+
+If you need documentation for InApp SDK 1.x.x check it [here](https://github.com/nextmillenniummedia/next-sdk-android-example/tree/1.x) 
 
 [comment]: <> (* 🚀 [Integrate Ad Formats Dynamically]&#40;https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/Dynamic.md&#41;)
