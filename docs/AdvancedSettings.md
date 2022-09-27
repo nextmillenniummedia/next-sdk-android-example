@@ -57,7 +57,7 @@ With the modular SDK, you can choose to include specific formats to decrease ove
 in your app. To do so, include the line for any combination of components that you want in
 your `build.gradle` file as follows:
 
-```groovy
+```gradle
 dependencies {
     // ... other project dependencies
 

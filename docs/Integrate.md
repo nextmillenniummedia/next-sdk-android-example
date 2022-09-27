@@ -6,7 +6,7 @@ This document describes how to integrate the Next Android SDK into your project.
 
 In project's root-level `build.gradle` add our repository in `allprojects` section:
 
-```groovy
+```gradle
 allprojects {
     repositories {
         // ... your repos
@@ -19,7 +19,7 @@ For gradle 7.0+ add dependency to your `settings.gradle` instead of `build.gradl
 in `dependencyResolutionManagement`
 section:
 
-```groovy
+```gradle
    dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
@@ -34,7 +34,7 @@ section:
 
 Add nextsdk dependency to module-level `build.gradle`:
 
- ```groovy
+ ```gradle
  dependencies {
     implementation 'io.nextmillennium:nextsdk:2.0.0'
 }
