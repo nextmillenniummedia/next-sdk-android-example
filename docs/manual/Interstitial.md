@@ -121,7 +121,7 @@ Let’s create new empty activity with next layout:
     tools:context=".ui.activities.InterstitialActivity">
 
     <Button android:id="@+id/action_interstitial_activity" android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:text="@string/action" />
+        android:layout_height="wrap_content" android:text="Action" />
 
 </LinearLayout>
 ```
@@ -201,7 +201,7 @@ For example you have a fragment with next layout.
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent" tools:context=".ui.fragments.InterstitialFragment">
     <Button android:id="@+id/action_interstitial_fragment" android:layout_width="match_parent"
-        android:layout_height="wrap_content" android:text="@string/action" />
+        android:layout_height="wrap_content" android:text="Action" />
 </FrameLayout>
 ```
 
