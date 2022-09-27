@@ -1,5 +1,5 @@
-
 # Integrate the SDK
+
 [Back to repo](https://github.com/nextmillenniummedia/next-sdk-android-example/tree/2.x)
 
 This document describes how to integrate the Next Android SDK into your project.
@@ -20,7 +20,7 @@ in `dependencyResolutionManagement`
 section:
 
 ```gradle
-   dependencyResolutionManagement {
+dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
         google()
@@ -34,11 +34,11 @@ section:
 
 Add nextsdk dependency to module-level `build.gradle`:
 
- ```gradle
- dependencies {
+```gradle
+dependencies {
     implementation 'io.nextmillennium:nextsdk:2.0.0'
 }
- ```
+```
 
 ## Modify your Manifest.xml:
 
