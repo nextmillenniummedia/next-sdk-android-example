@@ -11,7 +11,7 @@ If everything's done correctly you should be able to display ads with **Test mod
 example:
 
 <p align="center">
-<img src="https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/assets/test_ads.jpeg" height="480">
+<img src="https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/assets/test_ads.jpeg" height="480">
 </p>
 
 For the next step you'll be required to enable a flag when initialize SDK which would signal SDK to

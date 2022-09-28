@@ -1,6 +1,6 @@
 # Rewarded Interstitial ads
 
-[Back to manual mode overview](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/manual/Manual.md)
+[Back to manual mode overview](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/manual/Manual.md)
 
 To show rewarded interstitial ad in manual mode you need to create an instance
 of `RewardedInterstitialAdProvider`

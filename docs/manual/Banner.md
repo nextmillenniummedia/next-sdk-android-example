@@ -1,6 +1,6 @@
 # Banner ads
 
-[Back to manual mode overview](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/manual/Manual.md)
+[Back to manual mode overview](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/manual/Manual.md)
 
 To show banner ads you need to add `NextBannerView` component to your UI.
 
@@ -756,5 +756,5 @@ inlineBanner.setContainerWidth(binding.inlineBannerContainer.width)
 
 Banner in container will look like on image below
 <p align="center">
-<img src="https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/assets/container_width.png" height="720">
+<img src="https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/assets/container_width.png" height="720">
 </p>

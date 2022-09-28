@@ -20,28 +20,28 @@ Next Android SDK requires the following:
 
 Documents below describes how to integrate NMM in-app ads into your Android applications.
 
-⬇ [Integrate the SDK](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/Integrate.md)
+⬇ [Integrate the SDK](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/Integrate.md)
 
-🛠 [Initialize the SDK](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/Initialize.md)
+🛠 [Initialize the SDK](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/Initialize.md)
 
-👨‍💻 [Integrate Ad Formats Manually](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/Manual.md)
+👨‍💻 [Integrate Ad Formats Manually](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/Manual.md)
 
-🎮 [Test Your Integration](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/TestIntegration.md)
+🎮 [Test Your Integration](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/TestIntegration.md)
 
-📘 [Advanced Settings](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/AdvancedSettings.md)
+📘 [Advanced Settings](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/AdvancedSettings.md)
 
-❔ [FAQ](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/FAQ.md)
+❔ [FAQ](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/FAQ.md)
 
 # Example application
 
 <p align="center">
-<img src="https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/assets/main_screen.png" height="480">
+<img src="https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/assets/main_screen.png" height="480">
 </p>
 
 # Migration
 
 You can learn about changes between major
-versions [here](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/MigrationGuide.md)
+versions [here](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/MigrationGuide.md)
 
 # Older version
 
