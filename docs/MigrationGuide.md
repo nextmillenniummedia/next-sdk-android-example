@@ -1,7 +1,6 @@
 # Migration Guide from InApp SDK
 
-Since v.2.0.0 we renamed our product from `InApp` to `Next`. You can see full list of breaking
-changes related to this below:
+Since v.2.0.0 we renamed our product from `InApp` to `Next`. Breaking changes:
 
 1. Replaced all `InApp` prefixes with `Next`:
     * Renamed `InAppSdk` class to `NextSdk`;
