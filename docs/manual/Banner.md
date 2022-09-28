@@ -7,7 +7,6 @@ To show banner ads you need to add `NextBannerView` component to your UI.
 Add it to your layout XML file:
 
 ```xml
-
 <io.nextmillennium.nextsdk.ui.NextBannerView android:id="@+id/bannerView"
     android:layout_width="match_parent" android:layout_height="wrap_content" />
 ```
