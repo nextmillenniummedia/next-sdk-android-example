@@ -1,98 +1,95 @@
+
 # Advanced Settings
+[Back to repo](https://github.com/nextmillenniummedia/next-sdk-android-example/tree/2.x)
 
-## Usage with code obfuscation
+**Logging**
 
-Starting from 1.0.2 you can use `InAppSdk.injectTo` override with passing screen name if your app
-uses obfuscation or code generation. For example, you have activity with name `NewsActivity`. After
-first application launch it will send screen names to our InApp Server. But if your activity is
-obfuscated after release, you can specify its name explicitly:
+To see logs of library enable them:
 
-Java
+```kotlin
+NextSdk.enableLogging()
+```
+
+<details>
+
+<summary>Java</summary>
 
 ```java
+import io.nextmillennium.nextsdk.NextBannerView;
 
-public class Zzz extends AppCompatActivity {
+public class App extends Application {
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_news);
-        InAppSdk.injectTo(this, "NewsActivity", savedInstanceState);
+    public void onCreate() {
+        super.onCreate();
+        NextSdk.enableLogging();
+        NextSdk.initialize(this, true);
     }
 }
-
 ```
 
-Kotlin
+</details>
 
-```Kotlin
+<details>
+<summary>Kotlin</summary>
 
-class Zzz : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_news)
-        InAppSdk.injectTo(this, "NewsActivity", savedInstanceState)
+```kotlin
+class App : Application() {
+
+    override fun onCreate() {
+        super.onCreate()
+        NextSdk.enableLogging()
+        NextSdk.initialize(this, true)
     }
+
 }
-
 ```
 
-## Force reload
+</details>
 
-To force reload banners on a screen call  `InAppSDK.reload` method. Make sure to call this method
-after calling the `InAppSdk.injectTo` method.
+**SDK Modularization**
 
-Java
+Our main module contains modules with all needed ad formats and dynamic mode. If you don't need
+injection/dynamic mode and you need only custom ad unit configuration, you can use our ads with all
+appropriate modules without main module.
 
-```java
+With the modular SDK, you can choose to include specific formats to decrease overall SDK footprint
+in your app. To do so, include the line for any combination of components that you want in
+your `build.gradle` file as follows:
 
-public class MainActivity extends AppCompatActivity {
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        InAppSdk.injectTo(this, savedInstanceState);
-        Button reload = findViewById(R.id.btn);
-        reload.setOnClickListener(v -> {
-            InAppSdk.reload(this, InAppSdk.ReloadFilter.TOP_AND_BOTTOM);
-        });
-    }
+```gradle
+dependencies {
+    // ... other project dependencies
+
+    // For banners
+    implementation('io.nextmillennium:nextsdk-banner:2.0.0')
+
+    // For interstitials, rewarded and app open ads
+    implementation('io.nextmillennium:nextsdk-fullscreen:2.0.0')
+
+    // For native ads (since 2.2.0)
+    implementation('io.nextmillennium:nextsdk-native:2.2.0')
 }
-
 ```
 
-Kotlin
+**Visibility of banner in content**
 
-```Kotlin
+Sometimes banner don't load for some reasons. By default we create transparent container for banner.
+If you have special container for banner in your application there will be no problems. But in case
+when it loads in content it can lead to empty space. See image below:
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        InAppSdk.injectTo(this, savedInstanceState)
-        val reload = findViewById(R.id.btn)
-        reload.setOnClickListener {
-            InAppSdk.reload(this@MainActivity, InAppSdk.ReloadFilter.TOP_AND_BOTTOM)
-        }
-    }
-}
+<p align="center">
+<img src="https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/assets/empty_space.png" height="720">
+</p>
 
+To prevent this behavior use
+
+```java 
+bannerView.setCollapsible(true);
 ```
 
-## Overriding Absolute vs Relative Sticky Top Banners in Injection Mode
+Thus your article won't look broken.
 
-By default top and bottom banner will place on TOP of content. (This is a common design with
-scrolling lists and other common scenarios). If you do not want this behavior, and would prefer the
-ad to 'push' the content beneath or above it, simply ad a FrameLayout like shown in the snippet
-below. This gives the Next Millennium SDK an anchor point to look for and render itself inside of.
-
-**For top banner:**  Add FrameLayout with id:
-`in_app_ads_override_top_container_id`
-
-```xml
-
-<FrameLayout android:id="@+id/in_app_ads_override_top_container_id"
-    android:layout_width="match_parent" android:layout_height="wrap_content" />
-```
-
-**For bottom banner:** Add FrameLayout with the id as:
-`in_app_ads_override_bottom_container_id`
+<p align="center">
+<img src="https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/assets/collapsed.png" height="720">
+</p>

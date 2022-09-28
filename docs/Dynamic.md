@@ -9,7 +9,7 @@ The following subsections describe how to integrate ad formats dynamically:
 
 ## Register screen names
 
-To start serving ads using Dynamic mode, call **`InAppSdk.sendScreenNames`** method in your main
+To start serving ads using Dynamic mode, call **`NextSdk.sendScreenNames`** method in your main
 application file or main activity. For example `App.java`. This will allow NMM to get a list of
 activities inside of your app where you want to show ads. This method must be called whenever you
 add or remove activities and fragment (In the above example, the sending occurs only on the debug
@@ -20,7 +20,7 @@ Also, it is encouraged to use appropriate and clear names for Activity and Fragm
 ```Java
 import android.app.Application;
 
-import com.nextmillennium.inappsdk.core.InAppSdk;
+import io.nextmillennium.NextSdk.core.NextSdk;
 
 public class App extends Application {
 
@@ -29,9 +29,9 @@ public class App extends Application {
         super.onCreate();
 
         if (BuildConfig.DEBUG) {
-            InAppSdk.sendScreenNames(this);
+            NextSdk.sendScreenNames(this);
         }
-        InAppSdk.initialize(this);
+        NextSdk.initialize(this);
     }
 }
 ```
@@ -45,7 +45,7 @@ send screen names every time application starts.
 There are next overloads of this method:
 
 ```Java
-public class InAppSdk {
+public class NextSdk {
     // ...
     public static void sendScreenNames(Context context);
 
@@ -65,7 +65,7 @@ like size or position we can do it without changes in code.
 
 ### Using in Activities
 
-Call `InAppSdk.injectTo(this)` method in needed `Activity` in `OnCreate()` method:
+Call `NextSdk.injectTo(this)` method in needed `Activity` in `OnCreate()` method:
 
 Java
 
@@ -75,14 +75,14 @@ public class SomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        InAppSdk.injectTo(this, "SomeFragment", savedInstanceState);
+        NextSdk.injectTo(this, "SomeFragment", savedInstanceState);
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle state) {
         View rootView = inflater.inflate(R.layout.my_fragment, container, false);
-        return InAppSdk.wrapView(rootView);
+        return NextSdk.wrapView(rootView);
     }
 }
 ```
@@ -94,7 +94,7 @@ class SomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        InAppSdk.injectTo(this, "SomeFragment", savedInstanceState)
+        NextSdk.injectTo(this, "SomeFragment", savedInstanceState)
     }
 
     override fun onCreateView(
@@ -103,7 +103,7 @@ class SomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val root: View = inflater.inflate(R.id.my_fragment, container, false)
-        return InAppSdk.wrapView(root)
+        return NextSdk.wrapView(root)
     }
 }
 ```
@@ -111,7 +111,7 @@ class SomeFragment : Fragment() {
 `wrapView` method is needed to get view where you want to show ads.
 
 ```java
-public class InAppSdk {
+public class NextSdk {
     // ...
     public static View wrapView(View userView);
 }
@@ -132,13 +132,13 @@ If you want to show banners inside your RecyclerView (between your items), then 
     android:layout_height="match_parent" android:orientation="vertical"
     tools:context=".ui.fragments.NewsFragment">
 
-    <com.nextmillennium.inappsdk.core.ui.InContentView android:id="@+id/inContentView"
+    <io.nextmillennium.nextsdk.core.ui.InContentView android:id="@+id/inContentView"
         android:layout_width="match_parent" android:layout_height="match_parent">
 
         <androidx.recyclerview.widget.RecyclerView android:layout_weight="1"
             android:layout_width="match_parent" android:layout_height="0dp" />
 
-    </com.nextmillennium.inappsdk.core.ui.InContentView>
+    </io.nextmillennium.nextsdk.core.ui.InContentView>
 
 </LinearLayout>
 ```
@@ -174,7 +174,7 @@ class NewsFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        InAppSdk.injectTo(this, savedInstanceState);
+        NextSdk.injectTo(this, savedInstanceState);
     }
 
     private String[] initDataset() {
@@ -210,12 +210,12 @@ class NewsFragment : Fragment() {
         recyclerView.adapter = adapter
         val inContentView: InContentView = rootView.findViewById(R.id.inContentView)
         inContentView.setContent(adapter)
-        return InAppSdk.wrapView(rootView)
+        return NextSdk.wrapView(rootView)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        InAppSdk.injectTo(this, "NewsFragment", savedInstanceState)
+        NextSdk.injectTo(this, "NewsFragment", savedInstanceState)
     }
 
     private fun initDataset(): Array<String?> {
@@ -241,13 +241,13 @@ If you want to show banners inside your TextView (between paragraphs), then you 
     android:layout_height="match_parent" android:orientation="vertical"
     tools:context=".ui.fragments.NewsFragment">
 
-    <com.nextmillennium.inappsdk.core.ui.InContentView android:id="@+id/inContentView"
+    <io.nextmillennium.nextsdk.core.ui.InContentView android:id="@+id/inContentView"
         android:layout_width="match_parent" android:layout_height="match_parent">
 
         <TextView android:layout_weight="1" android:layout_width="match_parent"
             android:layout_height="0dp" />
 
-    </com.nextmillennium.inappsdk.core.ui.InContentView>
+    </io.nextmillennium.nextsdk.core.ui.InContentView>
 
 </LinearLayout>
 ```
@@ -268,7 +268,7 @@ class NewsFragment extends Fragment {
         InContentView inContentView = view.findViewById(R.id.inContentView);
 
         inContentView.setContent("Some text");
-        InAppSdk.injectTo(this, "NewsFragment", savedInstanceState);
+        NextSdk.injectTo(this, "NewsFragment", savedInstanceState);
     }
 
 }
@@ -277,7 +277,7 @@ class NewsFragment extends Fragment {
 ### Custom Event Listeners
 
 You can add custom event listeners in injection mode for fullscreen banners. Just
-use `InAppSdk.setFullscreenListener(FullScreenListener fullscreenListener)`;
+use `NextSdk.setFullscreenListener(FullScreenListener fullscreenListener)`;
 
 `FullScreenListener` must be one of those:
 

@@ -1,4 +1,5 @@
 # Test Your Integration
+[Back to repo](https://github.com/nextmillenniummedia/next-sdk-android-example/tree/2.x)
 
 Make sure that you've complete the previous steps on SDK integration prior to testing.
 
@@ -10,7 +11,7 @@ If everything's done correctly you should be able to display ads with **Test mod
 example:
 
 <p align="center">
-<img src="https://github.com/nextmillenniummedia/inapp-android-example/blob/main/docs/assets/test_ads.jpeg" height="480">
+<img src="https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/assets/test_ads.jpeg" height="480">
 </p>
 
 For the next step you'll be required to enable a flag when initialize SDK which would signal SDK to
@@ -19,37 +20,44 @@ serve test ads while in **Release** build.
 Enabling a flag is required, since if we don't get a signal we won't be able to serve test ads on
 each request made.
 
-Java
+<details>
+<summary>Java</summary>
 
 ```java
 public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        InAppSdk.initialize(this, true);
+        NextSdk.initialize(this, true);
         // or with init callback if you want to get info about initialization status
-        InAppSdk.initialize(this, true, initializationStatus -> {
+        NextSdk.initialize(this, true, initializationStatus -> {
             Log.d("APP", initializationStatus.toString());
         });
     }
 }
 ```
 
-Kotlin
+</details>
+
+
+<details>
+<summary>Kotlin</summary>
 
 ```Kotlin
 class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        InAppSdk.initialize(this, true)
+        NextSdk.initialize(this, true)
         // or with init callback if you want to get info about initialization status
-        InAppSdk.initialize(this, true) {
+        NextSdk.initialize(this, true) {
             it?.let { Log.d("APP", it.toString()) }
         }
     }
 }
 ```
+
+</details>
 
 Once done, you are encouraged to publish your app to **App Tester** for further internal testing.
 
@@ -60,8 +68,8 @@ Once done, you are encouraged to publish your app to **App Tester** for further 
 By the time testing, `app-ads.txt` **must** be added into your developer website, for
 example: `example.com/app-ads.txt`
 
-Please, contact your account manager [support](support@nextmillennium.io) so you'll be provided with a
-proper file to add.
+Please, contact your account manager [support](support@nextmillennium.io) so you'll be provided with
+a proper file to add.
 
 This step is a **must** to start displaying ads.
 
@@ -75,37 +83,43 @@ If something's not working for you at this stage, don't hesitate and contact our
 Once you're sure that everything works as intended make sure to disable the test flag before the app
 release on SDK initialization:
 
-Java
+<details>
+<summary>Java</summary>
 
 ```java
 public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        InAppSdk.initialize(this);
+        NextSdk.initialize(this);
         // or with init callback if you want to get info about initialization status
-        InAppSdk.initialize(this, initializationStatus -> {
+        NextSdk.initialize(this, initializationStatus -> {
             Log.d("APP", initializationStatus.toString());
         });
     }
 }
 ```
 
-Kotlin
+</details>
+
+<details>
+<summary>Kotlin</summary>
 
 ```Kotlin
 class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        InAppSdk.initialize(this)
+        NextSdk.initialize(this)
         // or with init callback if you want to get info about initialization status
-        InAppSdk.initialize(this) {
+        NextSdk.initialize(this) {
             it?.let { Log.d("APP", it.toString()) }
         }
     }
 }
 ```
+
+</details>
 
 ## Step 3: Play Store
 

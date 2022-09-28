@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.nextmillennium.androidexample">
+    package="io.nextmillennium.nextandroidexample">
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".App"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AndroidExample"
@@ -26,10 +28,10 @@
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-8606804482029683~4712533996" />
+            android:value="ca-app-pub-9939518381636264~1092563270" />
         <meta-data
-            android:name="com.nextmillennium.inappsdk.API_KEY"
-            android:value="1626f6eb-2767-40c4-9d7d-09edf76ffdda" />
+            android:name="io.nextmillennium.nextsdk.API_KEY"
+            android:value="bb8bafac-0834-4286-ba87-f07c33c75589" />
     </application>
 
 </manifest>

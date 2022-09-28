@@ -1,31 +1,36 @@
-package com.nextmillennium.androidexample
+package io.nextmillennium.nextandroidexample
 
 import android.app.Application
 import android.util.Log
 import androidx.preference.PreferenceManager
-import com.nextmillennium.inappsdk.core.InAppSdk
+import io.nextmillennium.nextsdk.NextSdk
 
 class App : Application() {
 
     override fun onCreate() {
         super.onCreate()
         initPreferences()
-        InAppSdk.initialize(this, true) {
+        if (BuildConfig.DEBUG) {
+            NextSdk.enableLogging()
+        }
+        NextSdk.initialize(this, true) {
             it?.let { Log.d("APP", it.toString()) }
         }
     }
 
-    fun initPreferences() {
+    private fun initPreferences() {
         val preferences = PreferenceManager.getDefaultSharedPreferences(this)
         val editor = preferences.edit()
         val unitsMap = mapOf(
-            Pair("banner", "751"),
-            Pair("banner_mrec", "752"),
-            Pair("banner_anchored", "753"),
-            Pair("interstitial", "754"),
-            Pair("rewarded", "755"),
-            Pair("native_small", "756"),
-            Pair("native_medium", "757"),
+            "banner" to "103",
+            "banner_mrec" to "104",
+            "banner_anchored" to "105",
+            "interstitial" to "106",
+            "rewarded" to "107",
+            "native_small" to "108",
+            "native_medium" to "109",
+            "app_open" to "110",
+            "inline" to "112"
         )
         unitsMap.forEach {
             if (!preferences.contains(it.key)) {

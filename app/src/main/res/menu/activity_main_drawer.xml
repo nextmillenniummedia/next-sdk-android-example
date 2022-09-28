@@ -8,11 +8,17 @@
             android:id="@+id/nav_banners"
             android:title="@string/banner_ads" />
         <item
+            android:id="@+id/nav_recycler"
+            android:title="@string/banners_in_recyclerview" />
+        <item
             android:id="@+id/nav_interstitial"
             android:title="@string/interstitial_ad" />
         <item
             android:id="@+id/nav_rewarded"
             android:title="@string/rewarded_ad" />
+        <item
+            android:id="@+id/nav_app_open"
+            android:title="@string/app_open_ad" />
         <item
             android:id="@+id/nav_native"
             android:title="@string/native_ad" />

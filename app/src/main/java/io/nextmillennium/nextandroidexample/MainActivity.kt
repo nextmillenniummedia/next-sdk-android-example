@@ -1,4 +1,4 @@
-package com.nextmillennium.androidexample
+package io.nextmillennium.nextandroidexample
 
 import android.os.Bundle
 import android.view.Menu
@@ -11,7 +11,7 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.navigation.NavigationView
-import com.nextmillennium.androidexample.databinding.ActivityMainBinding
+import io.nextmillennium.nextandroidexample.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -37,6 +37,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.nav_interstitial,
                 R.id.nav_rewarded,
                 R.id.nav_native,
+                R.id.nav_recycler,
+                R.id.nav_app_open
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
