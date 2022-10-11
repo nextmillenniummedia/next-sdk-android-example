@@ -1,4 +1,4 @@
-# Next SDK for Android in-app ads Documentation and Example
+# Next SDK for Android Documentation and Example
 
 Next SDK enables you to monetize your applications through high-quality ads via an easy-to-install,
 zero-maintenance, native Android SDK.
@@ -9,7 +9,7 @@ always put your issues with SDK here and we'll do our best to help you.
 
 ***Current SDK version**:* **2.0.0**
 
-The documentation describes the procedure on how to integrate NMM in-app ads into your iOS
+The documentation describe the procedure on how to integrate NMM in-app ads into your iOS
 applications.
 
 # Prerequisites
@@ -18,7 +18,7 @@ Next Android SDK requires the following:
 
 ✅ Minimum Android API Level is **21** (Android **5.0** Lollipop)
 
-Documents below describes how to integrate NMM in-app ads into your Android applications.
+Documents below describe how to integrate NMM in-app ads into your Android applications.
 
 ⬇ [Integrate the SDK](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/Integrate.md)
 
@@ -40,11 +40,11 @@ Documents below describes how to integrate NMM in-app ads into your Android appl
 
 # Migration
 
-You can learn about changes between major
+You can learn more about changes between major
 versions [here](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/MigrationGuide.md)
 
 # Older version
 
-If you need documentation for InApp SDK 1.x.x check it [here](https://github.com/nextmillenniummedia/next-sdk-android-example/tree/1.x) 
+If you need documentation for InApp SDK 1.x.x you can find it here [here](https://github.com/nextmillenniummedia/next-sdk-android-example/tree/1.x) 
 
 [comment]: <> (* 🚀 [Integrate Ad Formats Dynamically]&#40;https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/Dynamic.md&#41;)
