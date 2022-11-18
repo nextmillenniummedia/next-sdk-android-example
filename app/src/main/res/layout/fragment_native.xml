@@ -23,6 +23,13 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/medium" />
+
+        <RadioButton
+            android:id="@+id/radio_native_custom"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Custom" />
+
     </RadioGroup>
 
     <Button
@@ -33,7 +40,7 @@
         android:minHeight="@dimen/minSize"
         android:text="@string/load" />
 
-    <io.nextmillennium.nextsdk.ui.banner.NextBannerView
+    <io.nextmillennium.nextsdk.ui.nativeads.NextNativeView
         android:id="@+id/native_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

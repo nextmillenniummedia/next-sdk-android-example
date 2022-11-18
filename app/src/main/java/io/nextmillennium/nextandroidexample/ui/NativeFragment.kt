@@ -59,6 +59,9 @@ class NativeFragment : Fragment() {
                         .show()
                 }
             })
+            if (nativeType.checkedRadioButtonId == R.id.radio_native_custom) {
+                native.setResourceId(R.layout.custom_native)
+            }
             native.load()
         }
     }

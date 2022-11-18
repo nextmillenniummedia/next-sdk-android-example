@@ -24,4 +24,5 @@
     <string name="app_open_ad">App Open ad</string>
     <string name="banners_in_recyclerview">Banners in RecyclerView</string>
     <string name="container">Container</string>
+    <string name="custom">Custom</string>
 </resources>
