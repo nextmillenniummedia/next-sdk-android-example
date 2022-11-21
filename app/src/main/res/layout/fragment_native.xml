@@ -28,7 +28,7 @@
             android:id="@+id/radio_native_custom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Custom" />
+            android:text="@string/custom" />
 
     </RadioGroup>
 
