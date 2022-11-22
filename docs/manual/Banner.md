@@ -7,8 +7,10 @@ To show banner ads you need to add `NextBannerView` component to your UI.
 Add it to your layout XML file:
 
 ```xml
-<io.nextmillennium.nextsdk.ui.NextBannerView android:id="@+id/bannerView"
-    android:layout_width="match_parent" android:layout_height="wrap_content" />
+<io.nextmillennium.nextsdk.ui.NextBannerView 
+    android:id="@+id/bannerView"
+    android:layout_width="match_parent" 
+    android:layout_height="wrap_content" />
 ```
 
 Get it in your activity or fragment
@@ -118,7 +120,7 @@ public class SomeActivity extends AppCompatActivity {
 
             @Override
             public void onError(Throwable throwable) {
-                // some error occured
+                // some error occurred
                 Toast.makeText(this, "Ad load error", Toast.LENGTH_SHORT).show();
                 Toast.makeText(this, throwable.getMessage(), Toast.LENGTH_LONG).show();
             }
@@ -193,10 +195,10 @@ public class BannerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_banner);
-        String unitId = "103";
+        String unitId = "103"; // your unit id
         bannerView = findViewById(R.id.banner_activity);
         bannerView.setFetchListener(createListener(unitId));
-        bannerView.setUnitId(unitId); // your unit id
+        bannerView.setUnitId(unitId); 
         bannerView.load();
     }
 
@@ -238,7 +240,7 @@ class BannerActivityKt : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_banner_kt)
-        val unitId = "103"
+        val unitId = "103" // your unit id
         val bannerView: NextBannerView = findViewById(R.id.banner_activity_kt)
         bannerView.setFetchListener(createListener(unitId))
         bannerView.unitId = unitId
@@ -314,7 +316,7 @@ class NewsFragment : Fragment() {
 
 </details>
 
-### Fragments with viewbinding enabled
+### Fragments with view-binding enabled
 
 <details>
 <summary>Java</summary>
@@ -394,7 +396,7 @@ specific events for banner lifecycle. You can use `NextAdListener` for this purp
 
 `NextAdListener` used for managing all lifecycle events of ad.
 
-Available events:
+Available event callbacks:
 
 | method | description |
 | --- | --- |
@@ -492,8 +494,6 @@ callbacks: [resume](https://developer.android.com/guide/components/activities/ac
 and [destroy](https://developer.android.com/guide/components/activities/activity-lifecycle#ondestroy)
 .
 
-For now, it's only available with `NextBannerView`.
-
 Always destroy ad views to ensure that it is removed from the layout and cleared from memory.
 
 You can simply call them for instance of `NextBannerView` in your own overrides of `onResume`
@@ -572,8 +572,8 @@ class BannerActivityKt : AppCompatActivity() {
     }
 
     override fun onResume() {
-        bannerView.resume()
         super.onResume()
+        bannerView.resume()
     }
 
 }
@@ -639,8 +639,8 @@ public class BannerLoadActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         if (bannerView != null) bannerView.destroy();
+        super.onDestroy();
     }
 
     public FetchListener createListener(String unitId) {
