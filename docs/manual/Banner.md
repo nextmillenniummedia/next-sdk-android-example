@@ -2,6 +2,8 @@
 
 [Back to manual mode overview](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/manual/Manual.md)
 
+Banner ad is a rectangle with some advertising content including images, GIFS or videos.
+
 To show banner ads you need to add `NextBannerView` component to your UI.
 
 Add it to your layout XML file:

@@ -2,6 +2,10 @@
 
 [Back to manual mode overview](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/Manual.md)
 
+Rewarded video ads offer users a value exchange - a free in-app reward for watching a video advertisement. 
+For example, in a mobile game, a player can watch a skippable video to gain some in-app currency. 
+Awards can also consist of an extra-life, hints, or other content that can help the player in the game.
+
 To show rewarded ad in manual mode you need to create an instance of `RewardedAdProvider`
 with passed activity context and unit id:
 

@@ -2,6 +2,8 @@
 
 [Back to manual mode overview](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/Manual.md)
 
+Interstitial ads are fullscreen videos or images with advertising content.
+
 To show interstitial ad in manual mode you need to create an instance of `InterstitialAdProvider`
 with passed activity context and unit id:
 
@@ -9,7 +11,7 @@ with passed activity context and unit id:
 val provider = InterstitialAdProvider(context, "106")
 ```
 
-| param | description
+| param | description |
 | --- | --- | 
 | `context` | activity context | 
 | `unitId` | unit id in our system | 
@@ -106,10 +108,12 @@ Prefer preload interstitial ads and show it with UI interacting actions like cli
 Use `onAdLoaded` callback in `InterstitialAdListener` for this. You will
 receive `NextInterstitialAd` as callback param.
 
+## Examples
+
 Use the following examples to show interstitial. Usage examples of `InterstitialAdListener` also
 will be given further in the article.
 
-**Activity**
+### **Activity**
 
 Let’s create new empty activity with next layout:
 
@@ -191,7 +195,7 @@ class InterstitialActivityKt : AppCompatActivity(), InterstitialAdListener {
 Prefer to pass current activity to show method. If it is impossible use `show` method without
 params. Next SDK will find current activity.
 
-**Fragments**
+### **Fragments**
 
 For example you have a fragment with next layout.
 
