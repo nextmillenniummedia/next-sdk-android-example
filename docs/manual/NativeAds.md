@@ -432,6 +432,7 @@ public class NativeAdsActivity extends AppCompatActivity implements NextAdListen
 
 </details>
 
+
 <details>
 <summary>Kotlin</summary>
 
@@ -669,6 +670,217 @@ class NativeAdFragmentKt : Fragment(), NextAdListener {
 
 ## Custom layouts
 
+You can create your own native ad layout. All you need is create layout xml file
+with `NextNativeAdLayout` as root view. Below are our default layouts as examples.
+
+To use custom layout just call `nativeView.setResourceId(int)` and provide resource identifier for
+your layout.
+
+### Default layouts
+
+<details>
+<summary>Small</summary>
+
+```xml
+
+<io.nextmillennium.nextsdk.ui.nativeads.NextNativeAdLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/ad_view"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+
+    <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_gravity="center" android:minHeight="50dp" android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/ad_container"
+            android:layout_width="match_parent" android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="@dimen/next_no_size"
+                android:layout_height="@dimen/next_no_size"
+                android:layout_margin="@dimen/next_default_margin" android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintDimensionRatio="H,180:52"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <ImageView android:id="@+id/ad_app_icon" android:layout_width="@dimen/next_no_size"
+                    android:layout_height="match_parent"
+                    android:layout_margin="@dimen/next_no_margin" android:layout_weight="0"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="H,1:1"
+                    app:layout_constraintEnd_toStartOf="@+id/content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout android:id="@+id/content"
+                    android:layout_width="@dimen/next_no_size"
+                    android:layout_height="@dimen/next_no_size"
+                    android:layout_marginStart="@dimen/next_default_margin"
+                    android:layout_marginEnd="@dimen/next_default_margin"
+                    android:orientation="vertical" app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/ad_app_icon"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <LinearLayout android:id="@+id/headline" android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:orientation="horizontal"
+                        app:layout_constraintBottom_toTopOf="@+id/row_two"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView android:id="@+id/ad_headline" android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="@dimen/next_no_margin" android:lines="1"
+                            android:textColor="@color/next_gray"
+                            android:textSize="@dimen/next_text_size_large" android:textStyle="bold"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </LinearLayout>
+
+                    <LinearLayout android:id="@+id/row_two" android:layout_width="match_parent"
+                        android:layout_height="@dimen/next_no_size" android:orientation="horizontal"
+                        app:layout_constraintBottom_toTopOf="@+id/ad_call_to_action"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/headline">
+
+                        <RatingBar android:id="@+id/ad_stars" android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/next_no_margin" android:lines="1"
+                            android:numStars="5" android:textColor="@color/next_gray"
+                            android:textSize="@dimen/next_text_size_small" android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/ad_advertiser"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView android:id="@+id/ad_body" android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="@dimen/next_no_margin" android:gravity="top"
+                            android:lines="1" android:textColor="@color/next_gray"
+                            android:textSize="@dimen/next_text_size_small"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@id/ad_advertiser"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                    </LinearLayout>
+
+                    <Button android:id="@+id/ad_call_to_action" android:layout_width="match_parent"
+                        android:layout_height="@dimen/next_no_size"
+                        android:background="@color/next_blue" android:lines="1"
+                        android:textColor="#fff" app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/row_two" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+
+</io.nextmillennium.nextsdk.ui.nativeads.NextNativeAdLayout>
+
+```
+
+</details>
+
+<details>
+<summary>Medium</summary>
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<io.nextmillennium.nextsdk.ui.nativeads.NextNativeAdLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:id="@+id/ad_view"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+
+    <FrameLayout android:layout_width="match_parent" android:layout_height="350dp"
+        android:layout_gravity="center" android:minHeight="50dp" android:orientation="vertical">
+
+        <LinearLayout android:id="@+id/ad_container" android:layout_width="match_parent"
+            android:layout_height="match_parent" android:orientation="vertical"
+            android:paddingLeft="20dp" android:paddingRight="20dp">
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView android:id="@+id/ad_app_icon" android:layout_width="40dp"
+                    android:layout_height="40dp" android:adjustViewBounds="true"
+                    android:contentDescription="@string/ad_content" android:paddingEnd="5dp"
+                    android:paddingBottom="5dp" />
+
+                <LinearLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:orientation="vertical">
+
+                    <TextView android:id="@+id/ad_headline" android:layout_width="match_parent"
+                        android:layout_height="wrap_content" android:textColor="#0000FF"
+                        android:textSize="16sp" android:textStyle="bold" />
+
+                    <LinearLayout android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView android:id="@+id/ad_advertiser"
+                            android:layout_width="wrap_content" android:layout_height="match_parent"
+                            android:gravity="bottom" android:textSize="14sp"
+                            android:textStyle="bold" />
+
+                        <RatingBar android:id="@+id/ad_stars"
+                            style="?android:attr/ratingBarStyleSmall"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:isIndicator="true" android:numStars="5"
+                            android:stepSize="0.5" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView android:id="@+id/ad_body" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:layout_marginEnd="20dp"
+                    android:textSize="12sp" />
+
+                <FrameLayout android:id="@+id/ad_media" android:layout_width="match_parent"
+                    android:layout_height="200dp" android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="5dp" />
+
+                <LinearLayout android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:layout_gravity="end"
+                    android:orientation="horizontal" android:paddingTop="10dp"
+                    android:paddingBottom="10dp">
+
+                    <TextView android:id="@+id/ad_price" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:paddingStart="5dp"
+                        android:paddingLeft="5dp" android:paddingEnd="5dp"
+                        android:paddingRight="5dp" android:textSize="12sp" />
+
+                    <TextView android:id="@+id/ad_store" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:paddingStart="5dp"
+                        android:paddingLeft="5dp" android:paddingEnd="5dp"
+                        android:paddingRight="5dp" android:textSize="12sp" />
+
+                    <Button android:id="@+id/ad_call_to_action" android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" android:gravity="center"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </FrameLayout>
+</io.nextmillennium.nextsdk.ui.nativeads.NextNativeAdLayout>
+```
+
+</details>
+
+It is important to use pre-defined ids for control elements of native ad view. The table containing
+fields, ids and descriptions is below.
+
 ### Unified Native ads display fields
 
 | Field | Id | Description | Always included? | Required to be displayed? | May truncate after
@@ -682,3 +894,270 @@ class NativeAdFragmentKt : Fragment(), NextAdListener {
 | Store | ad_store | The app store where the user downloads the app. | Not | Recommended | 15 characters
 | Price | ad_price | Cost of the app. | Not | Recommended | 15 characters
 | Advertiser | ad_advertiser | Text that identifies the advertiser (e.g., advertiser or brand name, visible URL, etc.). | Not | Recommended | 25 characters
+
+### Example
+
+<details>
+<summary>Custom template custom_native.xml</summary>
+
+```xml
+<io.nextmillennium.nextsdk.ui.nativeads.NextNativeAdLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_gravity="center" android:minHeight="50dp" android:orientation="vertical"
+        android:paddingLeft="20dp" android:paddingTop="3dp" android:paddingRight="20dp">
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView android:id="@+id/ad_app_icon" android:layout_width="40dp"
+                android:layout_height="40dp" android:adjustViewBounds="true"
+                android:paddingEnd="5dp" android:paddingRight="5dp" android:paddingBottom="5dp" />
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView android:id="@+id/ad_headline" android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:textColor="#0000FF"
+                    android:textSize="16sp" android:textStyle="bold" />
+
+                <LinearLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView android:id="@+id/ad_advertiser" android:layout_width="wrap_content"
+                        android:layout_height="match_parent" android:gravity="bottom"
+                        android:textSize="14sp" android:textStyle="bold" />
+
+                    <RatingBar android:id="@+id/ad_stars" style="?android:attr/ratingBarStyleSmall"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:isIndicator="true" android:numStars="5" android:stepSize="0.5" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_marginEnd="20dp" android:text="AD BODY:"
+                    android:textSize="12sp" />
+
+                <TextView android:id="@+id/ad_body" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:layout_marginEnd="20dp"
+                    android:textSize="12sp" />
+
+            </LinearLayout>
+
+
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="MEDIA CONTENT BELOW:" />
+
+                <com.google.android.gms.ads.nativead.MediaView android:id="@+id/ad_media"
+                    android:layout_width="match_parent" android:layout_height="200dp"
+                    android:layout_gravity="center_horizontal" android:layout_marginTop="5dp" />
+
+            </LinearLayout>
+
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_gravity="end" android:orientation="horizontal"
+                android:paddingTop="10dp" android:paddingBottom="10dp">
+
+                <TextView android:id="@+id/ad_price" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:paddingStart="5dp"
+                    android:paddingLeft="5dp" android:paddingEnd="5dp" android:paddingRight="5dp"
+                    android:textSize="12sp" />
+
+                <TextView android:id="@+id/ad_store" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:paddingStart="5dp"
+                    android:paddingLeft="5dp" android:paddingEnd="5dp" android:paddingRight="5dp"
+                    android:textSize="12sp" />
+
+                <Button android:id="@+id/ad_call_to_action" android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:gravity="center"
+                    android:textSize="12sp" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</io.nextmillennium.nextsdk.ui.nativeads.NextNativeAdLayout>
+
+```
+
+</details>
+
+
+<details>
+<summary>Java</summary>
+
+```java
+public class NativeAdFragment extends Fragment implements NextAdListener {
+
+    private FragmentNativeAdBinding binding;
+    private NextNativeView nativeView;
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        binding = FragmentNativeAdBinding.inflate(inflater);
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        nativeView = binding.nativeFragment;
+        String unitId = "108";
+        nativeView.setUnitId(unitId);
+        nativeView.setFetchListener(createListener(unitId));
+        nativeView.setAdListener(this);
+        nativeView.setResourceId(R.layout.custom_native);
+        nativeView.load();
+    }
+
+    public FetchListener createListener(String unitId) {
+        return new FetchListener() {
+            @Override
+            public void onSuccess() {
+                if (isAdded()) {
+                    Toast.makeText(requireActivity(),
+                                    "Successfully loaded ad " + unitId,
+                                    Toast.LENGTH_SHORT)
+                            .show();
+                }
+            }
+
+            @Override
+            public void onError(Throwable throwable) {
+                if (isAdded()) {
+                    Toast.makeText(requireActivity(),
+                                    "Error ad load",
+                                    Toast.LENGTH_SHORT)
+                            .show();
+                    if (throwable == null) {
+                        return;
+                    }
+                    Toast.makeText(requireActivity(),
+                                    throwable.getMessage(),
+                                    Toast.LENGTH_SHORT)
+                            .show();
+                }
+            }
+        };
+    }
+
+    @Override
+    public void onAdLoaded(BaseAdContainer container) {
+        Log.d("NEXT_SDK", "Successful loaded ad");
+        nativeView = (NextNativeView) container;
+    }
+
+    @Override
+    public void onAdLoadFail(NextAdError adError) {
+        Log.e("NEXT_SDK", adError.toString());
+    }
+
+    @Override
+    public void onAdClicked() {
+        Log.d("NEXT_SDK", "Successfully tracked click");
+    }
+
+    @Override
+    public void onAdImpression() {
+        Log.d("NEXT_SDK", "Successfully tracked impression");
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (nativeView != null) nativeView.destroy();
+        binding = null;
+    }
+}
+```
+
+</details>
+
+<details>
+<summary>Kotlin</summary>
+
+```kotlin
+class NativeAdFragmentKt : Fragment(), NextAdListener {
+
+    private var binding: FragmentNativeAdKtBinding? = null
+    private var nativeView: NextNativeView? = null
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentNativeAdKtBinding.inflate(inflater)
+        return binding?.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        nativeView = binding?.nativeFragmentKt
+        val unitId = "108"
+        nativeView?.unitId = unitId
+        nativeView?.setAdListener(this)
+        nativeView?.setFetchListener(createListener(unitId))
+        nativeView?.setResourceId(R.layout.custom_native)
+        nativeView?.load()
+    }
+
+    override fun onAdLoaded(container: BaseAdContainer?) {
+        nativeView = container as NextNativeView
+    }
+
+    override fun onAdClicked() {
+        Log.d("NEXT_SDK", "Successfully tracked click")
+    }
+
+    override fun onAdImpression() {
+        Log.d("NEXT_SDK", "Successfully tracked impression")
+    }
+
+    override fun onAdLoadFail(adError: NextAdError?) {
+        Log.e("NEXT_SDK", adError.toString())
+    }
+
+    private fun createListener(unitId: String): FetchListener {
+        return object : FetchListener {
+            override fun onSuccess() {
+                if (isAdded) {
+                    Toast.makeText(
+                        requireActivity(),
+                        "Successfully loaded ad : $unitId",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+
+            override fun onError(err: Throwable?) {
+                if (isAdded) {
+                    Toast.makeText(
+                        requireActivity(),
+                        "Error ad load: $err",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        nativeView?.destroy()
+    }
+}
+```
+
+</details>
