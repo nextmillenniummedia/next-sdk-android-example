@@ -501,6 +501,8 @@ class NativeAdsActivityKt : AppCompatActivity(), NextAdListener {
 
 ### **Fragment**
 
+Full example of implementing native ad in fragment
+
 <details>
 <summary>Java</summary>
 
