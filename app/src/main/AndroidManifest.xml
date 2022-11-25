@@ -28,7 +28,7 @@
 
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-9939518381636264~1092563270" />
+            android:value="ca-app-pub-8606804482029683~4712533996" />
         <meta-data
             android:name="io.nextmillennium.nextsdk.API_KEY"
             android:value="bb8bafac-0834-4286-ba87-f07c33c75589" />
