@@ -16,11 +16,13 @@ import io.nextmillennium.nextsdk.network.callbacks.FetchListener
 import io.nextmillennium.nextsdk.ui.BaseAdContainer
 import io.nextmillennium.nextsdk.ui.NextAdListener
 import io.nextmillennium.nextsdk.ui.nativeads.NextNativeView
+import io.nextmillennium.nextsdk.ui.nativeads.NextVideoListener
 
 class NativeFragment : Fragment(), NextAdListener {
 
     private var binding: FragmentNativeBinding? = null
     private var nativeView: NextNativeView? = null
+    private val LOG_TAG = "NEXT_SDK"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,7 +36,6 @@ class NativeFragment : Fragment(), NextAdListener {
         super.onViewCreated(view, savedInstanceState)
         val preferences = PreferenceManager.getDefaultSharedPreferences(requireContext())
         nativeView = binding?.nativeView
-        nativeView?.setAdListener(this)
         val nativeType = binding?.nativeTypeGroup
         val load = binding?.loadNative
         val smallId = preferences.getString("native_small", "108")
@@ -45,11 +46,12 @@ class NativeFragment : Fragment(), NextAdListener {
                 if (nativeType?.checkedRadioButtonId == R.id.radio_native_small) smallId
                 else mediumId
             nativeView?.unitId = unitId
+            nativeView?.setAdListener(createAdListener(unitId ?: ""))
             nativeView?.setFetchListener(object : FetchListener {
                 override fun onSuccess() {
-                    binding?.let {
+                    binding?.let { b ->
                         Snackbar.make(
-                            it.root,
+                            b.root,
                             "Successfully loaded banner : ${nativeView?.unitId}",
                             Snackbar.LENGTH_SHORT
                         ).show()
@@ -57,8 +59,8 @@ class NativeFragment : Fragment(), NextAdListener {
                 }
 
                 override fun onError(err: Throwable?) {
-                    binding?.let {
-                        Snackbar.make(it.root, "Error banner load: $err", Snackbar.LENGTH_SHORT)
+                    binding?.let { b ->
+                        Snackbar.make(b.root, "Error banner load: $err", Snackbar.LENGTH_SHORT)
                             .setBackgroundTint(
                                 ContextCompat.getColor(
                                     requireContext(),
@@ -70,29 +72,74 @@ class NativeFragment : Fragment(), NextAdListener {
                 }
             })
             if (nativeType?.checkedRadioButtonId == R.id.radio_native_custom) {
-                nativeView?.setResourceId(R.layout.custom_native)
+                nativeView?.options?.resourceId = R.layout.custom_native
             }
+            nativeView?.options?.videoListener = createVideoListener(nativeView?.unitId ?: "")
             nativeView?.load()
         }
     }
 
-    override fun onAdLoaded(container: BaseAdContainer?) {
-        nativeView = container as NextNativeView
-        Log.d("NEXT_SDK", "Successfully loaded ad : ${container.id}")
+    private fun createVideoListener(unitId: String): NextVideoListener {
+        return object : NextVideoListener {
+            override fun onStart() {
+                logEvent("Started video event for unit $unitId")
+            }
+
+            override fun onPlay() {
+                logEvent("Play video event for unit $unitId")
+            }
+
+            override fun onPause() {
+                logEvent("Paused video ad event for unit $unitId")
+            }
+
+            override fun onEnd() {
+                logEvent("End video event for unit $unitId")
+            }
+
+            override fun onMute(isMuted: Boolean) {
+                logEvent("Video ad muted: $isMuted for unit $unitId")
+            }
+        }
     }
 
-    override fun onAdClicked() {
-        Log.d("NEXT_SDK", "Successfully tracked click")
+    private fun createAdListener(unitId: String): NextAdListener {
+        return object : NextAdListener {
+            override fun onAdClicked() {
+                logEvent("Successfully tracked click for unit $unitId")
+            }
+
+            override fun onAdImpression() {
+                logEvent("Successfully tracked impression for unit $unitId")
+            }
+
+            override fun onAdLoadFail(adError: NextAdError?) {
+                logEvent("Error loading unit $unitId ${adError.toString()}")
+            }
+
+            override fun onAdLoaded(container: BaseAdContainer?) {
+                logEvent("Successfully loaded ad : ${container?.id}. container is NextNativeView: ${container is NextNativeView}")
+                nativeView = container as NextNativeView
+            }
+
+            override fun onAdClosed() {
+                logEvent("Closed ad $unitId")
+            }
+
+            override fun onAdOpened() {
+                logEvent("Opened ad $unitId")
+            }
+        }
     }
 
-    override fun onAdImpression() {
-        Log.d("NEXT_SDK", "Successfully tracked impression")
+    fun logEvent(message: String) {
+        Log.d(LOG_TAG, message)
+        binding?.let { b ->
+            Snackbar
+                .make(b.root, message, Snackbar.LENGTH_SHORT)
+                .show()
+        }
     }
-
-    override fun onAdLoadFail(adError: NextAdError?) {
-        Log.e("NEXT_SDK", adError.toString())
-    }
-
 
     override fun onDestroyView() {
         super.onDestroyView()

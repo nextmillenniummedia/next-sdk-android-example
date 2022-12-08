@@ -45,6 +45,7 @@ class RecyclerFragment : Fragment() {
         "banner" to "",
         "banner_mrec" to "",
         "banner_anchored" to "",
+        "native_medium" to ""
     )
 
     private fun createPeopleList(): List<Person> {
@@ -80,7 +81,7 @@ class RecyclerFragment : Fragment() {
         for (pair in banners) {
             banners[pair.key] = preferences.getString(pair.key, "103") ?: "103"
         }
-        binding.peopleList.adapter = PeopleAdapter(createPeopleList(), banners.values.toList())
+        binding.peopleList.adapter = PeopleAdapter(createPeopleList(), banners)
     }
 
     companion object {

@@ -10,8 +10,9 @@ import com.squareup.picasso.Picasso
 import io.nextmillennium.nextandroidexample.R
 import io.nextmillennium.nextandroidexample.databinding.ItemHumanBinding
 import io.nextmillennium.nextsdk.ui.banner.NextBannerView
+import io.nextmillennium.nextsdk.ui.nativeads.NextNativeView
 
-class PeopleAdapter(people: List<Person>, ads: List<String> = listOf()) :
+class PeopleAdapter(people: List<Person>, ads: Map<String, String> = mapOf()) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val items: MutableList<Any> = mutableListOf()
     private val ITEMS_PER_AD: Int = 1
@@ -20,7 +21,8 @@ class PeopleAdapter(people: List<Person>, ads: List<String> = listOf()) :
         for (i in people.indices) {
             items.add(people[i])
             if (i % ITEMS_PER_AD == 0) {
-                items.add(ads[i % ads.size])
+                val pair = ads.toList()[i % ads.size]
+                items.add(pair)
             }
         }
     }
@@ -43,34 +45,35 @@ class PeopleAdapter(people: List<Person>, ads: List<String> = listOf()) :
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when (getItemViewType(position)) {
-            ItemType.PERSON_VIEW.ordinal -> {
-                val human = items[position] as Person
-                holder as ViewHolder
-                holder.nameView.text = human.name
-                holder.descriptionView.text = human.description
-                Picasso.get()
-                    .load(human.imageSrc)
-                    .memoryPolicy(MemoryPolicy.NO_CACHE)
-                    .into(holder.avatarView)
+        if (getItemViewType(position) == ItemType.PERSON_VIEW.ordinal) {
+            val human = items[position] as Person
+            holder as ViewHolder
+            holder.nameView.text = human.name
+            holder.descriptionView.text = human.description
+            Picasso.get()
+                .load(human.imageSrc)
+                .memoryPolicy(MemoryPolicy.NO_CACHE)
+                .into(holder.avatarView)
+            return
+        }
+        val root = holder.itemView as FrameLayout
+        val context = holder.itemView.context
+        val item = items[position] as Pair<String, String>
+        val (type, unitId) = item
+        val adView =
+            if (type.contains("native")) NextNativeView(context) else NextBannerView(context)
+        adView.unitId = unitId
+        var initialLayoutComplete = false
+        if (root.childCount > 0) root.removeAllViews()
+        root.addView(adView)
+        root.viewTreeObserver.addOnGlobalLayoutListener {
+            if (initialLayoutComplete) return@addOnGlobalLayoutListener
+            initialLayoutComplete = true
+            val density = context.resources.displayMetrics.density
+            if (adView is NextBannerView) {
+                adView.setContainerWidth((root.width.toFloat() / density).toInt())
             }
-            else -> {
-                val root = holder.itemView as FrameLayout
-                val context = holder.itemView.context
-                val id = items[position] as String
-                val adView = NextBannerView(context)
-                adView.unitId = id
-                var initialLayoutComplete = false
-                if (root.childCount > 0) root.removeAllViews()
-                root.addView(adView)
-                root.viewTreeObserver.addOnGlobalLayoutListener {
-                    if (initialLayoutComplete) return@addOnGlobalLayoutListener
-                    initialLayoutComplete = true
-                    val density = context.resources.displayMetrics.density
-                    adView.setContainerWidth((root.width.toFloat() / density).toInt())
-                    adView.load()
-                }
-            }
+            adView.load()
         }
 
     }
