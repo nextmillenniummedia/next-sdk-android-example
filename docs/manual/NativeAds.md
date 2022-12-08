@@ -46,8 +46,7 @@ You will get next error message trying to load native ad without unit id:
 
 And finally just load it by calling `load()` method. By default ad will be shown right after load.
 
-<details>
-<summary>Java</summary>
+**Java**
 
 ```java
 public class NativeAdsActivity extends AppCompatActivity {
@@ -63,10 +62,7 @@ public class NativeAdsActivity extends AppCompatActivity {
 }
 ```
 
-</details>
-
-<details>
-<summary>Kotlin</summary>
+**Kotlin**
 
 ```kotlin
 class NativeAdsActivityKt : AppCompatActivity() {
@@ -79,8 +75,6 @@ class NativeAdsActivityKt : AppCompatActivity() {
     }
 }
 ```
-
-</details>
 
 ## Ad management
 
@@ -103,8 +97,7 @@ Available event callbacks:
 
 Implementation examples:
 
-<details>
-<summary>Java</summary>
+**Java**
 
 ```java
 public class NativeAdsActivity extends AppCompatActivity {
@@ -146,10 +139,7 @@ public class NativeAdsActivity extends AppCompatActivity {
 }
 ```
 
-</details>
-
-<details>
-<summary>Kotlin</summary>
+**Kotlin**
 
 ```kotlin
 class NativeAdsActivityKt : AppCompatActivity() {
@@ -186,15 +176,12 @@ class NativeAdsActivityKt : AppCompatActivity() {
 }
 ```
 
-</details>
-
 ### Release resources
 
 Always destroy ad views to ensure that it is removed from the layout and cleared from memory. You
 can do it by calling `destroy` for `NextNativeView`:
 
-<details>
-<summary>Java</summary>
+**Java**
 
 ```java
 public class NativeAdsActivity extends AppCompatActivity {
@@ -218,10 +205,7 @@ public class NativeAdsActivity extends AppCompatActivity {
 }
 ```
 
-</details>
-
-<details>
-<summary>Kotlin</summary>
+**Kotlin**
 
 ```kotlin
 
@@ -243,8 +227,6 @@ class NativeAdsActivityKt : AppCompatActivity() {
     }
 }
 ```
-
-</details>
 
 ### Customize ad lifecycle events
 
@@ -276,9 +258,10 @@ Example of using listener for native ads.
 <summary>Java</summary>
 
 ```java
-public class NativeAdsActivity extends AppCompatActivity implements NextAdListener {
+public class NativeAdsActivity extends AppCompatActivity {
 
     private NextNativeView nativeView;
+    private String LOG_TAG = "NEXT_SDK";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -287,18 +270,53 @@ public class NativeAdsActivity extends AppCompatActivity implements NextAdListen
         String unitId = "108";
         nativeView = findViewById(R.id.native_activity);
         nativeView.setUnitId(unitId);
-        nativeView.setAdListener(this);
+        nativeView.setAdListener(createAdListener(unitId));
         nativeView.load();
     }
 
-    @Override
-    public void onAdLoaded(BaseAdContainer container) {
-        nativeView = (NextNativeView) container;
+    private NextAdListener createAdListener(String unitId) {
+        return new NextAdListener() {
+            @Override
+            public void onAdLoaded(BaseAdContainer container) {
+                logEvent("Successfully loaded ad " + container.getUnitId());
+                nativeView = (NextNativeView) container;
+            }
+
+            @Override
+            public void onAdClicked() {
+                logEvent("Successfully tracked click for ad " + unitId);
+            }
+
+            @Override
+            public void onAdClosed() {
+                logEvent("Closed ad " + unitId);
+            }
+
+            @Override
+            public void onAdLoadFail(NextAdError adError) {
+                Log.e("NEXT_SDK", adError.toString());
+                Toast
+                        .makeText(NativeAdsActivity.this, "Error happened while loading ad: " + adError, Toast.LENGTH_SHORT)
+                        .show();
+            }
+
+            @Override
+            public void onAdImpression() {
+                logEvent("Successfully tracked impression for ad " + unitId);
+            }
+
+            @Override
+            public void onAdOpened() {
+                logEvent("Opened ad " + unitId);
+            }
+        };
     }
 
-    @Override
-    public void onAdLoadFail(NextAdError adError) {
-        Log.e("NEXT_SDK", adError.toString());
+    private void logEvent(String message) {
+        Log.d(LOG_TAG, message);
+        Toast
+                .makeText(this, message, Toast.LENGTH_SHORT)
+                .show();
     }
 
     @Override
@@ -310,13 +328,15 @@ public class NativeAdsActivity extends AppCompatActivity implements NextAdListen
 ```
 
 </details>
+
 <details>
 <summary>Kotlin</summary>
 
 ```kotlin
-class NativeAdsActivityKt : AppCompatActivity(), NextAdListener {
+class NativeAdsActivityKt : AppCompatActivity() {
 
     private lateinit var nativeView: NextNativeView
+    private val LOG_TAG = "NEXT_SDK"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -324,16 +344,51 @@ class NativeAdsActivityKt : AppCompatActivity(), NextAdListener {
         val unitId = "108"
         nativeView = findViewById(R.id.native_activity_kt)
         nativeView.unitId = unitId
-        nativeView.setAdListener(this)
+        nativeView.setAdListener(createAdListener(unitId))
         nativeView.load()
     }
 
-    override fun onAdLoaded(container: BaseAdContainer?) {
-        nativeView = container as NextNativeView
+    private fun logEvent(message: String) {
+        Log.d(LOG_TAG, message)
+        Toast
+            .makeText(this, message, Toast.LENGTH_SHORT)
+            .show()
     }
 
-    override fun onAdLoadFail(adError: NextAdError?) {
-        Log.e("NEXT_SDK", adError.toString())
+    private fun createAdListener(unitId: String): NextAdListener {
+        return object : NextAdListener {
+            override fun onAdLoaded(container: BaseAdContainer) {
+                logEvent("Successfully loaded ad " + container.unitId)
+                nativeView = container as NextNativeView
+            }
+
+            override fun onAdClicked() {
+                logEvent("Successfully tracked click for ad $unitId")
+            }
+
+            override fun onAdClosed() {
+                logEvent("Closed ad $unitId")
+            }
+
+            override fun onAdLoadFail(adError: NextAdError) {
+                Log.e("NEXT_SDK", adError.toString())
+                Toast
+                    .makeText(
+                        this@NativeAdsActivityKt,
+                        "Error happened while loading ad: $adError",
+                        Toast.LENGTH_SHORT
+                    )
+                    .show()
+            }
+
+            override fun onAdImpression() {
+                logEvent("Successfully tracked impression for ad $unitId")
+            }
+
+            override fun onAdOpened() {
+                logEvent("Opened ad $unitId")
+            }
+        }
     }
 
     override fun onDestroy() {
@@ -355,9 +410,10 @@ Full example of implementing native ad in activity
 <summary>Java</summary>
 
 ```java
-public class NativeAdsActivity extends AppCompatActivity implements NextAdListener {
+public class NativeAdsActivity extends AppCompatActivity {
 
     private NextNativeView nativeView;
+    private String LOG_TAG = "NEXT_SDK";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -367,32 +423,53 @@ public class NativeAdsActivity extends AppCompatActivity implements NextAdListen
         nativeView = findViewById(R.id.native_activity);
         nativeView.setUnitId(unitId);
         nativeView.setFetchListener(createListener(unitId));
-        nativeView.setAdListener(this);
+        nativeView.setAdListener(createAdListener(unitId));
         nativeView.load();
     }
 
-    @Override
-    public void onAdLoaded(BaseAdContainer container) {
-        Log.d("NEXT_SDK", "Successful loaded ad");
-        nativeView = (NextNativeView) container;
+    private NextAdListener createAdListener(String unitId) {
+        return new NextAdListener() {
+            @Override
+            public void onAdLoaded(BaseAdContainer container) {
+                logEvent("Successfully loaded ad " + container.getUnitId());
+                nativeView = (NextNativeView) container;
+            }
+
+            @Override
+            public void onAdClicked() {
+                logEvent("Successfully tracked click for ad " + unitId);
+            }
+
+            @Override
+            public void onAdClosed() {
+                logEvent("Closed ad " + unitId);
+            }
+
+            @Override
+            public void onAdLoadFail(NextAdError adError) {
+                Log.e("NEXT_SDK", adError.toString());
+                Toast
+                        .makeText(NativeAdsActivity.this, "Error happened while loading ad: " + adError, Toast.LENGTH_SHORT)
+                        .show();
+            }
+
+            @Override
+            public void onAdImpression() {
+                logEvent("Successfully tracked impression for ad " + unitId);
+            }
+
+            @Override
+            public void onAdOpened() {
+                logEvent("Opened ad " + unitId);
+            }
+        };
     }
 
-    @Override
-    public void onAdLoadFail(NextAdError adError) {
-        Log.e("NEXT_SDK", adError.toString());
-        if (isDestroyed()) {
-            nativeView.destroy();
-        }
-    }
-
-    @Override
-    public void onAdClicked() {
-        Log.d("NEXT_SDK", "Successfully tracked click");
-    }
-
-    @Override
-    public void onAdImpression() {
-        Log.d("NEXT_SDK", "Successfully tracked impression");
+    private void logEvent(String message) {
+        Log.d(LOG_TAG, message);
+        Toast
+                .makeText(this, message, Toast.LENGTH_SHORT)
+                .show();
     }
 
     public FetchListener createListener(String unitId) {
@@ -437,9 +514,10 @@ public class NativeAdsActivity extends AppCompatActivity implements NextAdListen
 <summary>Kotlin</summary>
 
 ```kotlin
-class NativeAdsActivityKt : AppCompatActivity(), NextAdListener {
+class NativeAdsActivityKt : AppCompatActivity() {
 
     private lateinit var nativeView: NextNativeView
+    private val LOG_TAG = "NEXT_SDK"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -447,29 +525,54 @@ class NativeAdsActivityKt : AppCompatActivity(), NextAdListener {
         val unitId = "108"
         nativeView = findViewById(R.id.native_activity_kt)
         nativeView.unitId = unitId
-        nativeView.setAdListener(this)
+        nativeView.setAdListener(createAdListener(unitId))
         nativeView.setFetchListener(createListener(unitId))
         nativeView.load()
     }
 
-    override fun onAdLoaded(container: BaseAdContainer?) {
-        nativeView = container as NextNativeView
+    private fun logEvent(message: String) {
+        Log.d(LOG_TAG, message)
+        Toast
+            .makeText(this, message, Toast.LENGTH_SHORT)
+            .show()
     }
 
-    override fun onAdClicked() {
-        Log.d("NEXT_SDK", "Successfully tracked click")
-    }
+    private fun createAdListener(unitId: String): NextAdListener {
+        return object : NextAdListener {
+            override fun onAdLoaded(container: BaseAdContainer) {
+                logEvent("Successfully loaded ad " + container.unitId)
+                nativeView = container as NextNativeView
+            }
 
-    override fun onAdImpression() {
-        Log.d("NEXT_SDK", "Successfully tracked impression")
-    }
+            override fun onAdClicked() {
+                logEvent("Successfully tracked click for ad $unitId")
+            }
 
-    override fun onAdLoadFail(adError: NextAdError?) {
-        Log.e("NEXT_SDK", adError.toString())
-        if (isDestroyed) {
-            nativeView.destroy()
+            override fun onAdClosed() {
+                logEvent("Closed ad $unitId")
+            }
+
+            override fun onAdLoadFail(adError: NextAdError) {
+                Log.e("NEXT_SDK", adError.toString())
+                Toast
+                    .makeText(
+                        this@NativeAdsActivityKt,
+                        "Error happened while loading ad: $adError",
+                        Toast.LENGTH_SHORT
+                    )
+                    .show()
+            }
+
+            override fun onAdImpression() {
+                logEvent("Successfully tracked impression for ad $unitId")
+            }
+
+            override fun onAdOpened() {
+                logEvent("Opened ad $unitId")
+            }
         }
     }
+
 
     private fun createListener(unitId: String): FetchListener {
         return object : FetchListener {
@@ -486,7 +589,8 @@ class NativeAdsActivityKt : AppCompatActivity(), NextAdListener {
                     this@NativeAdsActivityKt,
                     "Error ad load: $err",
                     Toast.LENGTH_SHORT
-                ).show()
+                )
+                    .show()
             }
         }
     }
@@ -508,10 +612,11 @@ Full example of implementing native ad in fragment
 <summary>Java</summary>
 
 ```java
-public class NativeAdFragment extends Fragment implements NextAdListener {
+public class NativeAdFragment extends Fragment {
 
     private FragmentNativeAdBinding binding;
     private NextNativeView nativeView;
+    private String LOG_TAG = "NEXT_SDK";
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -527,18 +632,64 @@ public class NativeAdFragment extends Fragment implements NextAdListener {
         String unitId = "108";
         nativeView.setUnitId(unitId);
         nativeView.setFetchListener(createListener(unitId));
-        nativeView.setAdListener(this);
+        nativeView.setAdListener(createAdListener(unitId));
         nativeView.load();
     }
 
-    public FetchListener createListener(String unitId) {
+    private void logEvent(String message) {
+        Log.d(LOG_TAG, message);
+        Toast
+                .makeText(requireActivity(), message, Toast.LENGTH_SHORT)
+                .show();
+    }
+
+    private NextAdListener createAdListener(String unitId) {
+        return new NextAdListener() {
+            @Override
+            public void onAdLoaded(BaseAdContainer container) {
+                logEvent("Successfully loaded ad " + container.getUnitId());
+                nativeView = (NextNativeView) container;
+            }
+
+            @Override
+            public void onAdClicked() {
+                logEvent("Successfully tracked click for ad " + unitId);
+            }
+
+            @Override
+            public void onAdClosed() {
+                logEvent("Closed ad " + unitId);
+            }
+
+            @Override
+            public void onAdLoadFail(NextAdError adError) {
+                Log.e("NEXT_SDK", adError.toString());
+                Toast
+                        .makeText(requireActivity(), "Error happened while loading ad: " + adError, Toast.LENGTH_SHORT)
+                        .show();
+            }
+
+            @Override
+            public void onAdImpression() {
+                logEvent("Successfully tracked impression for ad " + unitId);
+            }
+
+            @Override
+            public void onAdOpened() {
+                logEvent("Opened ad " + unitId);
+            }
+        };
+    }
+
+    private FetchListener createListener(String unitId) {
         return new FetchListener() {
             @Override
             public void onSuccess() {
                 if (isAdded()) {
                     Toast.makeText(requireActivity(),
-                            "Successfully loaded ad " + unitId,
-                            Toast.LENGTH_SHORT).show();
+                                    "Successfully loaded ad " + unitId,
+                                    Toast.LENGTH_SHORT)
+                            .show();
                 }
             }
 
@@ -553,32 +704,12 @@ public class NativeAdFragment extends Fragment implements NextAdListener {
                         return;
                     }
                     Toast.makeText(requireActivity(),
-                            throwable.getMessage(),
-                            Toast.LENGTH_SHORT).show();
+                                    throwable.getMessage(),
+                                    Toast.LENGTH_SHORT)
+                            .show();
                 }
             }
         };
-    }
-
-    @Override
-    public void onAdLoaded(BaseAdContainer container) {
-        Log.d("NEXT_SDK", "Successful loaded ad");
-        nativeView = (NextNativeView) container;
-    }
-
-    @Override
-    public void onAdLoadFail(NextAdError adError) {
-        Log.e("NEXT_SDK", adError.toString());
-    }
-
-    @Override
-    public void onAdClicked() {
-        Log.d("NEXT_SDK", "Successfully tracked click");
-    }
-
-    @Override
-    public void onAdImpression() {
-        Log.d("NEXT_SDK", "Successfully tracked impression");
     }
 
     @Override
@@ -596,10 +727,11 @@ public class NativeAdFragment extends Fragment implements NextAdListener {
 <summary>Kotlin</summary>
 
 ```kotlin
-class NativeAdFragmentKt : Fragment(), NextAdListener {
+class NativeAdFragmentKt : Fragment() {
 
     private var binding: FragmentNativeAdKtBinding? = null
     private var nativeView: NextNativeView? = null
+    private val LOG_TAG = "NEXT_SDK"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -614,26 +746,54 @@ class NativeAdFragmentKt : Fragment(), NextAdListener {
         nativeView = binding?.nativeFragmentKt
         val unitId = "108"
         nativeView?.unitId = unitId
-        nativeView?.setAdListener(this)
+        nativeView?.setAdListener(createAdListener(unitId))
         nativeView?.setFetchListener(createListener(unitId))
         nativeView?.load()
     }
 
-    override fun onAdLoaded(container: BaseAdContainer?) {
-        nativeView = container as NextNativeView
+    private fun logEvent(message: String) {
+        Log.d(LOG_TAG, message)
+        Toast
+            .makeText(requireActivity(), message, Toast.LENGTH_SHORT)
+            .show()
     }
 
-    override fun onAdClicked() {
-        Log.d("NEXT_SDK", "Successfully tracked click")
+    private fun createAdListener(unitId: String): NextAdListener {
+        return object : NextAdListener {
+            override fun onAdLoaded(container: BaseAdContainer) {
+                logEvent("Successfully loaded ad " + container.unitId)
+                nativeView = container as NextNativeView
+            }
+
+            override fun onAdClicked() {
+                logEvent("Successfully tracked click for ad $unitId")
+            }
+
+            override fun onAdClosed() {
+                logEvent("Closed ad $unitId")
+            }
+
+            override fun onAdLoadFail(adError: NextAdError) {
+                Log.e("NEXT_SDK", adError.toString())
+                Toast
+                    .makeText(
+                        requireActivity(),
+                        "Error happened while loading ad: $adError",
+                        Toast.LENGTH_SHORT
+                    )
+                    .show()
+            }
+
+            override fun onAdImpression() {
+                logEvent("Successfully tracked impression for ad $unitId")
+            }
+
+            override fun onAdOpened() {
+                logEvent("Opened ad $unitId")
+            }
+        }
     }
 
-    override fun onAdImpression() {
-        Log.d("NEXT_SDK", "Successfully tracked impression")
-    }
-
-    override fun onAdLoadFail(adError: NextAdError?) {
-        Log.e("NEXT_SDK", adError.toString())
-    }
 
     private fun createListener(unitId: String): FetchListener {
         return object : FetchListener {
@@ -668,13 +828,197 @@ class NativeAdFragmentKt : Fragment(), NextAdListener {
 
 </details>
 
-## Custom layouts
+## Native ad options
+
+You can customize native ads operating `NextNativeAdOptions`. It includes next fields:
+
+| Field | Type | Description | Default value
+| --- | --- | --- | --- |
+| `isStartMuted` | `boolean` | Start muted if ad includes video | `true`
+| `fullScreenNativeType` | enum `FullScreenNativeType` | Type of full screen native ad. Possible values are `PORTRAIT`, `LANDSCAPE`, `SQUARE` | `PORTRAIT`
+| `resourceId` | `int` | Id of native ad. By default equals our template. But you can replace it with your custom template | -
+| `videoListener` | `NextVideoListener` | Listener for video ads | -
+
+You can set params by operating `options` object of `NextNativeView`.
+
+**Java**
+
+```java
+public class NativeAdFragment extends Fragment {
+
+    private NextNativeView nativeView;
+    private FragmentNativeAdBinding binding;
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        nativeView = binding.nativeFragment;
+        nativeView.setUnitId("108");
+        nativeView.getOptions().setStartMuted(false);
+        nativeView.getOptions().setResourceId(R.layout.custom_native);
+        nativeView.load();
+    }
+}
+```
+
+**Kotlin**
+
+```kotlin
+class NativeAdFragmentKt : Fragment() {
+    private var binding: FragmentNativeAdKtBinding? = null
+    private var nativeView: NextNativeView? = null
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        nativeView = binding?.nativeFragmentKt
+        nativeView?.unitId = "108"
+        nativeView?.options?.resourceId = R.layout.custom_native
+        nativeView?.options?.isStartMuted = false
+        nativeView?.load()
+    }
+}
+
+```
+
+### Customize video lifecycle events
+
+`NextVideoListener` used for managing lifecycle events of video ad.
+
+Available event callbacks:
+
+| method | description |
+| --- | --- |
+| `onStart` | Called when video playback first begins. |
+| `onPlay` | Called when video playback is playing. |
+| `onPause` | Called when video playback is paused. |
+| `onEnd` | Called when video playback finishes. |
+| `onMute(boolean isMuted)` | Called when the video changes mute state. |
+
+You can define your own listener for video ads by settings corresponding options
+field `videoListener`
+
+**Java**
+
+```java
+public class NativeAdFragment extends Fragment {
+
+    private FragmentNativeAdBinding binding;
+    private NextNativeView nativeView;
+    private String LOG_TAG = "NEXT_SDK";
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        binding = FragmentNativeAdBinding.inflate(inflater);
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        nativeView = binding.nativeFragment;
+        nativeView.setUnitId("108");
+        nativeView.getOptions().setVideoListener(createVideoListener(unitId));
+        nativeView.load();
+    }
+
+    private void logEvent(String message) {
+        Log.d(LOG_TAG, message);
+        Toast
+                .makeText(requireActivity(), message, Toast.LENGTH_SHORT)
+                .show();
+    }
+
+    private NextVideoListener createVideoListener(String unitId) {
+        return new NextVideoListener() {
+            @Override
+            public void onStart() {
+                logEvent("Started video for unit " + unitId);
+            }
+
+            @Override
+            public void onPlay() {
+                logEvent("Play video for unit " + unitId);
+            }
+
+            @Override
+            public void onPause() {
+                logEvent("Paused video ad event for unit " + unitId);
+            }
+
+            @Override
+            public void onEnd() {
+                logEvent("End video event for unit " + unitId);
+            }
+
+            @Override
+            public void onMute(boolean isMuted) {
+                logEvent("Video ad muted: " + isMuted + " for unit " + unitId);
+            }
+        };
+    }
+
+}
+```
+
+**Kotlin**
+
+```kotlin
+class NativeAdFragmentKt : Fragment() {
+
+    private var nativeView: NextNativeView? = null
+    private var binding: FragmentNativeAdKtBinding? = null
+    private val LOG_TAG = "NEXT_SDK"
+
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        nativeView = binding?.nativeFragmentKt
+        nativeView?.unitId = "108"
+        nativeView?.options?.videoListener = createVideoListener(unitId)
+        nativeView?.load()
+    }
+
+    private fun logEvent(message: String) {
+        Log.d(LOG_TAG, message)
+        Toast
+            .makeText(requireActivity(), message, Toast.LENGTH_SHORT)
+            .show()
+    }
+
+    private fun createVideoListener(unitId: String): NextVideoListener {
+        return object : NextVideoListener {
+            override fun onStart() {
+                logEvent("Started video event for unit $unitId")
+            }
+
+            override fun onPlay() {
+                logEvent("Play video event for unit $unitId")
+            }
+
+            override fun onPause() {
+                logEvent("Paused video ad event for unit $unitId")
+            }
+
+            override fun onEnd() {
+                logEvent("End video event for unit $unitId")
+            }
+
+            override fun onMute(isMuted: Boolean) {
+                logEvent("Video ad muted: $isMuted for unit $unitId")
+            }
+        }
+    }
+}
+```
+
+### Custom layouts
 
 You can create your own native ad layout. All you need is create layout xml file
 with `NextNativeAdLayout` as root view. Below are our default layouts as examples.
 
-To use custom layout just call `nativeView.setResourceId(int)` and provide resource identifier for
-your layout.
+To use custom layout just call `nativeView.getOptions().setResourceId(int)` and provide resource
+identifier for your layout.
 
 ### Default layouts
 
@@ -901,6 +1245,7 @@ fields, ids and descriptions is below.
 <summary>Custom template custom_native.xml</summary>
 
 ```xml
+
 <io.nextmillennium.nextsdk.ui.nativeads.NextNativeAdLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -993,15 +1338,82 @@ fields, ids and descriptions is below.
 
 </details>
 
+**Java**
+
+```java
+public class NativeAdFragment extends Fragment {
+
+    private FragmentNativeAdBinding binding;
+    private NextNativeView nativeView;
+    private String LOG_TAG = "NEXT_SDK";
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        binding = FragmentNativeAdBinding.inflate(inflater);
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        nativeView = binding.nativeFragment;
+        nativeView.setUnitId("108");
+        nativeView.getOptions().setResourceId(R.layout.custom_native);
+        nativeView.load();
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (nativeView != null) nativeView.destroy();
+        binding = null;
+    }
+}
+```
+
+**Kotlin**
+
+```kotlin
+class NativeAdFragmentKt : Fragment() {
+
+    private var binding: FragmentNativeAdKtBinding? = null
+    private var nativeView: NextNativeView? = null
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentNativeAdKtBinding.inflate(inflater)
+        return binding?.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        nativeView = binding?.nativeFragmentKt
+        nativeView?.unitId = "108"
+        nativeView?.options?.resourceId = R.layout.custom_native
+        nativeView?.load()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        nativeView?.destroy()
+    }
+}
+```
+
+### Example of full native ad customization
 
 <details>
 <summary>Java</summary>
 
 ```java
-public class NativeAdFragment extends Fragment implements NextAdListener {
+public class NativeAdFragment extends Fragment {
 
     private FragmentNativeAdBinding binding;
     private NextNativeView nativeView;
+    private String LOG_TAG = "NEXT_SDK";
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -1017,12 +1429,88 @@ public class NativeAdFragment extends Fragment implements NextAdListener {
         String unitId = "108";
         nativeView.setUnitId(unitId);
         nativeView.setFetchListener(createListener(unitId));
-        nativeView.setAdListener(this);
-        nativeView.setResourceId(R.layout.custom_native);
+        nativeView.setAdListener(createAdListener(unitId));
+        nativeView.getOptions().setStartMuted(false);
+        nativeView.getOptions().setResourceId(R.layout.custom_native);
+        nativeView.getOptions().setVideoListener(createVideoListener(unitId));
         nativeView.load();
     }
 
-    public FetchListener createListener(String unitId) {
+    private void logEvent(String message) {
+        Log.d(LOG_TAG, message);
+        Toast
+                .makeText(requireActivity(), message, Toast.LENGTH_SHORT)
+                .show();
+    }
+
+    private NextVideoListener createVideoListener(String unitId) {
+        return new NextVideoListener() {
+            @Override
+            public void onStart() {
+                logEvent("Started video for unit " + unitId);
+            }
+
+            @Override
+            public void onPlay() {
+                logEvent("Play video for unit " + unitId);
+            }
+
+            @Override
+            public void onPause() {
+                logEvent("Paused video ad event for unit " + unitId);
+            }
+
+            @Override
+            public void onEnd() {
+                logEvent("End video event for unit " + unitId);
+            }
+
+            @Override
+            public void onMute(boolean isMuted) {
+                logEvent("Video ad muted: " + isMuted + " for unit " + unitId);
+            }
+        };
+    }
+
+    private NextAdListener createAdListener(String unitId) {
+        return new NextAdListener() {
+            @Override
+            public void onAdLoaded(BaseAdContainer container) {
+                logEvent("Successfully loaded ad " + container.getUnitId());
+                nativeView = (NextNativeView) container;
+            }
+
+            @Override
+            public void onAdClicked() {
+                logEvent("Successfully tracked click for ad " + unitId);
+            }
+
+            @Override
+            public void onAdClosed() {
+                logEvent("Closed ad " + unitId);
+            }
+
+            @Override
+            public void onAdLoadFail(NextAdError adError) {
+                Log.e("NEXT_SDK", adError.toString());
+                Toast
+                        .makeText(requireActivity(), "Error happened while loading ad: " + adError, Toast.LENGTH_SHORT)
+                        .show();
+            }
+
+            @Override
+            public void onAdImpression() {
+                logEvent("Successfully tracked impression for ad " + unitId);
+            }
+
+            @Override
+            public void onAdOpened() {
+                logEvent("Opened ad " + unitId);
+            }
+        };
+    }
+
+    private FetchListener createListener(String unitId) {
         return new FetchListener() {
             @Override
             public void onSuccess() {
@@ -1054,27 +1542,6 @@ public class NativeAdFragment extends Fragment implements NextAdListener {
     }
 
     @Override
-    public void onAdLoaded(BaseAdContainer container) {
-        Log.d("NEXT_SDK", "Successful loaded ad");
-        nativeView = (NextNativeView) container;
-    }
-
-    @Override
-    public void onAdLoadFail(NextAdError adError) {
-        Log.e("NEXT_SDK", adError.toString());
-    }
-
-    @Override
-    public void onAdClicked() {
-        Log.d("NEXT_SDK", "Successfully tracked click");
-    }
-
-    @Override
-    public void onAdImpression() {
-        Log.d("NEXT_SDK", "Successfully tracked impression");
-    }
-
-    @Override
     public void onDestroyView() {
         super.onDestroyView();
         if (nativeView != null) nativeView.destroy();
@@ -1089,10 +1556,11 @@ public class NativeAdFragment extends Fragment implements NextAdListener {
 <summary>Kotlin</summary>
 
 ```kotlin
-class NativeAdFragmentKt : Fragment(), NextAdListener {
+class NativeAdFragmentKt : Fragment() {
 
     private var binding: FragmentNativeAdKtBinding? = null
     private var nativeView: NextNativeView? = null
+    private val LOG_TAG = "NEXT_SDK"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -1107,27 +1575,81 @@ class NativeAdFragmentKt : Fragment(), NextAdListener {
         nativeView = binding?.nativeFragmentKt
         val unitId = "108"
         nativeView?.unitId = unitId
-        nativeView?.setAdListener(this)
+        nativeView?.setAdListener(createAdListener(unitId))
         nativeView?.setFetchListener(createListener(unitId))
-        nativeView?.setResourceId(R.layout.custom_native)
+        nativeView?.options?.resourceId = R.layout.custom_native
+        nativeView?.options?.videoListener = createVideoListener(unitId)
+        nativeView?.options?.isStartMuted = false
         nativeView?.load()
     }
 
-    override fun onAdLoaded(container: BaseAdContainer?) {
-        nativeView = container as NextNativeView
+    private fun logEvent(message: String) {
+        Log.d(LOG_TAG, message)
+        Toast
+            .makeText(requireActivity(), message, Toast.LENGTH_SHORT)
+            .show()
     }
 
-    override fun onAdClicked() {
-        Log.d("NEXT_SDK", "Successfully tracked click")
+    private fun createVideoListener(unitId: String): NextVideoListener {
+        return object : NextVideoListener {
+            override fun onStart() {
+                logEvent("Started video event for unit $unitId")
+            }
+
+            override fun onPlay() {
+                logEvent("Play video event for unit $unitId")
+            }
+
+            override fun onPause() {
+                logEvent("Paused video ad event for unit $unitId")
+            }
+
+            override fun onEnd() {
+                logEvent("End video event for unit $unitId")
+            }
+
+            override fun onMute(isMuted: Boolean) {
+                logEvent("Video ad muted: $isMuted for unit $unitId")
+            }
+        }
     }
 
-    override fun onAdImpression() {
-        Log.d("NEXT_SDK", "Successfully tracked impression")
+    private fun createAdListener(unitId: String): NextAdListener {
+        return object : NextAdListener {
+            override fun onAdLoaded(container: BaseAdContainer) {
+                logEvent("Successfully loaded ad " + container.unitId)
+                nativeView = container as NextNativeView
+            }
+
+            override fun onAdClicked() {
+                logEvent("Successfully tracked click for ad $unitId")
+            }
+
+            override fun onAdClosed() {
+                logEvent("Closed ad $unitId")
+            }
+
+            override fun onAdLoadFail(adError: NextAdError) {
+                Log.e("NEXT_SDK", adError.toString())
+                Toast
+                    .makeText(
+                        requireActivity(),
+                        "Error happened while loading ad: $adError",
+                        Toast.LENGTH_SHORT
+                    )
+                    .show()
+            }
+
+            override fun onAdImpression() {
+                logEvent("Successfully tracked impression for ad $unitId")
+            }
+
+            override fun onAdOpened() {
+                logEvent("Opened ad $unitId")
+            }
+        }
     }
 
-    override fun onAdLoadFail(adError: NextAdError?) {
-        Log.e("NEXT_SDK", adError.toString())
-    }
 
     private fun createListener(unitId: String): FetchListener {
         return object : FetchListener {
