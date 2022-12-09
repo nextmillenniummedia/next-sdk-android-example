@@ -1,5 +1,7 @@
 # Next SDK for Android Documentation and Example
 
+![](https://img.shields.io/maven-metadata/v?metadataUrl=https%3A%2F%2Fsdk.brainlyads.com%2F%2Fandroid%2Frepository%2Fio%2Fnextmillennium%2Fnextsdk%2Fmaven-metadata-local.xml)
+
 Next SDK enables you to monetize your applications through high-quality ads via an easy-to-install,
 zero-maintenance, native Android SDK.
 
