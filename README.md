@@ -7,7 +7,7 @@ This repo contains docs about Android SDK and public example of
 usage. [Contact us](https://nextmillennium.io/contact) to learn more about product. Also you can
 always put your issues with SDK here and we'll do our best to help you.
 
-***Current SDK version**:* **2.0.0**
+**Actual version**: **2.1.0**
 
 The documentation describe the procedure on how to integrate NMM in-app ads into your iOS
 applications.
