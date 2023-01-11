@@ -1,5 +1,5 @@
 # Test Your Integration
-[Back to repo](https://github.com/nextmillenniummedia/next-sdk-android-example/tree/2.x)
+[Back to repo](https://github.com/nextmillenniummedia/next-sdk-android-example/tree/main)
 
 Make sure that you've complete the previous steps on SDK integration prior to testing.
 

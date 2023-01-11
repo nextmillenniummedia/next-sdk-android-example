@@ -1,5 +1,5 @@
 # Integrate Ad Formats Manually
-[Back to repo](https://github.com/nextmillenniummedia/next-sdk-android-example/tree/2.x)
+[Back to repo](https://github.com/nextmillenniummedia/next-sdk-android-example/tree/main)
 
 **Manual mode** is a way of serving ads in your apps where the publisher manually adjusts ad
 placements and does all of the ad management on their own.

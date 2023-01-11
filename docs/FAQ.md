@@ -1,6 +1,6 @@
 
 # FAQ
-[Back to repo](https://github.com/nextmillenniummedia/next-sdk-android-example/tree/2.x)
+[Back to repo](https://github.com/nextmillenniummedia/next-sdk-android-example/tree/main)
 
 **Q: Do I have to integrate Google SDK into my app?**
 

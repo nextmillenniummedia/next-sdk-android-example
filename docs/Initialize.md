@@ -1,6 +1,6 @@
 
 # Initialize the SDK
-[Back to repo](https://github.com/nextmillenniummedia/next-sdk-android-example/tree/2.x)
+[Back to repo](https://github.com/nextmillenniummedia/next-sdk-android-example/tree/main)
 
 **You must initialize the Next SDK before you start requesting ads.**
 
