@@ -757,5 +757,5 @@ inlineBanner.setContainerWidth(binding.inlineBannerContainer.width)
 
 Banner in container will look like on image below
 <p align="center">
-<img src="https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/assets/container_width.png" height="720">
+<img src="https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/assets/container_width.png" height="720">
 </p>

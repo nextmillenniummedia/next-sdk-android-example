@@ -22,31 +22,31 @@ Next Android SDK requires the following:
 
 Documents below describe how to integrate NMM in-app ads into your Android applications.
 
-⬇ [Integrate the SDK](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/Integrate.md)
+⬇ [Integrate the SDK](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/Integrate.md)
 
-🛠 [Initialize the SDK](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/Initialize.md)
+🛠 [Initialize the SDK](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/Initialize.md)
 
-👨‍💻 [Integrate Ad Formats Manually](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/Manual.md)
+👨‍💻 [Integrate Ad Formats Manually](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/Manual.md)
 
-🎮 [Test Your Integration](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/TestIntegration.md)
+🎮 [Test Your Integration](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/TestIntegration.md)
 
-📘 [Advanced Settings](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/AdvancedSettings.md)
+📘 [Advanced Settings](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/AdvancedSettings.md)
 
-❔ [FAQ](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/FAQ.md)
+❔ [FAQ](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/FAQ.md)
 
 # Example application
 
 <p align="center">
-<img src="https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/assets/main_screen.png" height="480">
+<img src="https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/assets/main_screen.png" height="480">
 </p>
 
 # Migration
 
 You can learn more about changes between major
-versions [here](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/MigrationGuide.md)
+versions [here](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/MigrationGuide.md)
 
 # Older version
 
 If you need documentation for InApp SDK 1.x.x you can find it here [here](https://github.com/nextmillenniummedia/next-sdk-android-example/tree/1.x) 
 
-[comment]: <> (* 🚀 [Integrate Ad Formats Dynamically]&#40;https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/Dynamic.md&#41;)
+[comment]: <> (* 🚀 [Integrate Ad Formats Dynamically]&#40;https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/Dynamic.md&#41;)

@@ -14,15 +14,15 @@ contact.
 
 The doc show how to display ads in **Manual mode**.
 
-[Banners](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/manual/Banner.md)
+[Banners](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/manual/Banner.md)
 
-[Native Ads](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/manual/NativeAds.md)
+[Native Ads](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/manual/NativeAds.md)
 
-[Interstitial](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/manual/Interstitial.md)
+[Interstitial](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/manual/Interstitial.md)
 
-[Rewarded](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/manual/Rewarded.md)
+[Rewarded](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/manual/Rewarded.md)
 
-[Rewarded Interstitial](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/manual/RewardedInterstitial.md)
+[Rewarded Interstitial](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/manual/RewardedInterstitial.md)
 
-[App Open](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/manual/AppOpen.md)
+[App Open](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/manual/AppOpen.md)
 
