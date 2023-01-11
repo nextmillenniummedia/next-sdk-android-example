@@ -1,6 +1,6 @@
 # Native Ads
 
-[Back to manual mode overview](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/manual/Manual.md)
+[Back to manual mode overview](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/manual/Manual.md)
 
 A native ad format is designed to adapt to the environment within which it is displayed. It combines
 advertising message with user-centric content. It is similar to banner ads, but they don’t take up a

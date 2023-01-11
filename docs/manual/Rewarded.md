@@ -1,6 +1,6 @@
 # Rewarded Ads
 
-[Back to manual mode overview](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/main/docs/Manual.md)
+[Back to manual mode overview](https://github.com/nextmillenniummedia/next-sdk-android-example/blob/2.x/docs/Manual.md)
 
 Rewarded video ads offer users a value exchange - a free in-app reward for watching a video advertisement. 
 For example, in a mobile game, a player can watch a skippable video to gain some in-app currency. 
