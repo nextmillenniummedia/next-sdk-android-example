@@ -22,5 +22,8 @@
         <item
             android:id="@+id/nav_native"
             android:title="@string/native_ad" />
+        <item
+            android:id="@+id/nav_insertion"
+            android:title="@string/insertion_mode" />
     </group>
 </menu>

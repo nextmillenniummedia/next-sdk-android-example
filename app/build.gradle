@@ -37,7 +37,7 @@ android {
 apply from: 'signing.gradle'
 
 dependencies {
-    def sdkVersion = project.hasProperty("sdk_version") ? project.property("sdk_version") : "2.1.0"
+    def sdkVersion = project.hasProperty("sdk_version") ? project.property("sdk_version") : "2.2.0"
     // SDK
     implementation "io.nextmillennium:nextsdk:$sdkVersion"
 
