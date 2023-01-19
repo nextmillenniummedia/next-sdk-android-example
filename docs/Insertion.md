@@ -2,17 +2,17 @@
 
 [Back to repo](https://github.com/nextmillenniummedia/next-sdk-android-example/tree/main)
 
-In Dynamic (or insertion) mode, our SDK dynamically services and displays ads directly in the
-content of your app’s
+In Dynamic (or insertion) mode, our SDK dynamically servers and displays ads directly in the
+content of your application's
 screens, using pre-defined ad units selected from the inApp management dashboard. This means you
 don’t need to update code when the ad format changes, which reduces set up time and minimizes
 maintenance.
 
 The following subsections describe how to integrate ad formats dynamically.
 
-All you need to do is to call `NextAds.insertAdsTo` method in create callback of your activity or
-fragment and pass screen key.
-Screen keys you can get from our [support](mailto:support@nextmillennium.io).
+All you need to do is to call `NextAds.insertAdsTo` method in `onCreate` callback of your screen and
+pass screen key.
+You can get screen keys from our [support](mailto:support@nextmillennium.io).
 
 ## Fragment
 
@@ -103,7 +103,8 @@ class AdaptiveFragment : Fragment() {
 
 ### Reload banner ad
 
-For reloading just pass banner position. We have `BannerPosition` enum containing TOP and BOTTOM
+Banner reloading managed by `NextAds.reload` method.
+Just pass which banner you want to reload: top or bottom. We have `BannerPosition` enum containing TOP and BOTTOM
 values.
 
 Java
