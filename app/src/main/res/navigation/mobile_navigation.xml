@@ -49,5 +49,27 @@
     <action
         android:id="@+id/action_to_settings"
         app:destination="@id/nav_settings" />
+    <fragment
+        android:id="@+id/nav_insertion"
+        android:name="io.nextmillennium.nextandroidexample.ui.InsertionRootFragment"
+        android:label="fragment_insertion_root"
+        tools:layout="@layout/fragment_insertion_root" >
+        <action
+            android:id="@+id/action_nav_insertion_to_insertionFragment"
+            app:destination="@id/insertionFragment" />
+        <action
+            android:id="@+id/action_nav_insertion_to_insertionActivity"
+            app:destination="@id/insertionActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/insertionFragment"
+        android:name="io.nextmillennium.nextandroidexample.ui.InsertionFragment"
+        android:label="fragment_insertion"
+        tools:layout="@layout/fragment_insertion" />
+    <activity
+        android:id="@+id/insertionActivity"
+        android:name="io.nextmillennium.nextandroidexample.ui.InsertionActivity"
+        android:label="activity_insertion"
+        tools:layout="@layout/activity_insertion" />
 
 </navigation>
