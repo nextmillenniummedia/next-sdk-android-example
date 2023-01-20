@@ -61,14 +61,12 @@ your `build.gradle` file as follows:
 dependencies {
     // ... other project dependencies
 
-    // For banners
-    implementation('io.nextmillennium:nextsdk-banner:2.0.0')
+    // For banners and native ads
+    implementation('io.nextmillennium:nextsdk-base:2.2.0')
 
     // For interstitials, rewarded and app open ads
-    implementation('io.nextmillennium:nextsdk-fullscreen:2.0.0')
+    implementation('io.nextmillennium:nextsdk-fullscreen:2.2.0')
 
-    // For native ads (since 2.2.0)
-    implementation('io.nextmillennium:nextsdk-native:2.2.0')
 }
 ```
 
