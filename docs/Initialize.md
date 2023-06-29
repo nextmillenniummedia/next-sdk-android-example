@@ -23,6 +23,9 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         NextSdk.initialize(this);
+        if (BuildConfig.DEBUG) {
+            NextSdk.disableCrashReports();
+        }
     }
 }
 ```
@@ -38,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         NextSdk.initialize(this);
+        if (BuildConfig.DEBUG) {
+            NextSdk.disableCrashReports();
+        }
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
     }
@@ -57,6 +63,9 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
         NextSdk.initialize(this)
+        if (BuildConfig.DEBUG) {
+            NextSdk.disableCrashReports();
+        }
     }
 }
 ```
@@ -71,6 +80,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         NextSdk.initialize(this)
+        if (BuildConfig.DEBUG) {
+            NextSdk.disableCrashReports();
+        }
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
     }

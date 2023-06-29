@@ -36,7 +36,7 @@ Add nextsdk dependency to module-level `build.gradle`:
 
 ```gradle
 dependencies {
-    implementation 'io.nextmillennium:nextsdk:2.2.0'
+    implementation 'io.nextmillennium:nextsdk:2.3.0'
 }
 ```
 
