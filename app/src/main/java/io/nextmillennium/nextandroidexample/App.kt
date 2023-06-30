@@ -11,6 +11,7 @@ class App : Application() {
         super.onCreate()
         initPreferences()
         if (BuildConfig.DEBUG) {
+            NextSdk.disableCrashReports()
             NextSdk.enableLogging()
         }
         NextSdk.initialize(this, true) {
